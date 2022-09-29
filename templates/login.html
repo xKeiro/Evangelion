@@ -1,0 +1,24 @@
+{% extends "default.html" %}
+{% block content %}
+	<main class="container">
+		<div class="d-flex flex-column text-center align-items-center">
+			{% if login_attempt_failed %}
+				<div class="alert wy-alert-danger">
+					<strong>Login attempt failed!</strong> Check your username and password!
+				</div>
+			{% endif %}
+			<form action="{{ url_for("login") }}" method="POST">
+				<div class="form-group mt-5">
+					<label class="form-label fw-bold mb-1" for="username">Username: </label>
+					<input type="username" name="username" class="form-control" placeholder="Username" required>
+
+				</div>
+				<div class="form-group form-outline mt-3">
+					<label class="color-primary fw-bold mb-1" for="username">Password: </label>
+					<input type="password" name="password" class="form-control" placeholder="Password" required>
+				</div>
+				<div><input type="submit" value="Login" class="btn btn-primary mt-3"></div>
+			</form>
+		</div>
+	</main>
+{% endblock %}
