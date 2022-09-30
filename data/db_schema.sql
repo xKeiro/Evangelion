@@ -18,7 +18,7 @@ CREATE TABLE work_motivation_category
 CREATE TABLE work_motivation_question
 (
     id SERIAL PRIMARY KEY,
-    question VARCHAR NOT NULL UNIQUE,
+    title VARCHAR NOT NULL UNIQUE,
     category_id INTEGER NOT NULL,
     FOREIGN KEY  (category_id) REFERENCES work_motivation_category (id) ON DELETE CASCADE
 );
@@ -43,7 +43,7 @@ VALUES ('Szellemi ösztönzés'),
        ('Kreativitás'),
        ('Irányítás');
 
-INSERT INTO work_motivation_question(question, category_id)
+INSERT INTO work_motivation_question(title, category_id)
 VALUES ('szüntelenül új, megoldatlan problémákba ütközik.', 1),
        ('másokon segíthet.', 2),
        ('sok pénzt keres.', 3),

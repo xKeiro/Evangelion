@@ -7,6 +7,7 @@ from flask import url_for
 
 import util
 from data_manager import user_handler
+from data_manager import work_motivation_handler
 
 app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
@@ -63,4 +64,5 @@ def logout():
 @app.route('/test/work-motivation')
 @util.login_required
 def work_motivation():
-    return render_template('tests/work_motivation.jinja2')
+    questions = work_motivation_handler.get_questions()
+    return render_template('tests/work_motivation.jinja2', questions=questions)
