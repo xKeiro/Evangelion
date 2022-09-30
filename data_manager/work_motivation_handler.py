@@ -29,7 +29,6 @@ def submit_answer(cursor, answers, username) -> None:
         query += " (%s, %s, %s),"
     query = query[:-1]
     var = []
-    print(query)
     for question_id, score in answers.items():
         var.extend([question_id, result_header_id, score])
     cursor.execute(query,var)
