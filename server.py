@@ -14,7 +14,7 @@ app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("index.jinja2")
 
 
 @app.route('/register', methods=["GET", "POST"])
@@ -27,10 +27,10 @@ def register():
         try:
             user_handler.add_new_user(fields)
         except:
-            return render_template("register.html", matching_username=True)
+            return render_template("register.jinja2", matching_username=True)
         session["username"] = fields["username"]
         return redirect(url_for('index'))
-    return render_template("register.html", matching_username=False)
+    return render_template("register.jinja2", matching_username=False)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -48,7 +48,7 @@ def login():
                 return redirect(url_for("index"))
         except:
             login_attempt_failed = True
-    return render_template("login.html", login_attempt_failed=login_attempt_failed)
+    return render_template("login.jinja2", login_attempt_failed=login_attempt_failed)
 
 
 @app.route('/logout')

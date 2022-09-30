@@ -1,8 +1,9 @@
 import functools
 import os
 
-import psycopg2  # type: ignore
-import psycopg2.extras
+import psycopg
+from psycopg.rows import dict_row
+
 
 
 def get_connection_string():
@@ -16,7 +17,7 @@ def get_connection_string():
     env_variables_defined = user_name and password and host and database_name
 
     if env_variables_defined:
-        # this string describes all info for psycopg2 to connect to the database
+        # this string describes all info for psycopg to connect to the database
         return 'postgresql://{user_name}:{password}@{host}/{database_name}'.format(
             user_name=user_name,
             password=password,
@@ -30,9 +31,9 @@ def get_connection_string():
 def open_database():
     try:
         connection_string = get_connection_string()
-        connection = psycopg2.connect(connection_string)
+        connection = psycopg.connect(connection_string)
         connection.autocommit = True
-    except psycopg2.DatabaseError as exception:
+    except psycopg.DatabaseError as exception:
         print('Database connection problem')
         raise exception
     return connection
@@ -42,8 +43,8 @@ def connection_handler(function):
     @functools.wraps(function)
     def wrapper(*args, **kwargs):
         connection = open_database()
-        # we set the cursor_factory parameter to return with a RealDictCursor cursor (cursor which provide dictionaries)
-        dict_cur = connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+        # we set the row_factory parameter so the cursor returns with dictionaries
+        dict_cur = connection.cursor(row_factory=dict_row)
         ret_value = function(dict_cur, *args, **kwargs)
         dict_cur.close()
         connection.close()
