@@ -16,7 +16,6 @@ def get_user_password_by_username(cursor, username):
     return cursor.fetchone()["password"]
 
 
-
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 
