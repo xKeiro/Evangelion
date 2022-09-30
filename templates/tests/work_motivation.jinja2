@@ -4,14 +4,14 @@
 {% block content %}
 	<main class="container">
 	{% for question in questions %}
-		<div class="row mt-3 mb-3">
-			<div class="col-lg-1 col-2">{{ question.id }}</div>
-			<div class="col-lg-6 col-10"><p>...{{ question.title }}</p></div>
-			<div class="col-lg-1 col-2"><button class="btn">1</button></div>
-			<div class="col-lg-1 col-2"><button class="btn">2</button></div>
-			<div class="col-lg-1 col-2"><button class="btn">3</button></div>
-			<div class="col-lg-1 col-2"><button class="btn">4</button></div>
-			<div class="col-lg-1 col-2"><button class="btn">5</button></div>
+		<div class="row mt-5 mb-5">
+			<div class="col-lg-1 col-1">{{ question.id }}</div>
+			<div class="col-lg-6 col-11"><p>...{{ question.title }}</p></div>
+			<div class="col-lg-1 col-2"><button class="btn ps-4 pe-4">1</button></div>
+			<div class="col-lg-1 col-2"><button class="btn ps-4 pe-4">2</button></div>
+			<div class="col-lg-1 col-2"><button class="btn ps-4 pe-4">3</button></div>
+			<div class="col-lg-1 col-2"><button class="btn ps-4 pe-4">4</button></div>
+			<div class="col-lg-1 col-2"><button class="btn ps-4 pe-4">5</button></div>
 		</div>
 	{% endfor %}
 	</main>
