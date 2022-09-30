@@ -4,6 +4,7 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
+from flask import send_file
 
 import util
 from data_manager import user_handler
@@ -66,3 +67,11 @@ def logout():
 def work_motivation():
     questions = work_motivation_handler.get_questions()
     return render_template('tests/work_motivation.jinja2', questions=questions)
+
+
+@app.route('/download-pdf')
+def download_pdf():
+    util.get_applicants_results_into_pdf()
+    pdf_filename = "applicants_test_results.pdf"
+
+    return send_file(pdf_filename, as_attachment=True)
