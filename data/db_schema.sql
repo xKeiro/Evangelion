@@ -11,20 +11,40 @@ CREATE TABLE users
 
 CREATE TABLE work_motivation_category
 (
-    id SERIAL PRIMARY KEY,
+    id    SERIAL PRIMARY KEY,
     title VARCHAR NOT NULL
 );
 
 CREATE TABLE work_motivation_question
 (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR NOT NULL UNIQUE,
+    id          SERIAL PRIMARY KEY,
+    title       VARCHAR NOT NULL UNIQUE,
     category_id INTEGER NOT NULL,
-    FOREIGN KEY  (category_id) REFERENCES work_motivation_category (id) ON DELETE CASCADE
+    FOREIGN KEY (category_id) REFERENCES work_motivation_category (id) ON DELETE CASCADE
 );
+
+CREATE TABLE result_header
+(
+    id       SERIAL PRIMARY KEY,
+    username INTEGER NOT NULL,
+    date     DATE    NOT NULL DEFAULT CURRENT_DATE,
+    FOREIGN KEY (username) REFERENCES users (username)
+);
+
+CREATE TABLE work_motivation_result
+(
+    id               SERIAL PRIMARY KEY,
+    question_id      INTEGER NOT NULL,
+    result_header_id INTEGER NOT NULL,
+    score            INTEGER NOT NULL,
+    FOREIGN KEY (question_id) REFERENCES work_motivation_question (id),
+    FOREIGN KEY (result_header_id) REFERENCES result_header (id)
+);
+
 
 INSERT INTO users(username, password)
 VALUES ('test', '$2b$12$PVhM2DgrT9aH19ozic8v9u06tzb.Q2c9IE/qrJ4QvfyPdMlY3X9hS'); ---pw: asd
+
 
 INSERT INTO work_motivation_category(title)
 VALUES ('Szellemi ösztönzés'),
@@ -52,17 +72,17 @@ VALUES ('szüntelenül új, megoldatlan problémákba ütközik.', 1),
        ('tekintélyt szerezhet munkájával.', 6),
        ('akár művész is lehet.', 7),
        ('a többiek közé tartozik.', 8),
-       ('pillanatnyi kedve dönti el, hogy mit csináljon.',9),
-       ('megvalósítja önmagát.',10),
+       ('pillanatnyi kedve dönti el, hogy mit csináljon.', 9),
+       ('megvalósítja önmagát.', 10),
        ('tisztelheti a főnökét.', 11),
        ('tehet valamit a társadalmi igazságosságért.', 12),
        ('nem beszélhet mellé, mert csak jó vagy rossz megoldások léteznek.', 13),
        ('másokat irányíthat.', 15),
-       ('új elképzeléseket alakíthat ki.',14),
+       ('új elképzeléseket alakíthat ki.', 14),
        ('valami újat alkothat.', 14),
        ('objektíven lemérheti munkája eredményét.', 13),
        ('vezetője mindig helyesen dönt.', 11),
-       ('olyat is csinálhat, ami más szemében fölöslegesnek tűnhet.',9),
+       ('olyat is csinálhat, ami más szemében fölöslegesnek tűnhet.', 9),
        ('szebbé teheti a világot.', 7),
        ('önálló döntéseket hozhat.', 5),
        ('gondtalan életet biztosíthat.', 3),
@@ -71,13 +91,13 @@ VALUES ('szüntelenül új, megoldatlan problémákba ütközik.', 1),
        ('sikerét vagy kudarcát csak a következő nemzedék döntheti el.', 12),
        ('személyes életstílusa érvényesülhet.', 10),
        ('munkatársai egyben barátai is.', 8),
-       ('biztos lehet afelől, hogy munkájáért a többiek megbecsülik.',6),
-       ('nem kell minduntalan ugyanazt csinálnia.',4),
+       ('biztos lehet afelől, hogy munkájáért a többiek megbecsülik.', 6),
+       ('nem kell minduntalan ugyanazt csinálnia.', 4),
        ('jót tehet mások érdekében.', 2),
        ('más emberek javát szolgálhatja.', 2),
        ('sokféle dolgot csinálhat.', 4),
        ('(ember)re mások felnéznek.', 6),
-       ('jól kijön munkatársaival.',8),
+       ('jól kijön munkatársaival.', 8),
        ('olyan életet élhet, amit legjobban szeret.', 10),
        ('(ember)nek konfliktusokat kell vállalnia.', 12),
        ('mások munkáját is irányíthatja.', 15),
