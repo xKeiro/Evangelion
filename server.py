@@ -16,7 +16,7 @@ app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
 def index():
     return render_template("index.jinja2")
 
-
+# region -------------------------------AUTHENTICATION-----------------------------------------
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -56,3 +56,11 @@ def login():
 def logout():
     session.pop("username")
     return redirect(request.referrer)
+
+# endregion
+
+
+@app.route('/test/work-motivation')
+@util.login_required
+def work_motivation():
+    return render_template('tests/work_motivation.jinja2')
