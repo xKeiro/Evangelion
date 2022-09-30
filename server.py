@@ -52,6 +52,7 @@ def login():
 
 
 @app.route('/logout')
+@util.login_required
 def logout():
     session.pop("username")
     return redirect(request.referrer)
