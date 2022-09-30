@@ -1,6 +1,8 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS work_motivation_category CASCADE;
 DROP TABLE IF EXISTS work_motivation_question CASCADE;
+DROP TABLE IF EXISTS result_header CASCADE;
+DROP TABLE IF EXISTS work_motivation_result CASCADE;
 
 
 CREATE TABLE users
@@ -26,7 +28,7 @@ CREATE TABLE work_motivation_question
 CREATE TABLE result_header
 (
     id       SERIAL PRIMARY KEY,
-    username INTEGER NOT NULL,
+    username VARCHAR(25) NOT NULL,
     date     DATE    NOT NULL DEFAULT CURRENT_DATE,
     FOREIGN KEY (username) REFERENCES users (username)
 );

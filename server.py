@@ -66,3 +66,12 @@ def logout():
 def work_motivation():
     questions = work_motivation_handler.get_questions()
     return render_template('tests/work_motivation.jinja2', questions=questions)
+
+
+@app.route('/api/work-motivation', methods=["POST"])
+@util.login_required
+@util.json_response
+def api_work_motivation_submit():
+    answers = request.json
+    work_motivation_handler.submit_answer(answers, session["username"])
+    return {"status": "success"}

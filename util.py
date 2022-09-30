@@ -1,8 +1,10 @@
-from functools import wraps
-
+import gzip
+import json
 import bcrypt
+from functools import wraps
 from flask import render_template
 from flask import session
+from flask import make_response
 
 
 def hash_password(password):
@@ -27,5 +29,22 @@ def login_required(func):
             return (func(*args, **kwargs))
         except (KeyError):
             return render_template("authentication/login_required.jinja2")
+
+    return decorated_function
+
+def json_response(func):
+    """
+    Converts the returned dictionary into a JSON response
+    :param func:
+    :return:
+    """
+
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        content = gzip.compress(json.dumps(func(*args, **kwargs)).encode('utf8'))
+        response = make_response(content)
+        response.headers['Content-length'] = len(content)
+        response.headers['Content-Encoding'] = 'gzip'
+        return response
 
     return decorated_function
