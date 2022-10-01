@@ -52,10 +52,13 @@ def login():
         fields = request.form.to_dict();
         fields = {key: fields[key] for key in fields if key in expected_fields}
         try:
-            hashed_password = user_handler.get_user_password_by_username(fields["username"])
+            user_fields = user_handler.get_user_fields_by_username(fields["username"], ["password", "is_admin"])
+            hashed_password = user_fields["password"]
+            is_admin = user_fields["is_admin"]
             is_valid_login = util.check_password(fields["password"], hashed_password)
             if is_valid_login:
                 session["username"] = fields["username"]
+                session["is_admin"] = is_admin
                 return redirect(url_for("index"))
         except:
             login_attempt_failed = True
@@ -66,6 +69,7 @@ def login():
 @util.login_required
 def logout():
     session.pop("username")
+    session.pop("is_admin")
     return redirect(request.referrer)
 
 
