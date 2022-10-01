@@ -31,7 +31,7 @@ def index():
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        expected_fields = ["username", "password"]
+        expected_fields = ["username", "password", "email", "last_name", "first_name", "birthday"]
         fields = request.form.to_dict();
         fields = {key: fields[key] for key in fields if key in expected_fields}
         fields["password"] = util.hash_password(fields["password"])
@@ -52,10 +52,13 @@ def login():
         fields = request.form.to_dict();
         fields = {key: fields[key] for key in fields if key in expected_fields}
         try:
-            hashed_password = user_handler.get_user_password_by_username(fields["username"])
+            user_fields = user_handler.get_user_fields_by_username(fields["username"], ["password", "is_admin"])
+            hashed_password = user_fields["password"]
+            is_admin = user_fields["is_admin"]
             is_valid_login = util.check_password(fields["password"], hashed_password)
             if is_valid_login:
                 session["username"] = fields["username"]
+                session["is_admin"] = is_admin
                 return redirect(url_for("index"))
         except:
             login_attempt_failed = True
@@ -66,6 +69,7 @@ def login():
 @util.login_required
 def logout():
     session.pop("username")
+    session.pop("is_admin")
     return redirect(request.referrer)
 
 
@@ -79,6 +83,8 @@ def work_motivation():
     return render_template('tests/work_motivation.jinja2', questions=questions)
 
 
+# region --------------------------------API------------------------------------------
+
 @app.route('/api/work-motivation', methods=["POST"])
 @util.login_required
 @util.json_response
@@ -86,3 +92,20 @@ def api_work_motivation_submit():
     answers = request.json
     work_motivation_handler.submit_answer(answers, session["username"])
     return {"status": "success"}
+
+@app.route('/api/text')
+@util.json_response
+def api_get_text():
+    text = language_handler.get_texts_in_language(request.cookies.get("language", "hu"))
+    return text
+
+@app.route('/api/work-motivation/question/<question_id>', methods=["PATCH"])
+@util.login_required
+@util.json_response
+def api_patch_work_motivation_question(question_id):
+    if session["is_admin"]:
+        title = request.json["title"]
+        work_motivation_handler.patch_title_by_id(question_id, title)
+        return {"status": "success"}
+
+# endregion

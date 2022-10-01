@@ -1,13 +1,14 @@
 {% extends "default.jinja2" %}
 {% block head %}
-	<script src="{{ url_for('static', filename='js/workMotivation.js') }}" type="module" defer></script>
+	<script src="{{ url_for('static', filename='js/workMotivationAdmin.js') if session["is_admin"] else url_for('static', filename='js/workMotivation.js') }}"
+	        type="module" defer></script>
 {% endblock %}
 {% block content %}
 	<main class="container">
 		{% for question in questions %}
 			<div class="row mt-5 mb-5 question-row" data-question-id="{{ question.id }}">
 				<div class="col-lg-1 col-1 question-id">{{ question.id }}</div>
-				<div class="col-lg-6 col-11"><p>...{{ question.title }}</p></div>
+				<div class="col-lg-6 col-11 question" data-question-id="{{ question.id }}"><p>{{ question.title }}</p></div>
 				<div class="col-lg-1 col-2">
 					<button class="btn ps-4 pe-4">1</button>
 				</div>
@@ -25,6 +26,6 @@
 				</div>
 			</div>
 		{% endfor %}
-	<button type="submit" id="question-submit" class="btn btn-primary">Válaszok elküldése</button>
+		<button type="submit" id="question-submit" class="btn btn-primary">{{ text["Válaszok elküldése"] }}</button>
 	</main>
 {% endblock %}

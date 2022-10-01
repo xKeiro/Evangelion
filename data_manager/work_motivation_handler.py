@@ -6,6 +6,7 @@ def get_questions(cursor) -> list[dict]:
     query = """
     SELECT id, title
     FROM work_motivation_question
+    ORDER BY id
     """
     cursor.execute(query)
     return cursor.fetchall()
@@ -33,5 +34,14 @@ def submit_answer(cursor, answers, username) -> None:
         var.extend([question_id, result_header_id, score])
     cursor.execute(query,var)
 
+@connection_handler
+def patch_title_by_id(cursor, question_id, title):
+    query="""
+    UPDATE work_motivation_question
+    SET title = %s
+    WHERE id = %s
+    """
+    var=(title, question_id)
+    cursor.execute(query,var)
 
 # endregion

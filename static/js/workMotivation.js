@@ -2,10 +2,12 @@
 /* global alert */
 /* jshint esversion:11 */
 import {dataHandler} from "./data/dataHandler.js";
+import {getCookie} from "./util/getCookie.js";
 
 // document.cookie = "language=en;path=/";
 const NUMBER_OF_QUESTIONS = document.querySelectorAll(".question-row").length;
 const answers = new Map();
+const textPromise = dataHandler.getText();
 initActions();
 
 function initActions(){
@@ -38,14 +40,16 @@ async function initClickForQuestionSubmit() {
 
 async function submitAnswers() {
     "use strict";
+    const text = await textPromise;
     if (NUMBER_OF_QUESTIONS === answers.size) {
         const response = await dataHandler.postWorkMotivationAsnwers( convertMapToObject(answers));
         if (response){
+
             document.querySelector("main").innerHTML =
-                `<div class="alert alert-success" role="alert">A teszted eredménye elküldve!</div>`;
+                `<div class="alert alert-success" role="alert">${text["A teszted eredménye elküldve!"]}</div>`;
         }
     } else {
-        alert("Kérlek válaszolj az összes kérdésre elküldés előtt!");
+        alert(text["Kérlek válaszolj az összes kérdésre elküldés előtt!"]);
     }
 }
 

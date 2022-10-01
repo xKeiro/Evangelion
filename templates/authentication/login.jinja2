@@ -10,11 +10,11 @@
 			<form action="{{ url_for("login") }}" method="POST">
 				<div class="form-group mt-5">
 					<label class="form-label fw-bold mb-1" for="username">{{ text["Felhasználónév"] }}:</label>
-					<input type="username" name="username" class="form-control" placeholder="{{ text["Felhasználónév"] }}" required>
+					<input type="text" name="username" class="form-control" placeholder="{{ text["Felhasználónév"] }}" required>
 
 				</div>
 				<div class="form-group form-outline mt-3">
-					<label class="color-primary fw-bold mb-1" for="username">{{ text["Jelszó"] }}: </label>
+					<label class="color-primary fw-bold mb-1" for="password">{{ text["Jelszó"] }}: </label>
 					<input type="password" name="password" class="form-control" placeholder="{{ text["Jelszó"] }}" required>
 				</div>
 				<div><input type="submit" value="{{ text["Bejelentkezés"] }}" class="btn btn-primary mt-3"></div>
