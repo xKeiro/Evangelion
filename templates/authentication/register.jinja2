@@ -4,20 +4,20 @@
 		<div class="d-flex flex-column text-center align-items-center">
 			{% if matching_username %}
 				<div class="alert wy-alert-danger">
-					<strong>Username taken!</strong> Please choose a new one!
+					<strong>{{ text["A felhasználónév foglalt!"] }}</strong> {{ text["Kérlek válassz egy másikat!"] }}
 				</div>
 			{% endif %}
 			<form action="{{ url_for("register") }}" method="POST">
 				<div class="form-group mt-5">
-					<label class="form-label fw-bold mb-1" for="username">Username: </label>
-					<input type="username" name="username" class="form-control" placeholder="Username" required>
+					<label class="form-label fw-bold mb-1" for="username">{{ text["Felhasználónév"] }}:</label>
+					<input type="username" name="username" class="form-control" placeholder="{{ text["Felhasználónév"] }}" required>
 
 				</div>
 				<div class="form-group form-outline mt-3">
-					<label class="color-primary fw-bold mb-1" for="username">Password: </label>
-					<input type="password" name="password" class="form-control" placeholder="Password" required>
+					<label class="color-primary fw-bold mb-1" for="username">{{ text["Jelszó"] }}: </label>
+					<input type="password" name="password" class="form-control" placeholder="{{ text["Jelszó"] }}" required>
 				</div>
-				<div><input type="submit" value="Register" class="btn btn-primary mt-3"></div>
+				<div><input type="submit" value="{{ text["Regisztráció"] }}" class="btn btn-primary mt-3"></div>
 			</form>
 		</div>
 	</main>

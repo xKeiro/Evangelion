@@ -3,6 +3,7 @@
 /* jshint esversion:11 */
 import {dataHandler} from "./data/dataHandler.js";
 
+// document.cookie = "language=en;path=/";
 const NUMBER_OF_QUESTIONS = document.querySelectorAll(".question-row").length;
 const answers = new Map();
 initActions();
@@ -41,7 +42,7 @@ async function submitAnswers() {
         const response = await dataHandler.postWorkMotivationAsnwers( convertMapToObject(answers));
         if (response){
             document.querySelector("main").innerHTML =
-                `<div class="alert alert-success" role="alert">Teszted eredménye elküldve!</div>`;
+                `<div class="alert alert-success" role="alert">A teszted eredménye elküldve!</div>`;
         }
     } else {
         alert("Kérlek válaszolj az összes kérdésre elküldés előtt!");

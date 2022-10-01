@@ -4,18 +4,28 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
+from flask import make_response
 
 import util
+from data_manager import language_handler
 from data_manager import user_handler
 from data_manager import work_motivation_handler
 
 app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
 
+@app.context_processor
+def inject_dict_for_all_templates():
+    text = language_handler.get_texts_in_language(request.cookies.get("language", "hu"))
+    return dict(text=text)
+
 
 @app.route('/')
 def index():
-    return render_template("index.jinja2")
+    resp = make_response(render_template("index.jinja2"))
+    # resp.set_cookie('language', 'hu')
+    return resp
+
 
 # region -------------------------------AUTHENTICATION-----------------------------------------
 @app.route('/register', methods=["GET", "POST"])
@@ -57,6 +67,7 @@ def login():
 def logout():
     session.pop("username")
     return redirect(request.referrer)
+
 
 # endregion
 

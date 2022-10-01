@@ -1,10 +1,12 @@
 import gzip
 import json
-import bcrypt
 from functools import wraps
-from flask import render_template
-from flask import session
+
+import bcrypt
 from flask import make_response
+from flask import render_template
+from flask import request
+from flask import session
 
 
 def hash_password(password):
@@ -31,6 +33,25 @@ def login_required(func):
             return render_template("authentication/login_required.jinja2")
 
     return decorated_function
+
+
+# def get_language(func):
+#     """
+#     Sets language to hungarian if there's no language in cookies
+#     :param func:
+#     :return:
+#     """
+#
+#     @wraps(func)
+#     def decorated_function(*args, **kwargs):
+#         language = request.cookies.get("language")
+#         if language:
+#             return (func(language, *args, **kwargs))
+#         else:
+#             return (func("hu", *args, **kwargs))
+#
+#     return decorated_function
+
 
 def json_response(func):
     """

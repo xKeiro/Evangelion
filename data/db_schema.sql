@@ -3,7 +3,12 @@ DROP TABLE IF EXISTS work_motivation_category CASCADE;
 DROP TABLE IF EXISTS work_motivation_question CASCADE;
 DROP TABLE IF EXISTS result_header CASCADE;
 DROP TABLE IF EXISTS work_motivation_result CASCADE;
+DROP TABLE IF EXISTS language CASCADE;
 
+CREATE TABLE language(
+    hu TEXT PRIMARY KEY,
+    en TEXT
+);
 
 CREATE TABLE users
 (
@@ -42,6 +47,25 @@ CREATE TABLE work_motivation_result
     FOREIGN KEY (question_id) REFERENCES work_motivation_question (id),
     FOREIGN KEY (result_header_id) REFERENCES result_header (id)
 );
+
+INSERT INTO language(hu, en)
+VALUES ('Főoldal', 'Home'),
+       ('Kijelentkezés', 'Logout'),
+       ('Bejelentkezés', 'Login'),
+       ('Regisztráció', 'Register'),
+       ('Munka motiváció teszt', 'Work Motivation Test'),
+       ('Bejelentkezve mint', 'Logged in as'),
+       ('Felhasználónév', 'Username'),
+       ('Jelszó', 'Password'),
+       ('Elküldés', 'Submit'),
+       ('A bejelentkezés sikertelen!', 'Login attempt failed!'),
+       ('A felhasználónév foglalt!','Username taken!'),
+       ('Kérlek válassz egy másikat!','Please choose a new one!'),
+       ('Ellenőrizd a felhasználóneved és a jelszavad!','Check your username and password!'),
+       ('Regisztráció szükséges ennek az oldalnak az eléréséhez!', 'Registration needed needed to access this site!'),
+       ('A teszted eredménye elküldve!', 'The result of your test has been submitted!'),
+       ('Kérlek válaszolj az összes kérdésre elküldés előtt!', 'Please answer all questions before sending your answers!'),
+       ('Üdvözöllek a Salva Vita weboldalán!', E'Welcome on Salva Vita\'s website!');
 
 
 INSERT INTO users(username, password)
