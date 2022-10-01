@@ -18,7 +18,7 @@ CREATE TABLE users
     email      VARCHAR NOT NULL UNIQUE,
     first_name VARCHAR NOT NULL,
     last_name  VARCHAR NOT NULL,
-    birthday   DATE NOT NULL,
+    birthday   DATE    NOT NULL,
     is_admin   BOOLEAN NOT NULL DEFAULT FALSE,
     CHECK (email ILIKE '%@%.%')
 );
@@ -67,7 +67,7 @@ VALUES ('Főoldal', 'Home'),
        ('E-mail', 'E-mail'),
        ('Családnév', 'Last name'),
        ('Keresztnév', 'First name'),
-       ('Születési idő','Birthday'),
+       ('Születési idő', 'Birthday'),
        ('Elküldés', 'Submit'),
        ('A bejelentkezés sikertelen!', 'Login attempt failed!'),
        ('A felhasználónév foglalt!', 'Username taken!'),
@@ -82,7 +82,10 @@ VALUES ('Főoldal', 'Home'),
 
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)
-VALUES ('test', '$2b$12$PVhM2DgrT9aH19ozic8v9u06tzb.Q2c9IE/qrJ4QvfyPdMlY3X9hS', 'test@test.hu', 'Pista', 'Kiss', '1990-01-01', true ); ---pw: asd
+VALUES ('admin', '$2b$12$PVhM2DgrT9aH19ozic8v9u06tzb.Q2c9IE/qrJ4QvfyPdMlY3X9hS', 'admin@admin.hu', 'Pista', 'Kiss',
+        '1990-01-01', TRUE), ---pw: asd
+       ('test', '$2b$12$PVhM2DgrT9aH19ozic8v9u06tzb.Q2c9IE/qrJ4QvfyPdMlY3X9hS', 'test@test.hu', 'Pista', 'Kiss',
+        '1990-01-01', FALSE); ---pw: asd
 
 
 INSERT INTO work_motivation_category(title)
