@@ -1,3 +1,19 @@
+.navbar-container{
+    margin: 0;
+}
+
 .selected{
     background-color: forestgreen;
+}
+
+.user-login-logout{
+    display: flex;
+    flex-direction: row;
+}
+
+@media all and (min-width: 1920px){
+    .navbar-container{
+        min-width: 1920px;
+        margin: auto;
+    }
 }
