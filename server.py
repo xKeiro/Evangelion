@@ -31,7 +31,7 @@ def index():
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        expected_fields = ["username", "password"]
+        expected_fields = ["username", "password", "email", "last_name", "first_name", "birthday"]
         fields = request.form.to_dict();
         fields = {key: fields[key] for key in fields if key in expected_fields}
         fields["password"] = util.hash_password(fields["password"])

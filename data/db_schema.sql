@@ -5,15 +5,22 @@ DROP TABLE IF EXISTS result_header CASCADE;
 DROP TABLE IF EXISTS work_motivation_result CASCADE;
 DROP TABLE IF EXISTS language CASCADE;
 
-CREATE TABLE language(
+CREATE TABLE language
+(
     hu TEXT PRIMARY KEY,
     en TEXT
 );
 
 CREATE TABLE users
 (
-    username VARCHAR(25) PRIMARY KEY,
-    password VARCHAR NOT NULL
+    username   VARCHAR(25) PRIMARY KEY,
+    password   VARCHAR NOT NULL,
+    email      VARCHAR NOT NULL UNIQUE,
+    first_name VARCHAR NOT NULL,
+    last_name  VARCHAR NOT NULL,
+    birthday   DATE NOT NULL,
+    is_admin   BOOLEAN NOT NULL DEFAULT FALSE,
+    CHECK (email ILIKE '%@%.%')
 );
 
 CREATE TABLE work_motivation_category
@@ -34,7 +41,7 @@ CREATE TABLE result_header
 (
     id       SERIAL PRIMARY KEY,
     username VARCHAR(25) NOT NULL,
-    date     DATE    NOT NULL DEFAULT CURRENT_DATE,
+    date     DATE        NOT NULL DEFAULT CURRENT_DATE,
     FOREIGN KEY (username) REFERENCES users (username)
 );
 
@@ -57,19 +64,24 @@ VALUES ('Főoldal', 'Home'),
        ('Bejelentkezve mint', 'Logged in as'),
        ('Felhasználónév', 'Username'),
        ('Jelszó', 'Password'),
+       ('E-mail', 'E-mail'),
+       ('Családnév', 'Last name'),
+       ('Keresztnév', 'First name'),
+       ('Születési idő','Birthday'),
        ('Elküldés', 'Submit'),
        ('A bejelentkezés sikertelen!', 'Login attempt failed!'),
-       ('A felhasználónév foglalt!','Username taken!'),
-       ('Kérlek válassz egy másikat!','Please choose a new one!'),
-       ('Ellenőrizd a felhasználóneved és a jelszavad!','Check your username and password!'),
+       ('A felhasználónév foglalt!', 'Username taken!'),
+       ('Kérlek válassz egy másikat!', 'Please choose a new one!'),
+       ('Ellenőrizd a felhasználóneved és a jelszavad!', 'Check your username and password!'),
        ('Regisztráció szükséges ennek az oldalnak az eléréséhez!', 'Registration needed needed to access this site!'),
        ('A teszted eredménye elküldve!', 'The result of your test has been submitted!'),
-       ('Kérlek válaszolj az összes kérdésre elküldés előtt!', 'Please answer all questions before sending your answers!'),
+       ('Kérlek válaszolj az összes kérdésre elküldés előtt!',
+        'Please answer all questions before sending your answers!'),
        ('Üdvözöllek a Salva Vita weboldalán!', E'Welcome on Salva Vita\'s website!');
 
 
-INSERT INTO users(username, password)
-VALUES ('test', '$2b$12$PVhM2DgrT9aH19ozic8v9u06tzb.Q2c9IE/qrJ4QvfyPdMlY3X9hS'); ---pw: asd
+INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)
+VALUES ('test', '$2b$12$PVhM2DgrT9aH19ozic8v9u06tzb.Q2c9IE/qrJ4QvfyPdMlY3X9hS', 'test@test.hu', 'Pista', 'Kiss', '1990-01-01', true ); ---pw: asd
 
 
 INSERT INTO work_motivation_category(title)
