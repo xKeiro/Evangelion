@@ -83,6 +83,8 @@ def work_motivation():
     return render_template('tests/work_motivation.jinja2', questions=questions)
 
 
+# region --------------------------------API------------------------------------------
+
 @app.route('/api/work-motivation', methods=["POST"])
 @util.login_required
 @util.json_response
@@ -90,3 +92,20 @@ def api_work_motivation_submit():
     answers = request.json
     work_motivation_handler.submit_answer(answers, session["username"])
     return {"status": "success"}
+
+@app.route('/api/text')
+@util.json_response
+def api_get_text():
+    text = language_handler.get_texts_in_language(request.cookies.get("language", "hu"))
+    return text
+
+@app.route('/api/work-motivation/question/<question_id>', methods=["PATCH"])
+@util.login_required
+@util.json_response
+def api_patch_work_motivation_question(question_id):
+    if session["is_admin"]:
+        title = request.json["title"]
+        work_motivation_handler.patch_title_by_id(question_id, title)
+        return {"status": "success"}
+
+# endregion
