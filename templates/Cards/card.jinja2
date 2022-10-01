@@ -1,0 +1,15 @@
+{% macro card(title,text,image) %}
+    <article class="card container-fluid justify-content-center align-items-center">
+        <section class="row container-fluid card-content">
+            <section class="card-image-container col-12 col-lg-6">
+                <img src="{{ image }}" class="card-image container-fluid">
+            </section>
+            <section class="card-text-container col-12 col-lg-6">
+                <h2>{{ title }}</h2>
+                <span class="card-text">
+                {{ text }}
+                </span>
+            </section>
+        </section>
+    </article>
+{% endmacro %}

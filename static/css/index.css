@@ -1,5 +1,11 @@
+.page-body{
+    position: relative;
+    top: 56px;
+}
+
 .banner{
     min-height: 600px;
+    max-height: 600px;
     overflow: hidden;
     padding: 0;
     position: relative;
@@ -14,7 +20,7 @@
 }
 .title-container{
     position: absolute;
-    z-index: 9999;
+    z-index: 8888;
     top: 80%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
@@ -23,7 +29,7 @@
     align-items: center;
 }
 .main-title-text-welcome{
-    white-space: nowrap;
+    white-space: break-spaces;
     color: white;
 }
 .main-title-text{
@@ -32,15 +38,33 @@
     color: white;
     line-height: 0.8;
 }
-
-@media all and (max-width: 910px){
-
-    .banner{
-
-    }
+@media all and (min-width: 1200px){
     .banner-image{
-        position: static;
-        min-width: 100%;
-        transform: translateX(0%) translateY(0%);
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
     }
 }
+
+@media all and (max-width: 1199px){
+    .banner-image{
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+    .main-title-text{
+        font-size: 75px;
+    }
+}
+
+@media all and (max-width: 991px){
+    .main-title-text{
+        font-size: 50px;
+    }
+}
+
+
+
+
+
+
