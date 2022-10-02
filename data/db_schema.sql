@@ -13,13 +13,14 @@ CREATE TABLE language
 
 CREATE TABLE users
 (
-    username   VARCHAR(25) PRIMARY KEY,
-    password   VARCHAR NOT NULL,
-    email      VARCHAR NOT NULL UNIQUE,
-    first_name VARCHAR NOT NULL,
-    last_name  VARCHAR NOT NULL,
-    birthday   DATE    NOT NULL,
-    is_admin   BOOLEAN NOT NULL DEFAULT FALSE,
+    id         SERIAL PRIMARY KEY,
+    username   VARCHAR(25) UNIQUE NOT NULL,
+    password   VARCHAR            NOT NULL,
+    email      VARCHAR            NOT NULL UNIQUE,
+    first_name VARCHAR            NOT NULL,
+    last_name  VARCHAR            NOT NULL,
+    birthday   DATE               NOT NULL,
+    is_admin   BOOLEAN            NOT NULL DEFAULT FALSE,
     CHECK (email ILIKE '%@%.%')
 );
 
@@ -39,10 +40,10 @@ CREATE TABLE work_motivation_question
 
 CREATE TABLE result_header
 (
-    id       SERIAL PRIMARY KEY,
-    username VARCHAR(25) NOT NULL,
-    date     DATE        NOT NULL DEFAULT CURRENT_DATE,
-    FOREIGN KEY (username) REFERENCES users (username)
+    id      SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    date    DATE    NOT NULL DEFAULT CURRENT_DATE,
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 CREATE TABLE work_motivation_result
@@ -76,8 +77,8 @@ VALUES ('Főoldal', 'Home'),
        ('Regisztráció szükséges ennek az oldalnak az eléréséhez!', 'Registration needed needed to access this site!'),
        ('Válaszok elküldése', 'Send answers'),
        ('A teszted eredménye elküldve!', 'The result of your test has been submitted!'),
-       ('Kérlek válaszolj az összes kérdésre elküldés előtt!'),
-       ('Please answer all questions before sending your answers!'),
+       ('Kérlek válaszolj az összes kérdésre elküldés előtt!',
+        'Please answer all questions before sending your answers!'),
        ('Üdvözöllek a Salva Vita weboldalán!', E'Welcome on Salva Vita\'s website!');
 
 

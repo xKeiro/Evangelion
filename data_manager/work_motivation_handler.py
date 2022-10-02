@@ -14,13 +14,13 @@ def get_questions(cursor) -> list[dict]:
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 @connection_handler
-def submit_answer(cursor, answers, username) -> None:
+def submit_answer(cursor, answers, user_id) -> None:
     query = """
-    INSERT INTO result_header(username)
+    INSERT INTO result_header(user_id)
     VALUES (%s)
     RETURNING id;
     """
-    var=(username,)
+    var=(user_id,)
     cursor.execute(query,var)
     result_header_id = cursor.fetchone()["id"]
 
