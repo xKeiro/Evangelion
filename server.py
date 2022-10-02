@@ -12,6 +12,7 @@ from data_manager import english_test_handler
 from data_manager import language_handler
 from data_manager import user_handler
 from data_manager import work_motivation_test_handler
+from data_manager import social_situation_handler
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
@@ -100,6 +101,12 @@ def work_motivation():
 def english_language(difficulty_id):
     test = english_test_handler.get_random_english_test_by_difficulty_id(difficulty_id)
     return render_template('tests/english_language.jinja2', test=test)
+
+@app.route('/test/social_situation')
+@util.login_required
+def social_situation():
+
+    return render_template('tests/social_situations.jinja2')
 
 
 # region --------------------------------API------------------------------------------
