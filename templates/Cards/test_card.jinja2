@@ -1,0 +1,28 @@
+{% macro test_card(dict) %}
+    <article class="tests-card card col-lg-2">
+        <header class="tests-card-header card-header">
+            {{ dict.title }}
+        </header>
+        <div class="tests-card-body card-body">
+            <ul class="list-group list-group-flush">
+                {% for key,value in dict.items() %}
+                    {% if 'test' in key %}
+                        <li class="list-group-item">
+                            <div class="test-container">
+                                <header class="test-title">
+                                {{ value["title"] }}
+                                </header>
+                                <div class="test-description">
+                                {{ value["description"] }}
+                                </div>
+                            <footer class="test-button-container">
+                                <a href="/test/{{ value["url"] }}" class="test-button-link"><button class="test-button">To the test</button></a>
+                            </footer>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </article>
+{% endmacro %}
