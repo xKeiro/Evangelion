@@ -1,5 +1,9 @@
 body{
     width: 100%;
+    position: relative;
+    top: 56px;
+    background-color: #0096f2;
+    min-height: calc(100vh - 56px);
 }
 nav{
     background-color: white;

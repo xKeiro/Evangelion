@@ -127,7 +127,7 @@ VALUES ('Főoldal', 'Home'),
        ('Kijelentkezés', 'Logout'),
        ('Bejelentkezés', 'Login'),
        ('Regisztráció', 'Register'),
-       ('Munka motiváció teszt', 'Work Motivation Test'),
+       ('Tesztek', 'Tests'),
        ('Bejelentkezve mint', 'Logged in as'),
        ('Felhasználónév', 'Username'),
        ('Jelszó', 'Password'),
@@ -145,7 +145,8 @@ VALUES ('Főoldal', 'Home'),
        ('A teszted eredménye elküldve!', 'The result of your test has been submitted!'),
        ('Kérlek válaszolj az összes kérdésre elküldés előtt!',
         'Please answer all questions before sending your answers!'),
-       ('Üdvözöllek a Salva Vita weboldalán!', E'Welcome on Salva Vita\'s website!');
+       ('Üdvözöllek a Salva Vita weboldalán!', E'Welcome on Salva Vita\'s website!'),
+       ('Elérhető tesztek','Available tests');
 
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)

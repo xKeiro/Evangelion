@@ -83,7 +83,10 @@ def logout():
 
 
 # endregion
-
+@app.route('/tests')
+@util.login_required
+def tests():
+    return render_template('tests.jinja2')
 
 @app.route('/test/work-motivation')
 @util.login_required
