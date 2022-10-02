@@ -1,14 +1,14 @@
-.card {
+.homepage-card {
     min-height: 600px;
     border: none;
     border-radius: 0;
 }
 
-.card:nth-of-type(odd) {
+.homepage-card:nth-of-type(odd) {
     background-color: cornflowerblue;
 }
 
-.card:nth-of-type(even) > .card-content {
+.homepage-card:nth-of-type(even) > .card-content {
     flex-direction: row-reverse;
 }
 
@@ -22,23 +22,23 @@
 
 
 /*-------------every time the content is on the LEFT side-------------*/
-.card:nth-of-type(odd) > .row > .card-image-container {
+.homepage-card:nth-of-type(odd) > .row > .card-image-container {
     justify-content: flex-end;
 }
 
 /*image*/
-.card:nth-of-type(odd) > .row > .card-image-container > .card-image {
+.homepage-card:nth-of-type(odd) > .row > .card-image-container > .card-image {
     margin-right: 60px;
     max-width: 600px;
 }
 
-.card:nth-of-type(even) > .row > .card-text-container {
+.homepage-card:nth-of-type(even) > .row > .card-text-container {
     align-items: flex-end;
     justify-content: center;
 }
 
 /*text*/
-.card:nth-of-type(even) > .row > .card-text-container > .card-text, h2 {
+.homepage-card:nth-of-type(even) > .row > .card-text-container > .card-text, h2 {
     margin-right: 60px;
     text-align: right;
     max-width: 400px;
@@ -46,17 +46,17 @@
 
 
 /*-------------every time the content is on the RIGHT side-------------*/
-.card:nth-of-type(even) > .row > .card-image-container > .card-image {
+.homepage-card:nth-of-type(even) > .row > .card-image-container > .card-image {
     margin-left: 60px;
     max-width: 600px;
 }
 
-.card:nth-of-type(odd) > .row > .card-text-container {
+.homepage-card:nth-of-type(odd) > .row > .card-text-container {
     align-items: flex-start;
     justify-content: center;
 }
 
-.card:nth-of-type(odd) > .row > .card-text-container > .card-text, h2 {
+.homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-text, h2 {
     text-align: left;
     margin-left: 60px;
     max-width: 400px;
@@ -69,16 +69,16 @@
         margin: 0;
     }
 
-    .card:nth-of-type(even) > .row > .card-image-container > .card-image , .card:nth-of-type(odd) > .row > .card-image-container > .card-image {
+    .homepage-card:nth-of-type(even) > .row > .card-image-container > .card-image , .homepage-card:nth-of-type(odd) > .row > .card-image-container > .card-image {
         margin: 20px 0 0 0;
     }
 
-    .card:nth-of-type(odd) > .row > .card-text-container, .card:nth-of-type(even) > .row > .card-text-container{
+    .homepage-card:nth-of-type(odd) > .row > .card-text-container, .homepage-card:nth-of-type(even) > .row > .card-text-container{
         justify-content: flex-start;
         align-items: center;
     }
 
-    .card:nth-of-type(odd) > .row > .card-text-container > .card-text, h2, .card:nth-of-type(even) > .row > .card-text-container > .card-text, h2 {
+    .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-text, h2, .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-text, h2 {
         text-align: left;
         max-width: 600px;
         margin: 0 0 20px 0;
