@@ -1,9 +1,10 @@
 {% extends "default.jinja2" %}
 {% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/english_language_test.css') }}">
 {% endblock %}
 {% block content %}
 	<main class="container">
-		<article data-text-id="{{ test.text.id }}">{{ test.text.text }}</article>
+		<article class="english-test-text" data-text-id="{{ test.text.id }}">{{ test.text.text }}</article>
 		<article class="question-container">
 			{% for question in test.questions %}
 				<section class="card">
