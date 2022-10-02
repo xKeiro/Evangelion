@@ -11,6 +11,10 @@ DROP TABLE IF EXISTS english_language_option CASCADE;
 DROP TABLE IF EXISTS english_language_essay_topic CASCADE;
 DROP TABLE IF EXISTS english_language_result_essay CASCADE;
 DROP TABLE IF EXISTS english_language_result CASCADE;
+DROP TABLE IF EXISTS social_situation_type CASCADE;
+DROP TABLE IF EXISTS social_situation_media CASCADE;
+DROP TABLE IF EXISTS social_situation_question CASCADE;
+DROP TABLE IF EXISTS social_situation_result CASCADE;
 
 CREATE TABLE language
 (
@@ -118,6 +122,38 @@ CREATE TABLE english_language_result
     result_id INTEGER NOT NULL,
     FOREIGN KEY (option_id) REFERENCES english_language_option (id),
     FOREIGN KEY (result_id) REFERENCES result_header (id) ON DELETE CASCADE
+);
+
+CREATE TABLE social_situation_type
+(
+    id        SERIAL PRIMARY KEY,
+    type      VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE social_situation_media
+(
+    id        SERIAL PRIMARY KEY,
+    url       VARCHAR(50) NOT NULL,
+    type_id   INTEGER NOT NULL,
+    FOREIGN KEY (type_id) REFERENCES social_situation_type (id)
+);
+
+CREATE TABLE social_situation_question
+(
+    id        SERIAL PRIMARY KEY,
+    question  VARCHAR NOT NULL,
+    media_id  INTEGER NOT NULL,
+    FOREIGN KEY (media_id) REFERENCES social_situation_media (id)
+);
+
+CREATE TABLE social_situation_result
+(
+    id              SERIAL PRIMARY KEY,
+    answer          VARCHAR(2000) NOT NULL,
+    question_id     INTEGER NOT NULL,
+    user_id         INTEGER NOT NULL,
+    FOREIGN KEY (question_id) REFERENCES social_situation_question (id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 
@@ -441,3 +477,19 @@ INSERT INTO english_language_essay_topic(difficulty_id, topic)
 VALUES (1, 'School students should be allowed to curate their high school curriculum.'),
        (2, 'The role of physical education in the school system.'),
        (3, 'Should the death sentence be implemented globally?');
+
+INSERT INTO social_situation_type(type)
+VALUES  ('image'),
+        ('video');
+
+INSERT INTO social_situation_media(url, type_id)
+VALUES  ('https://www.youtube.com/watch?v=kMMH8rA1ggI', 2),
+        ('https://www.youtube.com/watch?v=fNFzfwLM72c', 2),
+        ('../static/img/img01.png', 1),
+        ('../static/img/img02.png', 1);;
+
+INSERT INTO social_situation_question(question, media_id)
+VALUES  ('Why do they react the way they do?', 1),
+        ('Have you ever found yourself or experienced a similar situation? Please tell me about it.', 1),
+        ('What did you feel?', 1),
+        ('What did you feel? How did you react?', 3);

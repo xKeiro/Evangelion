@@ -105,8 +105,8 @@ def english_language(difficulty_id):
 @app.route('/test/social_situation')
 @util.login_required
 def social_situation():
-
-    return render_template('tests/social_situations.jinja2')
+    data = social_situation_handler.get_url_and_questions()
+    return render_template('tests/social_situations.jinja2', data=data)
 
 
 # region --------------------------------API------------------------------------------
