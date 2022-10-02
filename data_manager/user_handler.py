@@ -1,19 +1,21 @@
 from connection import connection_handler
+from psycopg import sql
 
 
 # region --------------------------------------READ-----------------------------------------
 
 
 @connection_handler
-def get_user_password_by_username(cursor, username):
-    query = """
-    SELECT password
-    FROM users
+def get_user_fields_by_username(cursor, username: str, field_names: list) -> dict:
+    query = "SELECT "
+    for field_name in field_names:
+        query += f"{field_name},"
+    query = query[:-1] + """ FROM users
     WHERE username=%s
     """
-    val = (username,)
+    val = (username, )
     cursor.execute(query, val)
-    return cursor.fetchone()["password"]
+    return cursor.fetchone()
 
 
 # endregion

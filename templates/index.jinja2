@@ -1,5 +1,16 @@
+{% from 'cards/card.jinja2' import card %}
 {% extends "default.jinja2" %}
 {% block content %}
-	<h1>Üdvözöllek a Salva Vita weboldalán!</h1>
+    <main class="page-body">
+        <div class="banner container-fluid">
+            <div class="title-container">
+                <h1 class="main-title-text">{{ text["Üdvözöllek a Salva Vita weboldalán!"] }}</h1>
+            </div>
+            <img src="https://images6.alphacoders.com/439/439626.jpg" class="banner-image container-fluid">
 
+        </div>
+        {{ card("Card Title","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","https://motionarray.imgix.net/preview-544162-ZzS9GRuLOhogJpcl-large.jpg?w=3840&q=60&fit=max&auto=format") }}
+        {{ card("Card Title","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","https://rmi.org/wp-content/uploads/2020/04/construction-workers.jpg") }}
+        {{ card("Card Title","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.istockphoto.com%2Fphotos%2Fhappy-worker-picture-id522346253&f=1&nofb=1&ipt=ff5371e633be9d964295f869802daf1fe5173f1c94d2848712188ece2908e8c4&ipo=images") }}
+    </main>
 {% endblock %}

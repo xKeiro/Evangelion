@@ -1,0 +1,98 @@
+.homepage-card {
+    min-height: 600px;
+    border: none;
+    border-radius: 0;
+}
+
+.homepage-card:nth-of-type(odd) {
+    background-color: cornflowerblue;
+}
+
+.homepage-card:nth-of-type(even) > .card-content {
+    flex-direction: row-reverse;
+}
+
+.card-text-container, .card-image-container {
+    /*border: black solid 1px;*/
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+/*-------------every time the content is on the LEFT side-------------*/
+.homepage-card:nth-of-type(odd) > .row > .card-image-container {
+    justify-content: flex-end;
+}
+
+/*image*/
+.homepage-card:nth-of-type(odd) > .row > .card-image-container > .card-image {
+    margin-right: 60px;
+    max-width: 600px;
+}
+
+.homepage-card:nth-of-type(even) > .row > .card-text-container {
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/*text*/
+.homepage-card:nth-of-type(even) > .row > .card-text-container > .card-text, h2 {
+    margin-right: 60px;
+    text-align: right;
+    max-width: 400px;
+}
+
+
+/*-------------every time the content is on the RIGHT side-------------*/
+.homepage-card:nth-of-type(even) > .row > .card-image-container > .card-image {
+    margin-left: 60px;
+    max-width: 600px;
+}
+
+.homepage-card:nth-of-type(odd) > .row > .card-text-container {
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-text, h2 {
+    text-align: left;
+    margin-left: 60px;
+    max-width: 400px;
+}
+
+@media all and (max-width: 991px) {
+    .card-image-container {
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .homepage-card:nth-of-type(even) > .row > .card-image-container > .card-image , .homepage-card:nth-of-type(odd) > .row > .card-image-container > .card-image {
+        margin: 20px 0 0 0;
+    }
+
+    .homepage-card:nth-of-type(odd) > .row > .card-text-container, .homepage-card:nth-of-type(even) > .row > .card-text-container{
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-text, h2, .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-text, h2 {
+        text-align: left;
+        max-width: 600px;
+        margin: 0 0 20px 0;
+    }
+}
+
+/*@media all and (max-width: 1455px){*/
+/*    .card-image{*/
+/*        max-width: 500px !important;*/
+/*    }*/
+/*}*/
+
+/*@media all and (max-width: 1199px){*/
+/*    .card-image{*/
+/*        max-width: 400px !important;*/
+/*    }*/
+/*}*/

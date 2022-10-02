@@ -1,7 +1,11 @@
+import gzip
+import json
 from functools import wraps
 
 import bcrypt
+from flask import make_response
 from flask import render_template
+from flask import request
 from flask import session
 from fpdf import FPDF
 
@@ -147,3 +151,39 @@ def get_applicants_results_into_pdf():
 
     return pdf.output("applicants_test_results.pdf")
 
+
+
+# def get_language(func):
+#     """
+#     Sets language to hungarian if there's no language in cookies
+#     :param func:
+#     :return:
+#     """
+#
+#     @wraps(func)
+#     def decorated_function(*args, **kwargs):
+#         language = request.cookies.get("language")
+#         if language:
+#             return (func(language, *args, **kwargs))
+#         else:
+#             return (func("hu", *args, **kwargs))
+#
+#     return decorated_function
+
+
+def json_response(func):
+    """
+    Converts the returned dictionary into a JSON response
+    :param func:
+    :return:
+    """
+
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        content = gzip.compress(json.dumps(func(*args, **kwargs)).encode('utf8'))
+        response = make_response(content)
+        response.headers['Content-length'] = len(content)
+        response.headers['Content-Encoding'] = 'gzip'
+        return response
+
+    return decorated_function
