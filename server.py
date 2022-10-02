@@ -89,8 +89,7 @@ def logout():
     session.pop("username")
     session.pop("is_admin")
     session.pop("user_id")
-
-    return redirect("/")
+    return redirect(url_for("index"))
 
 
 # endregion
@@ -144,5 +143,13 @@ def api_patch_work_motivation_question(question_id):
         title = request.json["title"]
         work_motivation_test_handler.patch_title_by_id(question_id, title)
         return {"status": "success"}
+
+@app.route("/api/english-language", methods=["POST"])
+@util.login_required
+@util.json_response
+def api_english_language_submit():
+    results = request.json
+    english_test_handler.submit_result(results, session["user_id"])
+    return {"status": "success"}
 
 # endregion

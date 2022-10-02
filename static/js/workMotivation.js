@@ -2,9 +2,10 @@
 /* global alert */
 /* jshint esversion:11 */
 import {dataHandler} from "./data/dataHandler.js";
-import {getCookie} from "./util/getCookie.js";
+import {convertMapToObject} from "./util/util.js";
 
 // document.cookie = "language=en;path=/";
+
 const NUMBER_OF_QUESTIONS = document.querySelectorAll(".question-row").length;
 const answers = new Map();
 const textPromise = dataHandler.getText();
@@ -64,10 +65,4 @@ async function selectAnswer(event, questionId) {
             currentQuestionButton.classList.remove("selected");
         }
     }
-}
-
-function convertMapToObject(map) {
-    "use strict";
-    const obj = Object.fromEntries(map);
-    return obj;
 }

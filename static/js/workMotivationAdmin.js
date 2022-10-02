@@ -3,9 +3,9 @@
 /* jshint esversion:11 */
 
 import {dataHandler} from "./data/dataHandler.js";
-// import {getCookie} from "./util/getCookie.js";
+// import {util} from "./util/util.js";
 //
-// const language = getCookie("language");
+// const language = util("language");
 initEditContent();
 
 function initEditContent() {

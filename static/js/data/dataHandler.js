@@ -14,6 +14,10 @@ export let dataHandler = {
     patchWorkMotivationQuestionTitle: async function (questionId, questionTitle){
         "use strict";
         return apiPatch(`/api/work-motivation/question/${questionId}`, questionTitle);
+    },
+    postEnglishLanguageTestResults: async function (testResults){
+        "use strict";
+        return apiPost("/api/english-language", testResults);
     }
 };
 
