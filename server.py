@@ -46,7 +46,10 @@ def register():
             user_handler.add_new_user(fields)
         except:
             return render_template("authentication/register.jinja2", matching_username=True)
+        user_fields = user_handler.get_user_fields_by_username(fields["username"], ["id", "is_admin"])
         session["username"] = fields["username"]
+        session["is_admin"] = user_fields["is_admin"]
+        session["user_id"] = user_fields["id"]
         return redirect(url_for('index'))
     return render_template("authentication/register.jinja2", matching_username=False)
 
