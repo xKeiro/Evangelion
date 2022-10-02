@@ -1,4 +1,7 @@
+import random
+
 from connection import connection_handler
+import random
 
 
 @connection_handler
@@ -29,6 +32,8 @@ LIMIT 1
     options = [{"id": int(option[0]), "question_id": int(option[1]), "option": option[2]} for option in
                test["options"]]
     essay_topic = {"id": int(test["essay_topic"][0]), "topic": test["essay_topic"][1]}
+    random.shuffle(questions)
+    random.shuffle(options)
     test["text"] = text
     test["questions"] = questions
     test["options"] = options
