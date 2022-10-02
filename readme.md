@@ -9,11 +9,11 @@ Install latest:
 
 -> Clone the repository.
 
--> pip install -r requirements.txt
+-> `pip install -r requirements.txt`
 
 In pycharm:
 
--> setup your run configuration like this:
+-> Setup your run configuration like this:
 ![run configuration](https://i.imgur.com/lqFcYIz.png)
 
 -> Set up your environment variables:
