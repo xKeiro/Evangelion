@@ -1,18 +1,20 @@
 from flask import Flask  # type: ignore
+from flask import make_response
 from flask import redirect
 from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
-from flask import make_response
 
 import util
+from data_manager import english_test_handler
 from data_manager import language_handler
 from data_manager import user_handler
-from data_manager import work_motivation_handler
+from data_manager import work_motivation_test_handler
 
 app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
+
 
 @app.context_processor
 def inject_dict_for_all_templates():
@@ -82,25 +84,33 @@ def logout():
 @app.route('/test/work-motivation')
 @util.login_required
 def work_motivation():
-    questions = work_motivation_handler.get_questions()
+    questions = work_motivation_test_handler.get_questions()
     return render_template('tests/work_motivation.jinja2', questions=questions)
 
 
+@app.route('/test/english_language/<difficulty_id>')
+@util.login_required
+def english_language(difficulty_id):
+    test = english_test_handler.get_random_english_test_by_difficulty_id(difficulty_id)
+    return render_template('tests/english_language.jinja2', test=test)
+
+
 # region --------------------------------API------------------------------------------
+@app.route('/api/text')
+@util.json_response
+def api_get_text():
+    text = language_handler.get_texts_in_language(request.cookies.get("language", "hu"))
+    return text
+
 
 @app.route('/api/work-motivation', methods=["POST"])
 @util.login_required
 @util.json_response
 def api_work_motivation_submit():
     answers = request.json
-    work_motivation_handler.submit_answer(answers, session["user_id"])
+    work_motivation_test_handler.submit_answer(answers, session["user_id"])
     return {"status": "success"}
 
-@app.route('/api/text')
-@util.json_response
-def api_get_text():
-    text = language_handler.get_texts_in_language(request.cookies.get("language", "hu"))
-    return text
 
 @app.route('/api/work-motivation/question/<question_id>', methods=["PATCH"])
 @util.login_required
@@ -108,7 +118,7 @@ def api_get_text():
 def api_patch_work_motivation_question(question_id):
     if session["is_admin"]:
         title = request.json["title"]
-        work_motivation_handler.patch_title_by_id(question_id, title)
+        work_motivation_test_handler.patch_title_by_id(question_id, title)
         return {"status": "success"}
 
 # endregion

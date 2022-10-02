@@ -2,4 +2,39 @@
 {% block head %}
 {% endblock %}
 {% block content %}
+	<main class="container">
+		<article data-text-id="{{ test.text.id }}">{{ test.text.text }}</article>
+		<article class="question-container">
+			{% for question in test.questions %}
+				<section class="card">
+				<header class="card-header card-title"
+				        data-question-id="{{ question.id }}">{{ question.question }}</header>
+				<details class="card-body">
+				<div class="card-text">
+				{% for option in test.options %}
+					{% if option.question_id == question.id %}
+
+						<div class="form-check">
+						<input class="form-check-input" type="radio" name="question-{{ question.id }}-options"
+						       id="question-{{ question.id }}-option-{{ option.id }}" data-option-id="{{ option.id }}">
+						<label class="form-check-label"
+						       for="question-{{ question.id }}-option-{{ option.id }}" data-option-id="{{ option.id }}">
+										{{ option.option }}
+									</label>
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+					</details>
+				</section>
+			{% endfor %}
+		</article>
+		<article class=" essay-container d-none">
+			<section data-essay-id="{{ test.essay_topic.id }}">{{ test.essay_topic.topic }}</section>
+			<section>
+				<label for="essay"></label>
+				<textarea class="form-control" aria-label="With textarea" name="essay" maxlength="2000"></textarea>
+			</section>
+		</article>
+	</main>
 {% endblock %}
