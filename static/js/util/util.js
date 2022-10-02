@@ -1,9 +1,14 @@
 /* global console */
 /* global alert */
-
 /* jshint esversion:11 */
 
-export function getCookie(cname) {
+export function convertMapToObject(map) {
+    "use strict";
+    const obj = Object.fromEntries(map);
+    return obj;
+}
+
+export function util(cname) {
     "use strict";
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);

@@ -1,11 +1,12 @@
 import random
 
 from connection import connection_handler
+from data_manager import data_handler_util
 import random
 
-
+# region --------------------------------------READ-----------------------------------------
 @connection_handler
-def get_random_english_test_by_difficulty_id(cursor, difficulty_id) -> dict[dict,list[dict],list[dict],dict]:
+def get_random_english_test_by_difficulty_id(cursor, difficulty_id: int) -> dict[dict,list[dict],list[dict],dict]:
     query = """
 SELECT ARRAY [elt.id::VARCHAR, elt.text]                                                 AS "text",
        ARRAY_AGG(DISTINCT ARRAY [elq.id::VARCHAR, elq.question])                         AS questions,
@@ -39,3 +40,26 @@ LIMIT 1
     test["options"] = options
     test["essay_topic"] = essay_topic
     return test
+
+# endregion
+# region ---------------------------------------WRITE----------------------------------------
+
+@connection_handler
+def submit_result(cursor, results: dict[list,dict], user_id: int) -> None:
+    result_header_id = data_handler_util.add_test_to_result_header(cursor, user_id)
+    query = """
+    INSERT INTO english_language_result_essay(topic_id, result_header_id, essay)
+    VALUES (%s, %s, %s);
+    """
+    var = (results["essay"]["topic_id"], result_header_id, results["essay"]["essay"])
+    cursor.execute(query, var)
+    query = "INSERT INTO english_language_result(option_id, result_id) VALUES"
+    for _ in results["answers"]:
+        query += " (%s, %s),"
+    query = query[:-1]
+    var = []
+    for answer in results["answers"]:
+        var.extend([answer, result_header_id])
+    cursor.execute(query,var)
+
+# endregion

@@ -96,9 +96,9 @@ CREATE TABLE english_language_option
 
 CREATE TABLE english_language_essay_topic
 (
-    id          SERIAL PRIMARY KEY,
+    id            SERIAL PRIMARY KEY,
     difficulty_id INTEGER NOT NULL,
-    topic      VARCHAR NOT NULL,
+    topic         VARCHAR NOT NULL,
     FOREIGN KEY (difficulty_id) REFERENCES english_language_difficulty (id) ON DELETE CASCADE
 );
 
@@ -106,9 +106,9 @@ CREATE TABLE english_language_result_essay
 (
     id        SERIAL PRIMARY KEY,
     topic_id  INTEGER NOT NULL,
-    result_id INTEGER NOT NULL,
+    result_header_id INTEGER NOT NULL,
     essay     VARCHAR(2000),
-    FOREIGN KEY (result_id) REFERENCES result_header (id) ON DELETE CASCADE
+    FOREIGN KEY (result_header_id) REFERENCES result_header (id) ON DELETE CASCADE
 );
 
 CREATE TABLE english_language_result
@@ -146,7 +146,11 @@ VALUES ('Főoldal', 'Home'),
        ('Kérlek válaszolj az összes kérdésre elküldés előtt!',
         'Please answer all questions before sending your answers!'),
        ('Üdvözöllek a Salva Vita weboldalán!', E'Welcome on Salva Vita\'s website!'),
-       ('Elérhető tesztek','Available tests');
+       ('Elérhető tesztek', 'Available tests'),
+       ('Tovább az esszé íráshoz!', 'Onward to the essay writing!'),
+       ('Teszt elküldése!', 'Send test!'),
+       ('Biztos tovább szeretnél lépni?', 'Are you sure you want to continue?'),
+       ('Probléme volt az adatok elküldésével, kérlek próbáld meg később!', 'There was a problem sending your data, please try again later!');
 
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)
