@@ -46,8 +46,17 @@ def register():
             user_handler.add_new_user(fields)
         except:
             return render_template("authentication/register.jinja2", matching_username=True)
-        session["username"] = fields["username"]
-        return redirect(url_for('index'))
+        else:
+            user_fields = user_handler.get_user_fields_by_username(fields["username"], ["id", "is_admin"])
+            is_admin = user_fields["is_admin"]
+            user_id = user_fields["id"]
+
+            session["username"] = fields["username"]
+            session["is_admin"] = is_admin
+            session["user_id"] = user_id
+
+            return redirect(url_for('index'))
+
     return render_template("authentication/register.jinja2", matching_username=False)
 
 
@@ -80,7 +89,8 @@ def logout():
     session.pop("username")
     session.pop("is_admin")
     session.pop("user_id")
-    return redirect(request.referrer)
+
+    return redirect("/")
 
 
 # endregion
