@@ -13,8 +13,6 @@
     <!-- Bootstrap Font Icon CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card.css') }}">
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
@@ -23,7 +21,7 @@
     {% block head %}
     {% endblock %}
 </head>
-<body class="bg-light text-dark">
+<body class="text-dark">
 <nav class="navbar navbar-expand-lg fixed-top navbar-light">
     <div class="navbar-container container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -45,7 +43,7 @@
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{{ url_for("work_motivation") }}">{{ text["Munka motiváció teszt"] }}</a>
+                           href="{{ url_for("tests") }}">{{ text["Tesztek"] }}</a>
                     </li>
                     <li class="nav-item user-login-logout">
                             <span class="navbar-text nav-link">{{ text["Bejelentkezve mint"] }}
