@@ -6,6 +6,7 @@ from flask import session
 from flask import url_for
 from flask import make_response
 from flask import send_file
+from datetime import date
 
 import util
 from data_manager import language_handler
@@ -41,6 +42,7 @@ def register():
         except:
             return render_template("authentication/register.jinja2", matching_username=True)
         session["username"] = fields["username"]
+        session["is_admin"] = False
         return redirect(url_for('index'))
     return render_template("authentication/register.jinja2", matching_username=False)
 
@@ -89,8 +91,16 @@ def work_motivation():
 
 @app.route('/download-pdf')
 def download_pdf():
-    util.get_applicants_results_into_pdf()
-    pdf_filename = "applicants_test_results.pdf"
+    current_date = str(date.today()).replace("-", "_")
+
+    if session["is_admin"]:
+        util.get_applicants_results_into_pdf()
+        pdf_filename = f"applicants_test_results_{current_date}.pdf"
+    else:
+        username = session["username"]
+        full_name = user_handler.get_full_name_by_username(username)
+        util.get_applicant_tests_results_into_pdf(username, full_name)
+        pdf_filename = f"{full_name}{current_date}.pdf"
 
     return send_file(pdf_filename, as_attachment=True)
 

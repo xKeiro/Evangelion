@@ -135,7 +135,9 @@ VALUES ('Főoldal', 'Home'),
        ('A teszted eredménye elküldve!', 'The result of your test has been submitted!'),
        ('Kérlek válaszolj az összes kérdésre elküldés előtt!',
         'Please answer all questions before sending your answers!'),
-       ('Üdvözöllek a Salva Vita weboldalán!', E'Welcome on Salva Vita\'s website!');
+       ('Üdvözöllek a Salva Vita weboldalán!', E'Welcome on Salva Vita\'s website!'),
+       ('Jelöltek eredményei PDF', 'Applicants results PDF'),
+       ('Teszt eredmények PDF', 'Test results PDF');
 
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)
