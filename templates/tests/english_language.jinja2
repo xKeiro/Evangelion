@@ -9,7 +9,7 @@
 				<section class="card">
 				<header class="card-header card-title"
 				        data-question-id="{{ question.id }}">{{ question.question }}</header>
-				<details class="card-body">
+				<div class="card-body">
 				<div class="card-text">
 				{% for option in test.options %}
 					{% if option.question_id == question.id %}
@@ -25,7 +25,7 @@
 							{% endif %}
 						{% endfor %}
 					</div>
-					</details>
+					</div>
 				</section>
 			{% endfor %}
 		</article>
