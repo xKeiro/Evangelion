@@ -5,12 +5,16 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
+import mimetypes
 
 import util
 from data_manager import english_test_handler
 from data_manager import language_handler
 from data_manager import user_handler
 from data_manager import work_motivation_test_handler
+
+mimetypes.add_type('application/javascript', '.js')
+mimetypes.add_type('text/css', '.css')
 
 app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
