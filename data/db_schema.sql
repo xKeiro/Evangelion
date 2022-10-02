@@ -76,8 +76,8 @@ VALUES ('Főoldal', 'Home'),
        ('Regisztráció szükséges ennek az oldalnak az eléréséhez!', 'Registration needed needed to access this site!'),
        ('Válaszok elküldése', 'Send answers'),
        ('A teszted eredménye elküldve!', 'The result of your test has been submitted!'),
-       ('Kérlek válaszolj az összes kérdésre elküldés előtt!',
-        'Please answer all questions before sending your answers!'),
+       ('Kérlek válaszolj az összes kérdésre elküldés előtt!'),
+       ('Please answer all questions before sending your answers!'),
        ('Üdvözöllek a Salva Vita weboldalán!', E'Welcome on Salva Vita\'s website!');
 
 
