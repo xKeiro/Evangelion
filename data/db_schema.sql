@@ -86,7 +86,8 @@ CREATE TABLE english_language_question
     id       SERIAL PRIMARY KEY,
     text_id  INTEGER NOT NULL,
     question VARCHAR NOT NULL,
-    FOREIGN KEY (text_id) REFERENCES english_language_text (id) ON DELETE CASCADE
+    FOREIGN KEY (text_id) REFERENCES english_language_text (id) ON DELETE CASCADE,
+    CHECK ( question ILIKE '%.............%' )
 );
 
 CREATE TABLE english_language_option
@@ -112,7 +113,8 @@ CREATE TABLE english_language_result_essay
     topic_id         INTEGER NOT NULL,
     result_header_id INTEGER NOT NULL,
     essay            VARCHAR(2000),
-    FOREIGN KEY (result_header_id) REFERENCES result_header (id) ON DELETE CASCADE
+    FOREIGN KEY (result_header_id) REFERENCES result_header (id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES english_language_essay_topic (id) ON DELETE CASCADE
 );
 
 CREATE TABLE english_language_result
@@ -317,36 +319,36 @@ Aliquam luctus tempor mattis donec ultricies ad tortor tincidunt, interdum scele
        , 3);
 
 INSERT INTO english_language_question(text_id, question)
-VALUES (1, 'Question 1'),
-       (1, 'Question 2'),
-       (1, 'Question 3'),
-       (1, 'Question 4'),
-       (1, 'Question 5'),
-       (1, 'Question 6'),
-       (1, 'Question 7'),
-       (1, 'Question 8'),
-       (1, 'Question 9'),
-       (1, 'Question 10'),
-       (2, 'Question 1'),
-       (2, 'Question 2'),
-       (2, 'Question 3'),
-       (2, 'Question 4'),
-       (2, 'Question 5'),
-       (2, 'Question 6'),
-       (2, 'Question 7'),
-       (2, 'Question 8'),
-       (2, 'Question 9'),
-       (2, 'Question 10'),
-       (3, 'Question 1'),
-       (3, 'Question 2'),
-       (3, 'Question 3'),
-       (3, 'Question 4'),
-       (3, 'Question 5'),
-       (3, 'Question 6'),
-       (3, 'Question 7'),
-       (3, 'Question 8'),
-       (3, 'Question 9'),
-       (3, 'Question 10');
+VALUES (1, 'Question 1.............'),
+       (1, 'Question 2.............'),
+       (1, 'Question 3.............'),
+       (1, 'Question 4.............'),
+       (1, 'Question 5.............'),
+       (1, 'Question 6.............'),
+       (1, 'Question 7.............'),
+       (1, 'Question 8.............'),
+       (1, 'Question 9.............'),
+       (1, 'Question 10.............'),
+       (2, 'Question 1.............'),
+       (2, 'Question 2.............'),
+       (2, 'Question 3.............'),
+       (2, 'Question 4.............'),
+       (2, 'Question 5.............'),
+       (2, 'Question 6.............'),
+       (2, 'Question 7.............'),
+       (2, 'Question 8.............'),
+       (2, 'Question 9.............'),
+       (2, 'Question 10.............'),
+       (3, 'Question 1.............'),
+       (3, 'Question 2.............'),
+       (3, 'Question 3.............'),
+       (3, 'Question 4.............'),
+       (3, 'Question 5.............'),
+       (3, 'Question 6.............'),
+       (3, 'Question 7.............'),
+       (3, 'Question 8.............'),
+       (3, 'Question 9.............'),
+       (3, 'Question 10.............');
 
 INSERT INTO english_language_option(question_id, option, correct)
 VALUES (1, 'Option 1', FALSE),

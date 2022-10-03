@@ -48,6 +48,7 @@ async function submitAnswers() {
 
             document.querySelector("main").innerHTML =
                 `<div class="alert alert-success" role="alert">${text["A teszted eredménye elküldve!"]}</div>`;
+            window.scrollTo(0, 0);
         }
     } else {
         alert(text["Kérlek válaszolj az összes kérdésre elküldés előtt!"]);
