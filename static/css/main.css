@@ -1,12 +1,26 @@
+@font-face {
+    font-family: montserrat;
+    src: url("/static/font/Montserrat-VariableFont_wght.ttf");
+}
 body{
     width: 100%;
     position: relative;
     top: 56px;
     background-color: #0096f2;
     min-height: calc(100vh - 56px);
+    font-family: montserrat;
 }
 nav{
     background-color: white;
+}
+
+.page-body {
+    margin-top: 2em;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5em;
+    margin-bottom: 100px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
 .navbar-container{
@@ -32,6 +46,27 @@ nav{
     margin-left: auto;
     display: flex;
     flex-direction: row;
+}
+
+.button-custom{
+    background-color: #0096f2;
+    border-color: #0096f2;
+    max-height: 38px;
+}
+
+.button-custom:hover{
+    background-color: #ffd454!important;
+    border-color: #ffd454!important;
+    color: black!important;
+}
+
+.test-title{
+    font-family: montserrat;
+    font-weight: bold;
+}
+
+.test-sub-title{
+    font-family: montserrat;
 }
 
 @media all and (max-width: 991px){
