@@ -22,7 +22,8 @@ nav{
     width: 100%;
 }
 .navbar-text-user{
-    color: cornflowerblue;
+    color: #1a1a1a;
+    font-weight: bold;
 }
 .nav-spacer {
 
