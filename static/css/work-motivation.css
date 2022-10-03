@@ -19,7 +19,7 @@ hr{
     padding-top: 3em;
     padding-bottom: 3em;
 }
-.question{
+.question, .question-id{
     font-family: montserrat;
     font-size: 1.2em;
     display: flex;

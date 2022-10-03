@@ -78,8 +78,9 @@
         margin: 0;
     }
 
-    .homepage-card:nth-of-type(even) > .row > .card-image-container > .card-image , .homepage-card:nth-of-type(odd) > .row > .card-image-container > .card-image {
-        margin: 20px 0 0 0;
+    .homepage-card:nth-of-type(odd) > .row > .card-border-div > .card-image-container, .homepage-card:nth-of-type(even) > .row > .card-border-div > .card-image-container {
+        margin: 20px auto 0 auto;
+
     }
 
     .homepage-card:nth-of-type(odd) > .row > .card-text-container, .homepage-card:nth-of-type(even) > .row > .card-text-container{
@@ -87,9 +88,12 @@
         align-items: center;
     }
 
-    .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-text, h2, .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-text, h2 {
+    .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-text, .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-text, h2 {
         text-align: left;
         max-width: 600px;
         margin: 0 0 20px 0;
+    }
+    h2{
+        margin-top: 20px;
     }
 }
