@@ -25,6 +25,10 @@ hr{
     display: flex;
     align-items: center;
 }
+
+.question > p{
+    margin: 0;
+}
 /*.work-motiv-radio-button[type="radio"]:checked, .work-motiv-radio-button[type="radio"]:not(checked){*/
 /*    opacity: 0;*/
 /*}*/
