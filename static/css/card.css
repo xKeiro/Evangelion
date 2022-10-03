@@ -5,7 +5,7 @@
 }
 
 .homepage-card:nth-of-type(odd) {
-    background-color: cornflowerblue;
+    background-color: #0096f2;
 }
 
 .homepage-card:nth-of-type(even) > .card-content {

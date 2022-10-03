@@ -8,8 +8,13 @@ DROP TABLE IF EXISTS english_language_difficulty CASCADE;
 DROP TABLE IF EXISTS english_language_text CASCADE;
 DROP TABLE IF EXISTS english_language_question CASCADE;
 DROP TABLE IF EXISTS english_language_option CASCADE;
+DROP TABLE IF EXISTS english_language_essay_topic CASCADE;
 DROP TABLE IF EXISTS english_language_result_essay CASCADE;
 DROP TABLE IF EXISTS english_language_result CASCADE;
+DROP TABLE IF EXISTS social_situation_type CASCADE;
+DROP TABLE IF EXISTS social_situation_media CASCADE;
+DROP TABLE IF EXISTS social_situation_question CASCADE;
+DROP TABLE IF EXISTS social_situation_result CASCADE;
 
 CREATE TABLE language
 (
@@ -93,12 +98,21 @@ CREATE TABLE english_language_option
     FOREIGN KEY (question_id) REFERENCES english_language_question (id) ON DELETE CASCADE
 );
 
+CREATE TABLE english_language_essay_topic
+(
+    id            SERIAL PRIMARY KEY,
+    difficulty_id INTEGER NOT NULL,
+    topic         VARCHAR NOT NULL,
+    FOREIGN KEY (difficulty_id) REFERENCES english_language_difficulty (id) ON DELETE CASCADE
+);
+
 CREATE TABLE english_language_result_essay
 (
-    id        SERIAL PRIMARY KEY,
-    result_id INTEGER NOT NULL,
-    essay     VARCHAR(2000),
-    FOREIGN KEY (result_id) REFERENCES result_header (id) ON DELETE CASCADE
+    id               SERIAL PRIMARY KEY,
+    topic_id         INTEGER NOT NULL,
+    result_header_id INTEGER NOT NULL,
+    essay            VARCHAR(2000),
+    FOREIGN KEY (result_header_id) REFERENCES result_header (id) ON DELETE CASCADE
 );
 
 CREATE TABLE english_language_result
@@ -107,7 +121,39 @@ CREATE TABLE english_language_result
     option_id INTEGER NOT NULL,
     result_id INTEGER NOT NULL,
     FOREIGN KEY (option_id) REFERENCES english_language_option (id),
-    FOREIGN KEY (result_id) REFERENCES result_header (id)
+    FOREIGN KEY (result_id) REFERENCES result_header (id) ON DELETE CASCADE
+);
+
+CREATE TABLE social_situation_type
+(
+    id   SERIAL PRIMARY KEY,
+    type VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE social_situation_media
+(
+    id      SERIAL PRIMARY KEY,
+    url     VARCHAR(50) NOT NULL,
+    type_id INTEGER     NOT NULL,
+    FOREIGN KEY (type_id) REFERENCES social_situation_type (id)
+);
+
+CREATE TABLE social_situation_question
+(
+    id       SERIAL PRIMARY KEY,
+    question VARCHAR NOT NULL,
+    media_id INTEGER NOT NULL,
+    FOREIGN KEY (media_id) REFERENCES social_situation_media (id)
+);
+
+CREATE TABLE social_situation_result
+(
+    id          SERIAL PRIMARY KEY,
+    answer      VARCHAR(2000) NOT NULL,
+    question_id INTEGER       NOT NULL,
+    user_id     INTEGER       NOT NULL,
+    FOREIGN KEY (question_id) REFERENCES social_situation_question (id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 
@@ -117,7 +163,7 @@ VALUES ('Főoldal', 'Home'),
        ('Kijelentkezés', 'Logout'),
        ('Bejelentkezés', 'Login'),
        ('Regisztráció', 'Register'),
-       ('Munka motiváció teszt', 'Work Motivation Test'),
+       ('Tesztek', 'Tests'),
        ('Bejelentkezve mint', 'Logged in as'),
        ('Felhasználónév', 'Username'),
        ('Jelszó', 'Password'),
@@ -136,6 +182,14 @@ VALUES ('Főoldal', 'Home'),
        ('Kérlek válaszolj az összes kérdésre elküldés előtt!',
         'Please answer all questions before sending your answers!'),
        ('Üdvözöllek a Salva Vita weboldalán!', E'Welcome on Salva Vita\'s website!'),
+       ('Elérhető tesztek', 'Available tests'),
+       ('Tovább az esszé íráshoz!', 'Onward to the essay writing!'),
+       ('Teszt elküldése!', 'Send test!'),
+       ('Biztos tovább szeretnél lépni?', 'Are you sure you want to continue?'),
+       ('Probléme volt az adatok elküldésével, kérlek próbáld meg később!',
+        'There was a problem sending your data, please try again later!'),
+       ('Nincs jogosultságod ennek az oldalnak az eléréséhez!',
+        E'You don\'t have a necessary permission to access this site!'),
        ('Jelöltek eredményei PDF', 'Applicants results PDF'),
        ('Teszt eredmények PDF', 'Test results PDF');
 
@@ -427,3 +481,24 @@ VALUES (1, 'Option 1', FALSE),
        (30, 'Option 3', TRUE),
        (30, 'Option 4', FALSE),
        (30, 'Option 5', FALSE);
+
+INSERT INTO english_language_essay_topic(difficulty_id, topic)
+VALUES (1, 'School students should be allowed to curate their high school curriculum.'),
+       (2, 'The role of physical education in the school system.'),
+       (3, 'Should the death sentence be implemented globally?');
+
+INSERT INTO social_situation_type(type)
+VALUES ('image'),
+       ('video');
+
+INSERT INTO social_situation_media(url, type_id)
+VALUES ('https://www.youtube.com/watch?v=kMMH8rA1ggI', 2),
+       ('https://www.youtube.com/watch?v=fNFzfwLM72c', 2),
+       ('../static/img/img01.png', 1),
+       ('../static/img/img02.png', 1);;
+
+INSERT INTO social_situation_question(question, media_id)
+VALUES ('Why do they react the way they do?', 1),
+       ('Have you ever found yourself or experienced a similar situation? Please tell me about it.', 1),
+       ('What did you feel?', 1),
+       ('What did you feel? How did you react?', 3);

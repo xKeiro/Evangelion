@@ -1,5 +1,28 @@
 {% extends "default.jinja2" %}
 {% block head %}
+    <script src="{{ url_for('static', filename='js/util/embedYoutube.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/tests/socialSituation.js') }}" defer></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/social_situation.css') }}">
 {% endblock %}
 {% block content %}
+    <main calss="container">
+        <div class="text-center">
+        {% for test in data %}
+            {% if test['type'] == "video" %}
+                <div id="yt-player" class="rounded mx-auto d-block" url='{{ test["url"] }}'></div>
+            {% else %}
+                <img class="rounded mx-auto d-block" src="{{ test["url"] }}">
+            {% endif %}
+            {% for question in test['questions'] %}
+                <div class="d-flex justify-content-center">
+                    <div class="form-floating">
+                      <textarea question-id="{{ test['question_id'] }}" class="form-control" id="floatingTextarea2" maxlength="2000" style="height: 100px; width: 720px"></textarea>
+                      <label for="floatingTextarea2">{{ question }}</label>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <button type="submit" id="answer-submit" class="btn btn-primary">{{ text["Válaszok elküldése"] }}</button>
+        </div>
+    </main>
 {% endblock %}

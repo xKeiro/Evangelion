@@ -1,6 +1,6 @@
 {% extends "default.jinja2" %}
 {% block head %}
-	<script src="{{ url_for('static', filename='js/workMotivationAdmin.js') if session["is_admin"] else url_for('static', filename='js/workMotivation.js') }}"
+	<script src="{{ url_for('static', filename='js/tests/admin/workMotivationAdmin.js') if session["is_admin"] else url_for('static', filename='js/tests/workMotivation.js') }}"
 	        type="module" defer></script>
 {% endblock %}
 {% block content %}

@@ -1,20 +1,28 @@
+import mimetypes
+
 from flask import Flask  # type: ignore
+from flask import make_response
 from flask import redirect
 from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
-from flask import make_response
 from flask import send_file
 from datetime import date
 
 import util
+from data_manager import english_test_handler
 from data_manager import language_handler
+from data_manager import social_situation_handler
 from data_manager import user_handler
-from data_manager import work_motivation_handler
+from data_manager import work_motivation_test_handler
+
+mimetypes.add_type('application/javascript', '.js')
+mimetypes.add_type('text/css', '.css')
 
 app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
+
 
 @app.context_processor
 def inject_dict_for_all_templates():
@@ -41,9 +49,17 @@ def register():
             user_handler.add_new_user(fields)
         except:
             return render_template("authentication/register.jinja2", matching_username=True)
-        session["username"] = fields["username"]
-        session["is_admin"] = False
-        return redirect(url_for('index'))
+        else:
+            user_fields = user_handler.get_user_fields_by_username(fields["username"], ["id", "is_admin"])
+            is_admin = user_fields["is_admin"]
+            user_id = user_fields["id"]
+
+            session["username"] = fields["username"]
+            session["is_admin"] = is_admin
+            session["user_id"] = user_id
+
+            return redirect(url_for('index'))
+
     return render_template("authentication/register.jinja2", matching_username=False)
 
 
@@ -76,16 +92,20 @@ def logout():
     session.pop("username")
     session.pop("is_admin")
     session.pop("user_id")
-    return redirect(request.referrer)
+    return redirect(url_for("index"))
 
 
 # endregion
+@app.route('/tests')
+@util.login_required
+def tests():
+    return render_template('tests.jinja2')
 
 
 @app.route('/test/work-motivation')
 @util.login_required
 def work_motivation():
-    questions = work_motivation_handler.get_questions()
+    questions = work_motivation_test_handler.get_questions()
     return render_template('tests/work_motivation.jinja2', questions=questions)
 
 
@@ -105,21 +125,36 @@ def download_pdf():
     return send_file(pdf_filename, as_attachment=True)
 
 
+@app.route('/test/english_language/<int:difficulty_id>')
+@util.login_required
+def english_language(difficulty_id):
+    test = english_test_handler.get_random_english_test_by_difficulty_id(difficulty_id)
+    return render_template('tests/english_language.jinja2', test=test)
+
+
+@app.route('/test/social_situation')
+@util.login_required
+def social_situation():
+    data = social_situation_handler.get_url_and_questions()
+    return render_template('tests/social_situations.jinja2', data=data)
+
+
 # region --------------------------------API------------------------------------------
+@app.route('/api/text')
+@util.json_response
+def api_get_text():
+    text = language_handler.get_texts_in_language(request.cookies.get("language", "hu"))
+    return text
+
 
 @app.route('/api/work-motivation', methods=["POST"])
 @util.login_required
 @util.json_response
 def api_work_motivation_submit():
     answers = request.json
-    work_motivation_handler.submit_answer(answers, session["user_id"])
+    work_motivation_test_handler.submit_answer(answers, session["user_id"])
     return {"status": "success"}
 
-@app.route('/api/text')
-@util.json_response
-def api_get_text():
-    text = language_handler.get_texts_in_language(request.cookies.get("language", "hu"))
-    return text
 
 @app.route('/api/work-motivation/question/<question_id>', methods=["PATCH"])
 @util.login_required
@@ -127,7 +162,29 @@ def api_get_text():
 def api_patch_work_motivation_question(question_id):
     if session["is_admin"]:
         title = request.json["title"]
-        work_motivation_handler.patch_title_by_id(question_id, title)
+        work_motivation_test_handler.patch_title_by_id(question_id, title)
         return {"status": "success"}
+
+
+@app.route("/api/english-language", methods=["POST"])
+@util.login_required
+@util.json_response
+def api_english_language_submit():
+    results = request.json
+    english_test_handler.submit_result(results, session["user_id"])
+    return {"status": "success"}
+
+
+# endregion
+
+
+# region -------------------------------ADMIN-----------------------------------------
+@app.route('/admin/test/english_language/<int:difficulty_id>/reading_comprehension/<int:page_number>')
+@util.admin_required
+def admin_english_language_reading_comprehension(difficulty_id, page_number):
+    tests = english_test_handler.get_all_english_reading_comprehension_test_by_difficulty_id(difficulty_id)
+    max_number_of_pages = len(tests)
+    return render_template('tests/admin/english_language/english_language_texts_admin.jinja2', test=tests[page_number-1],
+                           max_number_of_pages=max_number_of_pages, currrent_page=page_number)
 
 # endregion

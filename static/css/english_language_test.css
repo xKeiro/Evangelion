@@ -1,0 +1,40 @@
+.english-test-text{
+    white-space: pre-wrap
+}
+
+.page-body{
+    margin-top: 2em;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5em;
+    margin-bottom: 100px;
+}
+
+.question-container{
+    margin-top: 4em;
+}
+
+.question-card{
+    margin-bottom: 1.5em;
+}
+
+.essay-text-container{
+    position: relative;
+}
+
+.remaining-char{
+    user-select: none;
+    position: absolute;
+    right: 5px;
+    bottom: 0px;
+    color: #ced4da;
+}
+
+.essay-text{
+    margin-bottom: 1.5em;
+    resize: none;
+}
+
+.test-sub-title{
+    margin-bottom: 1em;
+}

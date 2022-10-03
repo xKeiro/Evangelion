@@ -1,0 +1,24 @@
+{% macro Pagination(current_page, max_pages) %}
+	{% if current_page <= 2 %}
+		{% set star_page = 1 %}
+		{% set end_page = [5, max_pages]|min %}
+	{% elif current_page >= max_pages - 1 %}
+		{% set star_page = max_pages - 4 if max_pages - 4 >= 1 else 1 %}
+		{% set end_page = max_pages %}
+	{% else %}
+		{% set star_page = current_page - 2 %}
+		{% set end_page = current_page + 2 %}
+	{% endif %}
+	<nav class="pagination">
+		{% if current_page != 1 %}
+			<a href="{{ current_page - 1 }}">«</a>
+		{% endif %}
+		{% for page_number in range(star_page,end_page + 1,1) %}
+			<a href="{{ page_number }}"
+			   class="{{ 'active' if page_number == current_page }}">{{ page_number }}</a>
+		{% endfor %}
+		{% if current_page != max_pages %}
+			<a href="{{ current_page + 1 }}">»</a>
+		{% endif %}
+	</nav>
+{% endmacro %}
