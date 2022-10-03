@@ -2,22 +2,61 @@
     white-space: pre-wrap
 }
 
-.page-body{
-    margin-top: 2em;
-    background-color: white;
-    border-radius: 10px;
-    padding: 1.5em;
-    margin-bottom: 100px;
-}
+/*.page-body{*/
+/*    margin-top: 2em;*/
+/*    background-color: white;*/
+/*    border-radius: 10px;*/
+/*    padding: 1.5em;*/
+/*    margin-bottom: 100px;*/
+/*    box-shadow: 0 0 10px rgba(0,0,0,0.3);*/
+/*}*/
 
+.english-test-text{
+    font-size: 1.2em;
+}
 .question-container{
     margin-top: 4em;
 }
 
 .question-card{
     margin-bottom: 1.5em;
+    font-family: montserrat;
+    font-size: 1.2em;
+    border-color: #0096f2;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
 }
 
+.card-header{
+    background-color: #0096f2;
+    color: white;
+}
+.answers-body{
+    padding: 0;
+}
+.answer{
+    padding: 0 0 0 3em;
+    margin-bottom: 0;
+    transition: all 0.3s ease 0s;
+    display: flex;
+
+    align-items: center;
+}
+.answer:nth-of-type(odd){
+    background-color: rgba(0,0,0,0.08);
+}
+.answer:hover{
+    background-color: #ffc107;
+    transition: all 0.3s ease 0s;
+}
+.question-radio-button{
+    margin: 0.3em 0 0.3em 0;
+}
+.question-label{
+    padding: 0.3em;
+    min-width: 100%;
+    min-height: 100%;
+    cursor: pointer;
+}
 .essay-text-container{
     position: relative;
 }

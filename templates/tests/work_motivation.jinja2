@@ -7,35 +7,35 @@
 {% block content %}
     <main class="page-body container">
         <header class="work-motiv-header">
-            <h2 class="test-title">Munka motivacios kerdoiv</h2>
-            <h4>Ugy erzi, hogy egy idealis munkahelyen fontos, hogy....</h4>
+            <h2 class="test-title">{{ text["Munka-motivációs kérdőiv"] }}</h2><hr>
+            <h4 class="test-sub-title">Úgy érzi, hogy egy ideális munkahelyen fontos, hogy....</h4>
         </header>
         <section class="answers">
             {% for question in questions %}
                 <div class="row mt-5 mb-5 question-row" data-question-id="{{ question.id }}">
-                    <div class="col-lg-1 col-1 question-id" aria-hidden="true">{{ question.id }}</div>
+                    <div class="col-lg-1 col-1 question-id question" aria-hidden="true">{{ question.id }}</div>
                     <div class="col-lg-6 col-11 question"
-                         data-question-id="{{ question.id }}" tabindex="0"><p>{{ question.title }}</p></div>
+                         data-question-id="{{ question.id }}" tabindex="0">{{ question.title }}</div>
                     <div class="col-lg-5 btn-group btn-group-toggle" role="group" data-toggle="buttons">
-                        <div class="btn btn-secondary">
+                        <div class="btn btn-primary button-custom">
                             <input class="work-motiv-radio-button btn-check" aria-label="Egyaltalan nem fontos" type="radio" name="options{{ loop.index }}" id="option1" autocomplete="off"><span aria-hidden="true">1</span>
                         </div>
-                        <div class="btn btn-secondary">
+                        <div class="btn btn-primary button-custom">
                             <input class="work-motiv-radio-button btn-check" aria-label="Nem fontos" type="radio" name="options{{ loop.index }}" id="option2" autocomplete="off"><span aria-hidden="true">2</span>
                         </div>
-                        <div class="btn btn-secondary">
+                        <div class="btn btn-primary button-custom">
                             <input class="work-motiv-radio-button btn-check" aria-label="Semleges" type="radio" name="options{{ loop.index }}" id="option3" autocomplete="off"><span aria-hidden="true">3</span>
                         </div>
-                        <div class="btn btn-secondary">
+                        <div class="btn btn-primary button-custom">
                             <input class="work-motiv-radio-button btn-check" aria-label="Fontos" type="radio" name="options{{ loop.index }}" id="option4" autocomplete="off"><span aria-hidden="true">4</span>
                         </div>
-                        <div class="btn btn-secondary">
+                        <div class="btn btn-primary button-custom">
                             <input class="work-motiv-radio-button btn-check" aria-label="Nagyon fontos" type="radio" name="options{{ loop.index }}" id="option5" autocomplete="off"><span aria-hidden="true">5</span>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </section>
-        <button type="submit" id="question-submit" class="btn btn-primary">{{ text["Válaszok elküldése"] }}</button>
+        <button type="submit" id="question-submit" class="btn btn-primary button-custom">{{ text["Válaszok elküldése"] }}</button>
     </main>
 {% endblock %}
