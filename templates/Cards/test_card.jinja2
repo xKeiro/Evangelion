@@ -16,7 +16,7 @@
                                 {{ value["description"] }}
                                 </div>
                             <footer class="test-button-container">
-                                <a href="/test/{{ value["url"] }}" class="test-button-link test-button" type="button" aria-label="{{ [text['Tovább a'], dict.title, value['title'], text['tesztre']] | join(' ') }}">To the test</a>
+                                <a href="{{ value["url"] }}" class="test-button-link test-button" type="button" aria-label="{{ [text['Tovább a'], dict.title, value['title'], text['tesztre']] | join(' ') }}">To the test</a>
                             </footer>
                             </div>
                         </li>
