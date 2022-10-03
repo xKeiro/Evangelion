@@ -1,8 +1,8 @@
 /* global console */
 /* global alert */
 /* jshint esversion:11 */
-import {dataHandler} from "./data/dataHandler.js";
-import {convertMapToObject} from "./util/util.js";
+import {dataHandler} from "../data/dataHandler.js";
+import {convertMapToObject} from "../util/util.js";
 
 // document.cookie = "language=en;path=/";
 

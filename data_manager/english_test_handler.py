@@ -47,7 +47,7 @@ def get_all_english_reading_comprehension_test_by_difficulty_id(cursor, difficul
     query = """
 SELECT ARRAY [elt.id::VARCHAR, elt.text]                                                 AS "text",
        ARRAY_AGG(DISTINCT ARRAY [elq.id::VARCHAR, elq.question])                         AS questions,
-       ARRAY_AGG(DISTINCT ARRAY [elo.id::VARCHAR, elo.question_id::VARCHAR, elo.option]) AS "options"
+       ARRAY_AGG(DISTINCT ARRAY [elo.id::VARCHAR, elo.question_id::VARCHAR, elo.option, elo.correct::VARCHAR]) AS "options"
 FROM english_language_text elt
          LEFT JOIN english_language_question elq ON elt.id = elq.text_id
          LEFT JOIN english_language_option elo ON elq.id = elo.question_id
@@ -62,7 +62,7 @@ ORDER BY elt.id
         text = {"id": int(test["text"][0]), "text": test["text"][1]}
         questions = [{"id": int(question[0]), "question": question[1]} for question in
                      test["questions"]]
-        options = [{"id": int(option[0]), "question_id": int(option[1]), "option": option[2]} for option in
+        options = [{"id": int(option[0]), "question_id": int(option[1]), "option": option[2], "correct": option[3]} for option in
                    test["options"]]
         tests[index]["text"] = text
         tests[index]["questions"] = questions

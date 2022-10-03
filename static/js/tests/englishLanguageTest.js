@@ -3,8 +3,8 @@
 /* global confirm */
 /* jshint esversion:11 */
 
-import {convertMapToObject} from "./util/util.js";
-import {dataHandler} from "./data/dataHandler.js";
+import {convertMapToObject} from "../util/util.js";
+import {dataHandler} from "../data/dataHandler.js";
 
 const NUMBER_OF_QUESTIONS = document.querySelectorAll('.question-card').length;
 let answers = new Map();

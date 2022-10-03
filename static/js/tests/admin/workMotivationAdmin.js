@@ -2,7 +2,7 @@
 /* global alert */
 /* jshint esversion:11 */
 
-import {dataHandler} from "./data/dataHandler.js";
+import {dataHandler} from "../../data/dataHandler.js";
 // import {util} from "./util/util.js";
 //
 // const language = util("language");
