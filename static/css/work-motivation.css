@@ -19,11 +19,15 @@ hr{
     padding-top: 3em;
     padding-bottom: 3em;
 }
-.question{
+.question, .question-id{
     font-family: montserrat;
     font-size: 1.2em;
     display: flex;
     align-items: center;
+}
+
+.question > p{
+    margin: 0;
 }
 /*.work-motiv-radio-button[type="radio"]:checked, .work-motiv-radio-button[type="radio"]:not(checked){*/
 /*    opacity: 0;*/
