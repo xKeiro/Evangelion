@@ -18,6 +18,10 @@ export let dataHandler = {
     postEnglishLanguageTestResults: async function (testResults){
         "use strict";
         return apiPost("/api/english-language", testResults);
+    },
+    postSocialSituationResults: async function (answer, questionId){
+        "use strict";
+        return apiPost(`/api/social-situation/question/${questionId}`, answer);
     }
 };
 

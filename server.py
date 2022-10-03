@@ -165,6 +165,14 @@ def api_english_language_submit():
     english_test_handler.submit_result(results, session["user_id"])
     return {"status": "success"}
 
+@app.route("/api/social-situation/question/<question_id>", methods=["POST"])
+@util.login_required
+@util.json_response
+def api_social_situation_submit(question_id):
+    results = request.json
+    social_situation_handler.save_data(results, question_id, session["user_id"])
+    return {"status": "success"}
+
 
 # endregion
 
