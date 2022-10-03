@@ -14,12 +14,21 @@ from data_manager import language_handler
 from data_manager import social_situation_handler
 from data_manager import user_handler
 from data_manager import work_motivation_test_handler
+from data_manager import start_sql
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
 
 app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
+
+#------------------------------JUST FOR DEVELOPMENT--------------------------------------------
+
+with open("data/db_schema.sql") as file:
+    sql = file.readlines()
+    start_sql.start(sql)
+
+#----------------------------------------------------------------------------------------------
 
 
 @app.context_processor
