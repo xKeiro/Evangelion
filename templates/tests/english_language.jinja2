@@ -12,7 +12,7 @@
 			<section class="question-container" id="question-container">
 				{% for question in test.questions[:10] %}
 					<article class="card question-card">
-						<header class="card-header card-title"
+						<header class="card-header card-title" tabindex="0"
 						        data-question-id="{{ question.id }}">{{ question.question }}</header>
 						<div class="card-body">
 							<div class="card-text">

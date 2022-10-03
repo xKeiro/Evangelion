@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="{{ "en-GB" if request.cookies.get("language", "hu") == "gb" else request.cookies.get("language", "hu") }}">
 <head>
     <meta charset="UTF-8">
 
