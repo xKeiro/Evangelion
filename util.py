@@ -34,6 +34,25 @@ def login_required(func):
 
     return decorated_function
 
+def admin_required(func):
+    """
+    Checks if user is admin, if not shows the "admin_required.jinja2" template
+    :param func:
+    :return:
+    """
+
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        try:
+            if session["is_admin"]:
+                return (func(*args, **kwargs))
+            else:
+                return render_template("authentication/admin_required.jinja2")
+        except KeyError:
+            return render_template("authentication/admin_required.jinja2")
+
+    return decorated_function
+
 
 # def get_language(func):
 #     """

@@ -108,10 +108,10 @@ CREATE TABLE english_language_essay_topic
 
 CREATE TABLE english_language_result_essay
 (
-    id        SERIAL PRIMARY KEY,
-    topic_id  INTEGER NOT NULL,
+    id               SERIAL PRIMARY KEY,
+    topic_id         INTEGER NOT NULL,
     result_header_id INTEGER NOT NULL,
-    essay     VARCHAR(2000),
+    essay            VARCHAR(2000),
     FOREIGN KEY (result_header_id) REFERENCES result_header (id) ON DELETE CASCADE
 );
 
@@ -126,32 +126,32 @@ CREATE TABLE english_language_result
 
 CREATE TABLE social_situation_type
 (
-    id        SERIAL PRIMARY KEY,
-    type      VARCHAR(10) NOT NULL
+    id   SERIAL PRIMARY KEY,
+    type VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE social_situation_media
 (
-    id        SERIAL PRIMARY KEY,
-    url       VARCHAR(50) NOT NULL,
-    type_id   INTEGER NOT NULL,
+    id      SERIAL PRIMARY KEY,
+    url     VARCHAR(50) NOT NULL,
+    type_id INTEGER     NOT NULL,
     FOREIGN KEY (type_id) REFERENCES social_situation_type (id)
 );
 
 CREATE TABLE social_situation_question
 (
-    id        SERIAL PRIMARY KEY,
-    question  VARCHAR NOT NULL,
-    media_id  INTEGER NOT NULL,
+    id       SERIAL PRIMARY KEY,
+    question VARCHAR NOT NULL,
+    media_id INTEGER NOT NULL,
     FOREIGN KEY (media_id) REFERENCES social_situation_media (id)
 );
 
 CREATE TABLE social_situation_result
 (
-    id              SERIAL PRIMARY KEY,
-    answer          VARCHAR(2000) NOT NULL,
-    question_id     INTEGER NOT NULL,
-    user_id         INTEGER NOT NULL,
+    id          SERIAL PRIMARY KEY,
+    answer      VARCHAR(2000) NOT NULL,
+    question_id INTEGER       NOT NULL,
+    user_id     INTEGER       NOT NULL,
     FOREIGN KEY (question_id) REFERENCES social_situation_question (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
@@ -186,7 +186,10 @@ VALUES ('Főoldal', 'Home'),
        ('Tovább az esszé íráshoz!', 'Onward to the essay writing!'),
        ('Teszt elküldése!', 'Send test!'),
        ('Biztos tovább szeretnél lépni?', 'Are you sure you want to continue?'),
-       ('Probléme volt az adatok elküldésével, kérlek próbáld meg később!', 'There was a problem sending your data, please try again later!');
+       ('Probléme volt az adatok elküldésével, kérlek próbáld meg később!',
+        'There was a problem sending your data, please try again later!'),
+       ('Nincs jogosultságod ennek az oldalnak az eléréséhez!',
+        E'You don\'t have a necessary permission to access this site!');
 
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)
@@ -483,17 +486,17 @@ VALUES (1, 'School students should be allowed to curate their high school curric
        (3, 'Should the death sentence be implemented globally?');
 
 INSERT INTO social_situation_type(type)
-VALUES  ('image'),
-        ('video');
+VALUES ('image'),
+       ('video');
 
 INSERT INTO social_situation_media(url, type_id)
-VALUES  ('https://www.youtube.com/watch?v=kMMH8rA1ggI', 2),
-        ('https://www.youtube.com/watch?v=fNFzfwLM72c', 2),
-        ('../static/img/img01.png', 1),
-        ('../static/img/img02.png', 1);;
+VALUES ('https://www.youtube.com/watch?v=kMMH8rA1ggI', 2),
+       ('https://www.youtube.com/watch?v=fNFzfwLM72c', 2),
+       ('../static/img/img01.png', 1),
+       ('../static/img/img02.png', 1);;
 
 INSERT INTO social_situation_question(question, media_id)
-VALUES  ('Why do they react the way they do?', 1),
-        ('Have you ever found yourself or experienced a similar situation? Please tell me about it.', 1),
-        ('What did you feel?', 1),
-        ('What did you feel? How did you react?', 3);
+VALUES ('Why do they react the way they do?', 1),
+       ('Have you ever found yourself or experienced a similar situation? Please tell me about it.', 1),
+       ('What did you feel?', 1),
+       ('What did you feel? How did you react?', 3);

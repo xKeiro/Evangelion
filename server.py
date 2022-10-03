@@ -1,3 +1,5 @@
+import mimetypes
+
 from flask import Flask  # type: ignore
 from flask import make_response
 from flask import redirect
@@ -5,14 +7,13 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
-import mimetypes
 
 import util
 from data_manager import english_test_handler
 from data_manager import language_handler
+from data_manager import social_situation_handler
 from data_manager import user_handler
 from data_manager import work_motivation_test_handler
-from data_manager import social_situation_handler
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
@@ -98,6 +99,7 @@ def logout():
 def tests():
     return render_template('tests.jinja2')
 
+
 @app.route('/test/work-motivation')
 @util.login_required
 def work_motivation():
@@ -105,11 +107,12 @@ def work_motivation():
     return render_template('tests/work_motivation.jinja2', questions=questions)
 
 
-@app.route('/test/english_language/<difficulty_id>')
+@app.route('/test/english_language/<int:difficulty_id>')
 @util.login_required
 def english_language(difficulty_id):
     test = english_test_handler.get_random_english_test_by_difficulty_id(difficulty_id)
     return render_template('tests/english_language.jinja2', test=test)
+
 
 @app.route('/test/social_situation')
 @util.login_required
@@ -144,6 +147,7 @@ def api_patch_work_motivation_question(question_id):
         work_motivation_test_handler.patch_title_by_id(question_id, title)
         return {"status": "success"}
 
+
 @app.route("/api/english-language", methods=["POST"])
 @util.login_required
 @util.json_response
@@ -151,5 +155,18 @@ def api_english_language_submit():
     results = request.json
     english_test_handler.submit_result(results, session["user_id"])
     return {"status": "success"}
+
+
+# endregion
+
+
+# region -------------------------------ADMIN-----------------------------------------
+@app.route('/admin/test/english_language/<int:difficulty_id>/reading_comprehension/<int:page_number>')
+@util.admin_required
+def admin_english_language_reading_comprehension(difficulty_id, page_number):
+    tests = english_test_handler.get_all_english_reading_comprehension_test_by_difficulty_id(difficulty_id)
+    max_number_of_pages = len(tests)
+    return render_template('tests/admin/english_language/english_language_texts_admin.jinja2', test=tests[page_number-1],
+                           max_number_of_pages=max_number_of_pages, currrent_page=page_number)
 
 # endregion

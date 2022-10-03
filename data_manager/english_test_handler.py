@@ -41,6 +41,34 @@ LIMIT 1
     test["essay_topic"] = essay_topic
     return test
 
+
+@connection_handler
+def get_all_english_reading_comprehension_test_by_difficulty_id(cursor, difficulty_id: int) -> list[dict[dict,list[dict],list[dict]]]:
+    query = """
+SELECT ARRAY [elt.id::VARCHAR, elt.text]                                                 AS "text",
+       ARRAY_AGG(DISTINCT ARRAY [elq.id::VARCHAR, elq.question])                         AS questions,
+       ARRAY_AGG(DISTINCT ARRAY [elo.id::VARCHAR, elo.question_id::VARCHAR, elo.option]) AS "options"
+FROM english_language_text elt
+         LEFT JOIN english_language_question elq ON elt.id = elq.text_id
+         LEFT JOIN english_language_option elo ON elq.id = elo.question_id
+WHERE elt.difficulty_id = %s
+GROUP BY elt.id
+ORDER BY elt.id
+    """
+    var = (difficulty_id,)
+    cursor.execute(query, var)
+    tests = cursor.fetchall()
+    for index, test in enumerate(tests):
+        text = {"id": int(test["text"][0]), "text": test["text"][1]}
+        questions = [{"id": int(question[0]), "question": question[1]} for question in
+                     test["questions"]]
+        options = [{"id": int(option[0]), "question_id": int(option[1]), "option": option[2]} for option in
+                   test["options"]]
+        tests[index]["text"] = text
+        tests[index]["questions"] = questions
+        tests[index]["options"] = options
+    return tests
+
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 
