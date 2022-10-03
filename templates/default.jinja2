@@ -13,7 +13,6 @@
     <!-- Bootstrap Font Icon CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/country-flags-font.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
           type="text/css">
 
@@ -57,10 +56,10 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink78"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink78">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ url_for("language_select",language="en") }}">
                                     <span class="flag-icon flag-icon-gb"></span> English
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ url_for("language_select",language="hu") }}">
                                     <span class="flag-icon flag-icon-hu"></span> Magyar
                                 </a>
                             </div>
@@ -74,12 +73,12 @@
                     <li>
                         <div class="d-lg-block dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink78"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</a>
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-{{ request.cookies.get('language','hu') }}"></span> {{ request.cookies.get('language','hu') | upper }}</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink78">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ url_for("language_select",language="gb") }}">
                                     <span class="flag-icon flag-icon-gb"></span> English
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ url_for("language_select",language="hu") }}">
                                     <span class="flag-icon flag-icon-hu"></span> Magyar
                                 </a>
                             </div>
