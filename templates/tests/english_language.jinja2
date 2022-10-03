@@ -8,7 +8,7 @@
 		<section id="reading-comprehension">
 			<article class="english-test-text" data-text-id="{{ test.text.id }}">{{ test.text.text }}</article>
 			<article class="question-container" id="question-container">
-				{% for question in test.questions %}
+				{% for question in test.questions[:10] %}
 					<section class="card question-card">
 						<header class="card-header card-title"
 						        data-question-id="{{ question.id }}">{{ question.question }}</header>
