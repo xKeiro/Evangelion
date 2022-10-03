@@ -1,4 +1,4 @@
-{% macro test_card(dict) %}
+{% macro test_card(dict,text) %}
     <article class="tests-card card col-lg-2">
         <header class="tests-card-header card-header">
             {{ dict.title }}
@@ -16,7 +16,7 @@
                                 {{ value["description"] }}
                                 </div>
                             <footer class="test-button-container">
-                                <a href="/test/{{ value["url"] }}" class="test-button-link"><button class="test-button">To the test</button></a>
+                                <a href="/test/{{ value["url"] }}" class="test-button-link test-button" type="button" aria-label="{{ [text['Tovább a'], dict.title, value['title'], text['tesztre']] | join(' ') }}">To the test</a>
                             </footer>
                             </div>
                         </li>

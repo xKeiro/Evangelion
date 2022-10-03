@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS social_situation_result CASCADE;
 CREATE TABLE language
 (
     hu VARCHAR PRIMARY KEY,
-    en VARCHAR
+    gb VARCHAR
 );
 
 CREATE TABLE users
@@ -158,7 +158,7 @@ CREATE TABLE social_situation_result
 
 
 
-INSERT INTO language(hu, en)
+INSERT INTO language(hu, gb)
 VALUES ('Főoldal', 'Home'),
        ('Kijelentkezés', 'Logout'),
        ('Bejelentkezés', 'Login'),
@@ -189,7 +189,25 @@ VALUES ('Főoldal', 'Home'),
        ('Probléme volt az adatok elküldésével, kérlek próbáld meg később!',
         'There was a problem sending your data, please try again later!'),
        ('Nincs jogosultságod ennek az oldalnak az eléréséhez!',
-        E'You don\'t have a necessary permission to access this site!');
+        E'You don\'t have a necessary permission to access this site!'),
+        ('Tovább a', 'To the'),
+        ('tesztre', 'test'),
+        ('Munka motiváció','Work motivation'),
+        ('Ennek a tesztnek a lényege, hogy felmérje a hozzáállásodat a munkához','The purpose of this test is to asses your work attitude'),
+        ('Angol nyelv', 'English Language'),
+        ('Alapfok','Elementary'),
+        ('Ez a teszt felméri az alapfokú angol tudásod','This test assesses your skills in elementary english'),
+        ('Középfok','Intermediate'),
+        ('Ez a teszt felméri a középfokú angol tudásod','This test assesses your skills in intermediate english'),
+        ('Felső középfok','Upper intermediate'),
+        ('Ez a teszt felméri a felső középfokú angol tudásod','This test assesses your skills in upper intermediate english'),
+        ('Szociális készségek','Social skills'),
+        ('Teszt cím','Test name'),
+        ('Teszt leírás','Test description'),
+        ('Teszt kategória', 'Test category');
+
+
+
 
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)

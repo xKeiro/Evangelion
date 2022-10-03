@@ -31,7 +31,7 @@ def inject_dict_for_all_templates():
 @app.route('/')
 def index():
     resp = make_response(render_template("index.jinja2"))
-    resp.set_cookie('language', 'en')
+
     return resp
 
 
@@ -159,6 +159,11 @@ def api_english_language_submit():
 
 # endregion
 
+@app.route("/language/<language>")
+def language_select(language):
+    resp = make_response(redirect(request.referrer))
+    resp.set_cookie('language', language)
+    return resp
 
 # region -------------------------------ADMIN-----------------------------------------
 @app.route('/admin/test/english_language/<int:difficulty_id>/reading_comprehension/<int:page_number>')
