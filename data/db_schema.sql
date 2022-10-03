@@ -511,7 +511,7 @@ INSERT INTO social_situation_media(url, type_id)
 VALUES ('https://www.youtube.com/watch?v=kMMH8rA1ggI', 2),
        ('https://www.youtube.com/watch?v=fNFzfwLM72c', 2),
        ('../static/img/img01.png', 1),
-       ('../static/img/img02.png', 1);;
+       ('../static/img/img02.png', 1);
 
 INSERT INTO social_situation_question(question, media_id)
 VALUES ('Why do they react the way they do?', 1),

@@ -24,7 +24,7 @@ app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
 
 #------------------------------JUST FOR DEVELOPMENT--------------------------------------------
 
-with open("data/db_schema.sql") as file:
+with open("data/db_schema.sql", encoding="UTF-8") as file:
     sql = file.readlines()
     start_sql.start(sql)
 
