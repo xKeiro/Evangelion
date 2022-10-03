@@ -112,7 +112,8 @@ CREATE TABLE english_language_result_essay
     topic_id         INTEGER NOT NULL,
     result_header_id INTEGER NOT NULL,
     essay            VARCHAR(2000),
-    FOREIGN KEY (result_header_id) REFERENCES result_header (id) ON DELETE CASCADE
+    FOREIGN KEY (result_header_id) REFERENCES result_header (id) ON DELETE CASCADE,
+    FOREIGN KEY (topic_id) REFERENCES english_language_essay_topic (id) ON DELETE CASCADE
 );
 
 CREATE TABLE english_language_result
