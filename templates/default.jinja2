@@ -71,6 +71,17 @@
                         <a class="nav-link"
                            href="{{ url_for("tests") }}">{{ text["Tesztek"] }}</a>
                     </li>
+                    {% if session["is_admin"] %}
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ url_for("download_pdf") }}">{{ text["Jelöltek eredményei PDF"] }}</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ url_for("download_pdf") }}">{{ text["Teszt eredmények PDF"] }}</a>
+                        </li>
+                    {% endif %}
                     <li>
                         <div class="d-lg-block dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink78"
@@ -85,17 +96,6 @@
                             </div>
                         </div>
                     </li>
-                    {% if session["is_admin"] %}
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               href="{{ url_for("download_pdf") }}">{{ text["Jelöltek eredményei PDF"] }}</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               href="{{ url_for("download_pdf") }}">{{ text["Teszt eredmények PDF"] }}</a>
-                        </li>
-                    {% endif %}
                     <li class="nav-item user-login-logout">
                             <span class="navbar-text nav-link">{{ text["Bejelentkezve mint"] }}
                                 <span class="navbar-text-user">{{ session["username"] }}</span>
