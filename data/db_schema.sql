@@ -204,7 +204,9 @@ VALUES ('Főoldal', 'Home'),
         ('Szociális készségek','Social skills'),
         ('Teszt cím','Test name'),
         ('Teszt leírás','Test description'),
-        ('Teszt kategória', 'Test category');
+        ('Teszt kategória', 'Test category'),
+        ('Munka-motivációs kérdőiv','Work motivation survey'),
+        ('Tovább a teszthez','To the test');
 
 
 
