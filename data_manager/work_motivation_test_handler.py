@@ -43,6 +43,20 @@ def get_categories_max_points(cursor) -> list[dict]:
     return cursor.fetchall()
 
 
+@connection_handler
+def get_latest_completion_date_by_username(cursor, username) -> list[dict]:
+    query = """
+        SELECT rh.date
+        FROM work_motivation_result wmr
+        JOIN result_header rh on wmr.result_header_id = rh.id
+        JOIN users u on u.id = rh.user_id
+        WHERE u.username LIKE %s
+        ORDER BY rh.date DESC
+        LIMIT 1
+        """
+    cursor.execute(query, (username,))
+    return cursor.fetchone()
+
 
 # endregion
 # region ---------------------------------------WRITE----------------------------------------

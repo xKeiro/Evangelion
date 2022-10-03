@@ -4,7 +4,10 @@ import json
 from functools import wraps
 
 import bcrypt
-from data_manager import work_motivation_handler, user_handler, common_queries
+from data_manager import work_motivation_test_handler
+from data_manager import user_handler
+from data_manager import common_queries
+from data_manager import english_test_handler
 from flask import make_response
 from flask import render_template
 from flask import request
@@ -144,8 +147,6 @@ def get_applicants_results_into_pdf():
 
 def get_applicant_tests_results_into_pdf(username, full_name_for_filename):
     current_date = str(date.today()).replace("-", "_")
-    test_completion_date = current_date.replace("_", " ").split()
-    test_completion_date = ". ".join(test_completion_date) + "."
     full_name_normal = full_name_for_filename.replace("_", " ").rstrip()
 
     PDF = set_footer_for_pdf()
@@ -164,22 +165,76 @@ def get_applicant_tests_results_into_pdf(username, full_name_for_filename):
 
     # -------------------------------PDF CONTENT---------------------------------------
 
-    pdf.cell(w=130, h=title_height, txt=f"{full_name_normal} Eredmények", ln=0, align="R")
+    pdf.cell(w=0, h=title_height, txt=f"{full_name_normal} Eredmények", ln=1, align="C")
+
+    # ENGLISH LANGUAGE SECTION--------------------------------
+    eng_test_question_results = english_test_handler.get_english_test_questions_results_by_username(username)
+    eng_test_essay_diff_comp_date = english_test_handler.get_english_test_essay_diff_and_completion_date_by_username(username)
+    difficulty = "Alapfok" if eng_test_essay_diff_comp_date["difficulty"] == "Elementary" else "Haladó" if eng_test_essay_diff_comp_date["difficulty"] == "Intermediate" else "Felsőfok"
+    eng_test_completion_date = change_date_format(eng_test_essay_diff_comp_date["date"])
+    essay = eng_test_essay_diff_comp_date["essay"]
+
+    pdf.set_font("Arial", "BI", size=10)
+    pdf.set_text_color(17, 71, 158)
+    pdf.cell(w=95, h=data_row_height, txt=f"Angol nyelvtudás - {difficulty}", ln=0)
 
     pdf.set_font("Arial", "I", size=8)
+    pdf.set_text_color(0, 0, 0)
+    pdf.cell(w=95, h=data_row_height, txt=f"Kitöltötte: {eng_test_completion_date}", ln=1, align="R")
 
-    pdf.cell(w=60, h=title_height, txt=f"Kitöltötte: {test_completion_date}", ln=1, align="R")
+    pdf.set_font("Arial", size=8)
+    correct_answers = 0
+    wrong_answers = 0
+    for test_part in eng_test_question_results:
+        pdf.write(h=data_row_height, txt=test_part["question"].split(".............")[0])
 
-    # WORK MOTIVATION SECTION--------------------------------
-    pdf.set_font("Arial", "BI", size=8)
+        if test_part["correct"]:
+            pdf.set_text_color(58, 173, 35)
+            correct_answers += 1
+        else:
+            pdf.set_text_color(219, 18, 11)
+            wrong_answers += 1
 
-    pdf.cell(w=0, h=data_row_height, txt="Munka Motiváció Teszt Pontok", ln=1)
+        pdf.write(h=data_row_height, txt=test_part["given_answer"])
+        pdf.set_text_color(0, 0, 0)
+        pdf.write(h=data_row_height, txt=test_part["question"].split(".............")[1])
+        pdf.ln()
+
+    pdf.set_font("Arial", "BU", size=8)
+    pdf.cell(w=0, h=data_row_height, txt=f"Elért pontszám: {correct_answers} / {correct_answers + wrong_answers}", ln=1)
+    pdf.ln()
+
+    pdf.set_font("Arial", "BI", size=9)
+    pdf.cell(w=0, h=data_row_height, txt=f"{eng_test_essay_diff_comp_date['topic']}", ln=1)
+
+    pdf.set_font("Arial", size=8)
+    pdf.multi_cell(w=0, h=data_row_height - 3, txt=f"{essay}")
+
+    pdf.cell(w=0, h=data_row_height, txt="", ln=1)
+
+    # SOCIAL SITUATIONS SECTION--------------------------------
+    pdf.set_font("Arial", "BI", size=10)
+    pdf.set_text_color(17, 71, 158)
+    pdf.cell(w=0, h=data_row_height, txt="Társasági Szituációk", ln=1)
+    pdf.set_text_color(0, 0, 0)
 
     pdf.set_font("Arial", size=8)
 
-    categories_max_points = work_motivation_handler.get_categories_max_points()
-    work_motivation_results = work_motivation_handler.get_results_for_applicant(username)
+    # WORK MOTIVATION SECTION--------------------------------
+    categories_max_points = work_motivation_test_handler.get_categories_max_points()
+    work_motivation_results = work_motivation_test_handler.get_results_for_applicant(username)
+    work_motivation_completion_date = work_motivation_test_handler.get_latest_completion_date_by_username(username)
+    work_motivation_completion_date = change_date_format(work_motivation_completion_date["date"])
 
+    pdf.set_font("Arial", "BI", size=10)
+    pdf.set_text_color(17, 71, 158)
+    pdf.cell(w=95, h=data_row_height, txt="Munka Motiváció", ln=0)
+    pdf.set_text_color(0, 0, 0)
+
+    pdf.set_font("Arial", "I", size=8)
+    pdf.cell(w=95, h=data_row_height, txt=f"Kitöltötte: {work_motivation_completion_date}", ln=1, align="R")
+
+    pdf.set_font("Arial", size=8)
     for i, category in enumerate(work_motivation_results):
         pdf.cell(w=30,
                  h=data_row_height,
@@ -206,6 +261,12 @@ def set_footer_for_pdf():
             # Print centered page number
             self.cell(0, 10, str(self.page_no()), 0, 0, 'C')
     return PDF
+
+
+def change_date_format(date_to_change):
+    date_to_change = str(date_to_change).split("-")
+    date_to_change = ". ".join(date_to_change) + "."
+    return date_to_change
 
 # endregion
 # region ---------------------------------------LANGUAGE----------------------------------------
