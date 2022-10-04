@@ -193,13 +193,13 @@ def api_patch_work_motivation_question(question_id):
     work_motivation_test_handler.patch_title_by_id(question_id, title)
     return {"status": "success"}
 
-    @app.route("/api/english-language/text/<int:text_id>", methods=["PATCH"])
-    @util.admin_required
-    @util.json_response
-    def api_patch_english_language_text(text_id):
-        text = request.json["text"]
-        english_test_handler.patch_text_by_id(text_id, text)
-        return {"status": "success"}
+@app.route("/api/english-language/text/<int:text_id>", methods=["PATCH"])
+@util.admin_required
+@util.json_response
+def api_patch_english_language_text(text_id):
+    text = request.json["text"]
+    english_test_handler.patch_text_by_id(text_id, text)
+    return {"status": "success"}
 
 @app.route('/api/english-language/question/<int:question_id>', methods=["PATCH"])
 @util.admin_required
@@ -207,6 +207,15 @@ def api_patch_work_motivation_question(question_id):
 def api_patch_english_motivation_question(question_id):
     question = request.json["title"]
     english_test_handler.patch_question_by_id(question_id,question)
+    return {"status": "success"}
+
+
+@app.route('/api/english-language/option/<int:option_id>', methods=["PATCH"])
+@util.admin_required
+@util.json_response
+def api_patch_english_motivation_option(option_id):
+    option = request.json
+    english_test_handler.patch_option_by_id(option_id, option)
     return {"status": "success"}
 
 # endregion

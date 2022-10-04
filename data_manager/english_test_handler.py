@@ -1,12 +1,16 @@
+from typing import TYPE_CHECKING
 import random
 
 from connection import connection_handler
 from data_manager import data_handler_util
-import random
+
+if TYPE_CHECKING:
+    from psycopg import Cursor
+
 
 # region --------------------------------------READ-----------------------------------------
 @connection_handler
-def get_random_english_test_by_difficulty_id(cursor, difficulty_id: int) -> dict[dict,list[dict],list[dict],dict]:
+def get_random_english_test_by_difficulty_id(cursor: 'Cursor', difficulty_id: int) -> dict[dict, list[dict], list[dict], dict]:
     query = """
 SELECT ARRAY [elt.id::VARCHAR, elt.text]                                                 AS "text",
        ARRAY_AGG(DISTINCT ARRAY [elq.id::VARCHAR, elq.question])                         AS questions,
@@ -43,7 +47,8 @@ LIMIT 1
 
 
 @connection_handler
-def get_all_english_reading_comprehension_test_by_difficulty_id(cursor, difficulty_id: int) -> list[dict[dict,list[dict],list[dict]]]:
+def get_all_english_reading_comprehension_test_by_difficulty_id(cursor: 'Cursor', difficulty_id: int) -> list[
+    dict[dict, list[dict], list[dict]]]:
     query = """
 SELECT ARRAY [elt.id::VARCHAR, elt.text]                                                 AS "text",
        ARRAY_AGG(DISTINCT ARRAY [elq.id::VARCHAR, elq.question])                         AS questions,
@@ -62,18 +67,20 @@ ORDER BY elt.id
         text = {"id": int(test["text"][0]), "text": test["text"][1]}
         questions = [{"id": int(question[0]), "question": question[1]} for question in
                      test["questions"]]
-        options = [{"id": int(option[0]), "question_id": int(option[1]), "option": option[2], "correct": option[3]} for option in
+        options = [{"id": int(option[0]), "question_id": int(option[1]), "option": option[2], "correct": option[3]} for
+                   option in
                    test["options"]]
         tests[index]["text"] = text
         tests[index]["questions"] = questions
         tests[index]["options"] = options
     return tests
 
+
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 
 @connection_handler
-def submit_result(cursor, results: dict[list,dict], user_id: int) -> None:
+def submit_result(cursor: 'Cursor', results: dict[list, dict], user_id: int) -> None:
     result_header_id = data_handler_util.add_test_to_result_header(cursor, user_id)
     query = """
     INSERT INTO english_language_result_essay(topic_id, result_header_id, essay)
@@ -88,25 +95,40 @@ def submit_result(cursor, results: dict[list,dict], user_id: int) -> None:
     var = []
     for answer in results["answers"]:
         var.extend([answer, result_header_id])
-    cursor.execute(query,var)
+    cursor.execute(query, var)
+
+
 @connection_handler
-def patch_text_by_id(cursor,id, text):
-    query="""
+def patch_text_by_id(cursor: 'Cursor', id: int, text: str) -> None:
+    query = """
     UPDATE english_language_text
     SET text = %s
     WHERE id = %s
     """
-    var=(text, id)
-    cursor.execute(query,var)
+    var = (text, id)
+    cursor.execute(query, var)
+
 
 @connection_handler
-def patch_question_by_id(cursor, question_id: int, question: str):
-    query="""
+def patch_question_by_id(cursor: 'Cursor', question_id: int, question: str) -> None:
+    query = """
     UPDATE english_language_question
     SET question = %s
     WHERE id = %s
     """
-    var=(question, question_id)
-    cursor.execute(query,var)
+    var = (question, question_id)
+    cursor.execute(query, var)
+
+
+@connection_handler
+def patch_option_by_id(cursor: 'Cursor', option_id: int, option: dict) -> None:
+    query = """
+    UPDATE english_language_option
+    SET option = %s, correct= %s
+    WHERE id = %s
+    """
+    var = (option["option"], option["correct"], option_id)
+    print(type(cursor))
+    cursor.execute(query, var)
 
 # endregion

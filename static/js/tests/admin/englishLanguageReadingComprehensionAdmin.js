@@ -108,7 +108,7 @@ async function handleClickOnOption(event) {
     inputFieldContainer.classList.add("d-flex");
     inputFieldContainer.innerHTML= `
 <div class="col-9">
-<input class="form-control" value="${event.currentTarget.innerText}">
+    <input class="form-control" value="${event.currentTarget.innerText}">
 </div>
 <div class="col-2">
   <select class="form-select">
@@ -117,30 +117,29 @@ async function handleClickOnOption(event) {
   </select>
 </div>
 <div class="col-2">
-<button class="btn btn-primary">Elküldés</button>
+    <button class="btn btn-primary" type="submit" data-option-id="${event.currentTarget.dataset.optionId}">Elküldés</button>
 </div>`;
     const options = inputFieldContainer.querySelectorAll("option");
     for (const option of options){
         if (option.value === event.currentTarget.dataset.correct){
-                console.log(event.currentTarget.dataset.correct === option.value);
             option.setAttribute('selected', true);
         }
     }
     parentNode.insertBefore(inputFieldContainer, event.currentTarget);
+    inputFieldContainer.querySelector("button").addEventListener("click", handleOptionChange);
 
 }
 
 async function handleOptionChange(event) {
     "use strict";
-    const questionTitle = event.currentTarget.value;
-    if (questionTitle.includes("............")){
-        const questionTitleElement = event.currentTarget.parentNode.querySelector(".question");
-        const questionId = questionTitleElement.dataset.questionId;
-        questionTitleElement.innerHTML = questionTitle;
-        dataHandler.patchEnglishLanguageTextQuestionTitle(questionId, {"title": questionTitle});
-        event.currentTarget.remove();
-        questionTitleElement.classList.remove("d-none");
-    }else{
-        alert("A kérdésnek tartalmaznia kell: ............");
-    }
+    const inputFieldContainer = event.currentTarget.parentNode.parentNode;
+    const option = { "option": inputFieldContainer.querySelector("input").value, "correct": inputFieldContainer.querySelector("select").value};
+    const optionId = event.currentTarget.dataset.optionId;
+    const inputFieldContainerParent = inputFieldContainer.parentNode;
+    const optionElement = inputFieldContainerParent.querySelector(`.option[data-option-id="${optionId}"]`);
+    dataHandler.patchEnglishLanguageOption(optionId, option);
+    optionElement.innerHTML = option.option;
+    optionElement.dataset.correct = option.correct;
+    inputFieldContainer.remove();
+    optionElement.classList.remove("d-none");
 }
