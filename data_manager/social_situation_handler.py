@@ -20,7 +20,7 @@ def get_situations(cursor):
     JOIN social_situation_type sst ON ssm.type_id = sst.id
     JOIN social_situation_question ssq ON ssm.id = ssq.media_id
     GROUP BY ssm.id, sst.type, ssm.url, ssm.title
-    ORDER BY ssm.id
+    ORDER BY sst.type, ssm.id
     """
     cursor.execute(query)
     situations = cursor.fetchall()
