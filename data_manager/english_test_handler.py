@@ -99,4 +99,14 @@ def patch_text_by_id(cursor,id, text):
     var=(text, id)
     cursor.execute(query,var)
 
+@connection_handler
+def patch_question_by_id(cursor, question_id: int, question: str):
+    query="""
+    UPDATE english_language_question
+    SET question = %s
+    WHERE id = %s
+    """
+    var=(question, question_id)
+    cursor.execute(query,var)
+
 # endregion

@@ -7,7 +7,10 @@ import {dataHandler} from "../../data/dataHandler.js";
 //
 // const language = util("language");
 initEditTestText();
+initEditQuestion();
 
+
+// region ---------------------------------------TEXT----------------------------------------
 function initEditTestText() {
     "use strict";
     const testText = document.querySelector(".english-test-text");
@@ -20,10 +23,10 @@ function handleClickOnTestText(event) {
     event.currentTarget.classList.add("d-none");
     const edit_field = document.createElement("textarea");
     edit_field.classList.add("form-control");
-    edit_field.rows="26";
+    edit_field.rows = "26";
     edit_field.value = event.currentTarget.innerText;
     parentNode.insertBefore(edit_field, event.currentTarget);
-    edit_field.addEventListener("change",handleTestTextChange);
+    edit_field.addEventListener("change", handleTestTextChange);
 }
 
 async function handleTestTextChange(event) {
@@ -37,3 +40,48 @@ async function handleTestTextChange(event) {
     testText.classList.remove("d-none");
 
 }
+
+// endregion
+// region --------------------------------------QUESTION----------------------------------------
+
+function initEditQuestion() {
+    "use strict";
+    const questionElements = document.querySelectorAll(".question");
+    for (const questionElement of questionElements) {
+        questionElement.addEventListener("click", handleClickOnQuestion);
+    }
+}
+
+function handleClickOnQuestion(event) {
+    "use strict";
+    const parentNode = event.currentTarget.parentNode;
+    event.currentTarget.classList.add("d-none");
+    const edit_field = document.createElement("input");
+    edit_field.classList.add("form-control");
+    edit_field.value = event.currentTarget.innerText;
+    parentNode.insertBefore(edit_field, event.currentTarget);
+    edit_field.addEventListener("change", handleQuestionChange);
+}
+
+async function handleQuestionChange(event) {
+    "use strict";
+    const questionTitle = event.currentTarget.value;
+    if (questionTitle.includes("............")){
+        const questionTitleElement = event.currentTarget.parentNode.querySelector(".question");
+        const questionId = questionTitleElement.dataset.questionId;
+        questionTitleElement.innerHTML = questionTitle;
+        dataHandler.patchEnglishLanguageTextQuestionTitle(questionId, {"title": questionTitle});
+        event.currentTarget.remove();
+        questionTitleElement.classList.remove("d-none");
+    }else{
+        alert("A kérdésnek tartalmaznia kell: ............");
+    }
+
+
+}
+
+// endregion
+// region --------------------------------------OPTION----------------------------------------
+
+
+// endregion
