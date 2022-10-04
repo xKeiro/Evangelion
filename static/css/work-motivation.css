@@ -24,10 +24,21 @@ hr{
     font-size: 1.2em;
     display: flex;
     align-items: center;
+    font-weight: bold;
 }
 
 .question > p{
     margin: 0;
+}
+.option-button
+{
+    background-color: #0078c3;
+    border-color: #005e99;
+    font-weight: bold;
+}
+
+#question-submit{
+    background-color: #0078c3;
 }
 /*.work-motiv-radio-button[type="radio"]:checked, .work-motiv-radio-button[type="radio"]:not(checked){*/
 /*    opacity: 0;*/
