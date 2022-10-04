@@ -320,13 +320,13 @@ Since the Cadbury family believed that their workers and their families should b
 
 The Cadbury brothers were among the first business owners to ensure that their workers had good standards of living. Soon, other British factory owners were copying their ideas by providing homes and communities for their workers designed with convenience and health in mind. Today, over 25,000 people live in Bournville village. There are several facilities there to help people with special needs, such as care homes for the elderly, a hostel for people with learning difficulties and affordable homes for first-time homeowners and single people. Over a hundred years since the first house in Bournville Village was built, the aims of its founders are still carried out.'
 , 2),
-       ( 'Lorem ipsum dolor sit amet consectetur adipiscing elit tristique lectus curae, non facilisi dictumst mollis pharetra nec cum sociis. Parturient imperdiet turpis eu fames bibendum class porta euismod, ipsum tempor velit platea nascetur a fermentum litora dolor, pulvinar vel adipiscing porttitor vulputate interdum enim. Augue semper massa mollis imperdiet suscipit tortor orci ornare risus neque potenti, congue leo nisl consectetur penatibus feugiat fames ullamcorper curabitur a justo, magnis vulputate vestibulum mus dictumst ultrices tristique eu torquent elementum. Eget tristique sapien felis leo elit litora habitasse elementum congue vitae, mattis venenatis diam orci nec urna nisi netus ligula magna, convallis fusce dictum metus ullamcorper quisque arcu torquent mauris. Mollis sollicitudin nam augue sociis fringilla curae nibh faucibus, nullam fusce ullamcorper lorem curabitur aliquet a litora penatibus, cum sem velit hendrerit nostra egestas integer. Class leo lobortis cursus dui donec ultrices condimentum cum non, dictumst est pulvinar malesuada magnis mi ridiculus suspendisse aenean parturient, vestibulum venenatis ut nisi dolor nascetur ornare curabitur.
+       ( 'In 2017, archaeologists discovered the remains of a Bronze Age chief in Lechlade, a town in the west of England. The finding is historically interesting as the artefacts with which he was buried indicate that he was very important. Plus, the manner of his burial was significantly different from other burials at the time. Even more fascinating was the discovery of an older man’s remains close to the chief’s. Archaeologists are puzzling over what the relationship between the two men could be, and why they were treated so differently from the norm at the time.
 
-Magnis parturient nostra ligula eu cras ullamcorper, in ultricies a cum et curae, risus ut etiam dictumst magna. Etiam cum donec congue metus aliquam dictum, amet neque ligula consequat ornare, fermentum vulputate maecenas placerat ultricies. Cursus senectus dolor leo nullam potenti magna, ad himenaeos phasellus maecenas mus a ut, fermentum sagittis risus litora accumsan. Urna phasellus ridiculus conubia eleifend felis bibendum dui a aliquam, massa scelerisque diam posuere molestie aenean vel leo habitasse, nam sociis ultrices turpis torquent himenaeos quam senectus. Nec consectetur vehicula netus praesent ad sociosqu fames ante lorem tempus mi, posuere dictumst habitant ultrices quisque suscipit morbi ornare scelerisque. Lacinia faucibus fringilla eleifend magnis dui ultricies phasellus viverra, justo porta in commodo lobortis rhoncus vel tortor, ante senectus orci ipsum fusce natoque purus. Hac metus primis leo litora consequat rhoncus placerat purus consectetur, mattis quisque cursus adipiscing proin dui porttitor natoque, facilisi justo nullam elementum urna vel lacinia dis. Lorem adipiscing conubia porttitor pellentesque donec bibendum nibh cubilia torquent, venenatis lacus suscipit egestas lacinia potenti nunc tellus aliquam velit, litora quam pharetra sed ipsum facilisis cursus sociosqu.
+Interestingly, the chief was buried with the heads and hooves of four cattle around 4,200 ago. Carbon dating has revealed that the remains, which were found in an area where a skate park is to be built, date back to the Bronze Age. Archaeologist Andy Hood, who helped to excavate the site, said that it was common for Bronze Age chiefs to be buried with the skull and hooves of a single cattle, but that until now none had been uncovered with multiple cattle remains in the UK. This fact seems to indicate that this chief was especially important. Hood and his colleagues consider it likely that the animals were killed as part of the burial ceremony. The loss of four of them would have been a considerable sacrifice.
 
-Ante dignissim arcu suspendisse donec ultricies, elit accumsan himenaeos feugiat, vulputate neque orci venenatis. Pretium non tortor a mus magnis sociosqu dolor praesent dapibus ultricies augue vulputate, hendrerit integer lobortis penatibus curabitur primis ut class elit duis. Nisi erat hac sem nam curabitur faucibus rutrum diam, tempus odio vel posuere nisl etiam suscipit nullam, habitasse feugiat quam facilisi lectus est vulputate. Sapien congue turpis pulvinar non facilisi consectetur aliquam, eget lobortis vitae fusce potenti dui feugiat purus, orci ante tempus fermentum dapibus massa. Vehicula imperdiet porttitor senectus magna consequat sem litora fusce ante placerat natoque tellus, est nunc conubia suspendisse tempor auctor netus velit a viverra enim varius nullam, nibh bibendum fermentum fames vitae proin inceptos tincidunt phasellus molestie lacinia. Mattis congue nisi suspendisse non ornare vulputate sociosqu penatibus, nullam dignissim pulvinar integer convallis justo risus, dolor feugiat sem ultrices netus platea aptent. Nunc proin torquent hendrerit donec ullamcorper sem senectus hac, lobortis facilisis tempus interdum amet suspendisse libero bibendum aenean, cras dolor nibh parturient elit scelerisque netus. Luctus nibh mattis himenaeos sociosqu ultricies at conubia habitasse lacus parturient libero senectus auctor rutrum placerat, dignissim molestie integer phasellus imperdiet rhoncus mi ultrices vestibulum viverra diam lobortis ad nam.
+Other artefacts found near the chief include a copper dagger, a stone wrist guard, a fire-making kit and some jewellery. These items were typically buried alongside members of the “Beaker culture”. These were people who arrived in Britain from mainland Europe in around 2400BC. They were given this name due to the tall pots which looked like beakers that were typical of this culture. Usually, prominent people from this culture were buried with such a pot, but this chief was not. Archaeologists wonder whether this meant that this chief was especially revered among the Beaker society and was not symbolised by the typical pot.
 
-Aliquam luctus tempor mattis donec ultricies ad tortor tincidunt, interdum scelerisque nisl risus nam venenatis arcu phasellus ut, etiam lorem hendrerit eu eget praesent proin. Commodo leo dictumst mauris quam cum erat torquent, potenti viverra sodales convallis tristique ut urna vitae, parturient porttitor blandit habitant nec sem. Tellus aliquam tristique sed vitae cum facilisis in, etiam gravida senectus dis urna primis ante inceptos, vestibulum auctor litora pharetra semper molestie. Fringilla enim nisi torquent turpis sed cursus adipiscing vel primis, aliquet urna elit porta magna feugiat egestas in ac, accumsan sit maecenas varius odio eleifend pulvinar mauris. Vehicula ultrices malesuada venenatis potenti porta quam ipsum suscipit nascetur consectetur, lacus facilisi donec lobortis semper taciti duis imperdiet nec, egestas est dui metus mauris vulputate cras integer orci. Dictumst metus nibh a egestas primis magna leo, tellus mi facilisis cubilia aliquet suscipit malesuada, massa at accumsan ultricies maecenas potenti.'
+The chieftain was buried at the centre of a circular pit. At the time, soil would have been piled on top of it. Near the chief, within the circle, were the remains of the older man, who was about 50-60 years old when he died. Newspapers have suggested that the older man was a priest who was sacrificed to help the chief in the afterlife. However, archaeologists say there is no evidence to support this idea. Even so, the older man’s burial is strange, as he was buried in an unusual seated position, with his legs going downwards into the earth. Bronze Age people, including the chief, were almost always buried on their sides. The reason for this unique position, the status of the chief and the relationship between the two men, may remain a mystery forever.'
 , 3);
 
 -- The question must contain this: ............. / exactly 13 dots
@@ -352,16 +352,16 @@ VALUES (1, 'James studies ............. at university.'),
        (2, 'The Cadbury family added a park for the workers, which had .............'),
        (2, 'In the Cadbury’s opinion alcohol was .............'),
        (2, 'The workers could have dinner in the .............'),
-       (3, 'Question 1.............'),
-       (3, 'Question 2.............'),
-       (3, 'Question 3.............'),
-       (3, 'Question 4.............'),
-       (3, 'Question 5.............'),
-       (3, 'Question 6.............'),
-       (3, 'Question 7.............'),
-       (3, 'Question 8.............'),
-       (3, 'Question 9.............'),
-       (3, 'Question 10.............');
+       (3, '............. was/were discovered in a park in Lechlade, UK.'),
+       (3, '............. was/were buried with the heads and hooves of four cattle.'),
+       (3, '............. believe that the cattle were sacrificed.'),
+       (3, '............. was/were buried with a beaker.'),
+       (3, '............. was/were not buried with a beaker.'),
+       (3, '............. was/were buried in a circular pit.'),
+       (3, '............. thought the old man was a religious figure.'),
+       (3, '............. believe that the old man was sacrificed.'),
+       (3, '............. was/were buried in a sitting position.'),
+       (3, '............. was/were buried with a dagger in most cases.');
 
 INSERT INTO english_language_option(question_id, option, correct)
 VALUES (1, 'marketing', FALSE), -- James studies ............. at university.
@@ -464,61 +464,61 @@ VALUES (1, 'marketing', FALSE), -- James studies ............. at university.
        (20, 'clubhouse', TRUE),
        (20, 'community centre', FALSE),
        (20, 'restaurant', FALSE),
-       (21, 'Option 1', FALSE),
-       (21, 'Option 2', FALSE),
-       (21, 'Option 3', TRUE),
-       (21, 'Option 4', FALSE),
-       (21, 'Option 5', FALSE),
-       (22, 'Option 1', FALSE),
-       (22, 'Option 2', FALSE),
-       (22, 'Option 3', TRUE),
-       (22, 'Option 4', FALSE),
-       (22, 'Option 5', FALSE),
-       (23, 'Option 1', FALSE),
-       (23, 'Option 2', FALSE),
-       (23, 'Option 3', TRUE),
-       (23, 'Option 4', FALSE),
-       (23, 'Option 5', FALSE),
-       (24, 'Option 1', FALSE),
-       (24, 'Option 2', FALSE),
-       (24, 'Option 3', TRUE),
-       (24, 'Option 4', FALSE),
-       (24, 'Option 5', FALSE),
-       (25, 'Option 1', FALSE),
-       (25, 'Option 2', FALSE),
-       (25, 'Option 3', TRUE),
-       (25, 'Option 4', FALSE),
-       (25, 'Option 5', FALSE),
-       (26, 'Option 1', FALSE),
-       (26, 'Option 2', FALSE),
-       (26, 'Option 3', TRUE),
-       (26, 'Option 4', FALSE),
-       (26, 'Option 5', FALSE),
-       (27, 'Option 1', FALSE),
-       (27, 'Option 2', FALSE),
-       (27, 'Option 3', TRUE),
-       (27, 'Option 4', FALSE),
-       (27, 'Option 5', FALSE),
-       (28, 'Option 1', FALSE),
-       (28, 'Option 2', FALSE),
-       (28, 'Option 3', TRUE),
-       (28, 'Option 4', FALSE),
-       (28, 'Option 5', FALSE),
-       (29, 'Option 1', FALSE),
-       (29, 'Option 2', FALSE),
-       (29, 'Option 3', TRUE),
-       (29, 'Option 4', FALSE),
-       (29, 'Option 5', FALSE),
-       (30, 'Option 1', FALSE),
-       (30, 'Option 2', FALSE),
-       (30, 'Option 3', TRUE),
-       (30, 'Option 4', FALSE),
-       (30, 'Option 5', FALSE);
+       (21, 'The chief', FALSE), -- ............. was/were discovered in a park in Lechlade, UK.
+       (21, 'The old man', FALSE),
+       (21, 'Both the chief and the old man', TRUE),
+       (21, 'Chiefs from the Beaker culture', FALSE),
+       (21, 'Important members of the Beaker culture', FALSE),
+       (22, 'Both the chief and the old man', FALSE), -- ............. was/were buried with the heads and hooves of four cattle.
+       (22, 'The old man', FALSE),
+       (22, 'The chief', TRUE),
+       (22, 'Chiefs from the Beaker culture', FALSE),
+       (22, 'Important members of the Beaker culture', FALSE),
+       (23, 'Journalists', FALSE), -- ............. believe that the cattle were sacrificed.
+       (23, 'Scientists', FALSE),
+       (23, 'Archaeologists', TRUE),
+       (23, 'British people', FALSE),
+       (23, 'Local people', FALSE),
+       (24, 'The old man', FALSE), -- ............. was/were buried with a beaker.
+       (24, 'The chief', FALSE),
+       (24, 'Important members of the Beaker culture', TRUE),
+       (24, 'Chiefs from the Beaker culture', FALSE),
+       (24, 'Both the chief and the old man', FALSE),
+       (25, 'Chiefs from the Beaker culture', FALSE), -- ............. was/were not buried with a beaker.
+       (25, 'Both the chief and the old man', FALSE),
+       (25, 'The chief', TRUE),
+       (25, 'Important members of the Beaker culture', FALSE),
+       (25, 'The old man', FALSE),
+       (26, 'The chief', FALSE), -- ............. was/were buried in a circular pit.
+       (26, 'The old man', FALSE),
+       (26, 'Both the chief and the old man', TRUE),
+       (26, 'Important members of the Beaker culture', FALSE),
+       (26, 'Chiefs from the Beaker culture', FALSE),
+       (27, 'Scientists', FALSE), -- ............. thought the old man was a religious figure.
+       (27, 'Archaeologists', FALSE),
+       (27, 'Journalists', TRUE),
+       (27, 'Local people', FALSE),
+       (27, 'British people', FALSE),
+       (28, 'Local people', FALSE), -- ............. believe that the old man was sacrificed.
+       (28, 'Scientists', FALSE),
+       (28, 'Journalists', TRUE),
+       (28, 'British people', FALSE),
+       (28, 'Archaeologists', FALSE),
+       (29, 'Important members of the Beaker culture', FALSE), -- ............. was/were buried in a sitting position.
+       (29, 'Chiefs from the Beaker culture', FALSE),
+       (29, 'The old man', TRUE),
+       (29, 'Both the chief and the old man', FALSE),
+       (29, 'The chief', FALSE),
+       (30, 'The chief', FALSE), -- ............. was/were buried with a dagger in most cases.
+       (30, 'The old man', FALSE),
+       (30, 'Members of the Beaker culture', TRUE),
+       (30, 'Both the chief and the old man', FALSE),
+       (30, 'Chiefs from the Beaker culture', FALSE);
 
 INSERT INTO english_language_essay_topic(difficulty_id, topic)
-VALUES (1, 'School students should be allowed to curate their high school curriculum.'),
-       (2, 'The role of physical education in the school system.'),
-       (3, 'Should the death sentence be implemented globally?');
+VALUES (1, 'Describe your home! How does it look like from outside, rooms, what is in the rooms, etc.'),
+       (2, 'Write your opinion about the role of physical education in the school system.'),
+       (3, 'Should the death sentence be implemented globally? Write an essay about this topic!');
 
 INSERT INTO social_situation_type(type)
 VALUES ('image'),
