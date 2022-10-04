@@ -212,7 +212,8 @@ VALUES ('Főoldal', 'Home'),
        ('Teszt kategória', 'Test category'),
        ('Munka-motivációs kérdőiv', 'Work motivation survey'),
        ('Tovább a teszthez', 'To the test'),
-       ('Teszt eredmények PDF', 'Test results PDF');
+       ('PDF kezelés', 'Manage PDF'),
+       ('PDF letöltés', 'Download PDF');
 
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)

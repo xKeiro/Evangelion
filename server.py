@@ -7,6 +7,7 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
+from flask import send_file
 
 import util
 from data_manager import english_test_handler
@@ -146,6 +147,21 @@ def admin_english_language_reading_comprehension(difficulty_id, page_number):
     max_number_of_pages = len(tests)
     return render_template('tests/admin/english_language/english_language_texts_admin.jinja2', test=tests[page_number-1],
                            max_number_of_pages=max_number_of_pages, currrent_page=page_number)
+
+
+@app.route('/admin/manage_pdf')
+@util.admin_required
+def manage_pdf():
+    try:
+        username = request.args["username"]
+    except KeyError:
+        pass
+    else:
+        print(username)
+        # send_file("placeholder", as_attachment=True)
+        pass
+
+    return render_template("tests/admin/pdf_results.jinja2")
 
 # endregion
 
