@@ -17,6 +17,7 @@ from data_manager import social_situation_handler
 from data_manager import user_handler
 from data_manager import work_motivation_test_handler
 from data_manager import start_sql
+from data_manager import common_queries
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
@@ -26,9 +27,9 @@ app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
 
 #------------------------------JUST FOR DEVELOPMENT--------------------------------------------
 
-with open("data/db_schema.sql", encoding="UTF-8") as file:
-    sql = file.readlines()
-    start_sql.start(sql)
+# with open("data/db_schema.sql", encoding="UTF-8") as file:
+#     sql = file.readlines()
+#     start_sql.start(sql)
 
 #----------------------------------------------------------------------------------------------
 
@@ -158,9 +159,15 @@ def manage_pdf():
     except KeyError:
         pass
     else:
-        print(username)
-        # send_file("placeholder", as_attachment=True)
-        pass
+        try:
+            full_name_for_filename = user_handler.get_full_name_by_username(username)
+        except TypeError:
+            pass
+        else:
+            print(full_name_for_filename)
+            current_date = str(date.today()).replace("-", "_")
+            util.get_applicant_tests_results_into_pdf(username, full_name_for_filename)
+            return send_file(f"{full_name_for_filename}{current_date}.pdf", as_attachment=True)
 
     return render_template("tests/admin/pdf_results.jinja2")
 
