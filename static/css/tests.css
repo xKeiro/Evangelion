@@ -35,6 +35,7 @@ hr{
     background-color: #0078c3;
     color: white;
     font-weight: bold;
+    font-size: 1.1rem;
 
 }
 
@@ -48,13 +49,14 @@ hr{
     flex-direction: column;
 }
 
+
 .test-title {
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 .test-description {
     margin: 0;
-    font-size: 0.8em;
+    font-size: 1rem;
 }
 
 .test-button-container {
@@ -69,6 +71,7 @@ hr{
     text-align: center;
     color: white;
     text-decoration: none;
+    font-weight: 500;
 }
 .test-list-item{
     border-bottom: #0096f2 solid 1px;
