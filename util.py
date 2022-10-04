@@ -178,50 +178,55 @@ def get_applicant_tests_results_into_pdf(username, full_name_for_filename):
     pdf.cell(w=0, h=title_height, txt=f"{full_name_normal} Eredmények", ln=1, align="C")
 
     # ENGLISH LANGUAGE SECTION--------------------------------
-
-    eng_test_question_results = english_test_handler.get_english_test_questions_results_by_username(username)
     eng_test_essay_diff_comp_date = english_test_handler.get_english_test_essay_diff_and_completion_date_by_username(username)
-    difficulty = "Alapfok" if eng_test_essay_diff_comp_date["difficulty"] == "Elementary" else "Középfok" if eng_test_essay_diff_comp_date["difficulty"] == "Intermediate" else "Felsőfok"
-    eng_test_completion_date = change_date_format(eng_test_essay_diff_comp_date["date"])
-    essay = eng_test_essay_diff_comp_date["essay"]
 
-    pdf.set_font("Calibriz", size=10)
-    pdf.set_text_color(17, 71, 158)
-    pdf.cell(w=95, h=data_row_height, txt=f"Angol nyelvtudás - {difficulty}", ln=0)
+    if eng_test_essay_diff_comp_date is not None:
+        eng_test_question_results = english_test_handler.get_english_test_questions_results_by_username(username)
+        difficulty = "Alapfok" if eng_test_essay_diff_comp_date["difficulty"] == "Elementary" else "Középfok" if eng_test_essay_diff_comp_date["difficulty"] == "Intermediate" else "Felsőfok"
+        eng_test_completion_date = change_date_format(eng_test_essay_diff_comp_date["date"])
+        essay = eng_test_essay_diff_comp_date["essay"]
 
-    pdf.set_font("Calibrii", size=8)
-    pdf.set_text_color(0, 0, 0)
-    pdf.cell(w=95, h=data_row_height, txt=f"Kitöltötte: {eng_test_completion_date}", ln=1, align="R")
+        pdf.set_font("Calibriz", size=10)
+        pdf.set_text_color(17, 71, 158)
+        pdf.cell(w=95, h=data_row_height, txt=f"Angol nyelvtudás - {difficulty}", ln=0)
 
-    pdf.set_font("Calibri", size=8)
-    correct_answers = 0
-    wrong_answers = 0
-    for test_part in eng_test_question_results:
-        pdf.write(h=data_row_height, txt=test_part["question"].split(".............")[0])
-
-        if test_part["correct"]:
-            pdf.set_text_color(58, 173, 35)
-            correct_answers += 1
-        else:
-            pdf.set_text_color(219, 18, 11)
-            wrong_answers += 1
-
-        pdf.write(h=data_row_height, txt=test_part["given_answer"])
+        pdf.set_font("Calibrii", size=8)
         pdf.set_text_color(0, 0, 0)
-        pdf.write(h=data_row_height, txt=test_part["question"].split(".............")[1])
+        pdf.cell(w=95, h=data_row_height, txt=f"Kitöltötte: {eng_test_completion_date}", ln=1, align="R")
+
+        pdf.set_font("Calibri", size=8)
+        correct_answers = 0
+        wrong_answers = 0
+        for test_part in eng_test_question_results:
+            pdf.write(h=data_row_height, txt=test_part["question"].split(".............")[0])
+
+            if test_part["correct"]:
+                pdf.set_text_color(58, 173, 35)
+                correct_answers += 1
+            else:
+                pdf.set_text_color(219, 18, 11)
+                wrong_answers += 1
+
+            pdf.write(h=data_row_height, txt=test_part["given_answer"])
+            pdf.set_text_color(0, 0, 0)
+            pdf.write(h=data_row_height, txt=test_part["question"].split(".............")[1])
+            pdf.ln()
+
+        pdf.set_font("Arial", "BU", size=8)
+        pdf.cell(w=0, h=data_row_height, txt=f"Elért pontszám: {correct_answers} / {correct_answers + wrong_answers}", ln=1)
         pdf.ln()
 
-    pdf.set_font("Arial", "BU", size=8)
-    pdf.cell(w=0, h=data_row_height, txt=f"Elért pontszám: {correct_answers} / {correct_answers + wrong_answers}", ln=1)
-    pdf.ln()
+        pdf.set_font("Calibriz", size=9)
+        pdf.cell(w=0, h=data_row_height, txt=f"{eng_test_essay_diff_comp_date['topic']}", ln=1)
 
-    pdf.set_font("Calibriz", size=9)
-    pdf.cell(w=0, h=data_row_height, txt=f"{eng_test_essay_diff_comp_date['topic']}", ln=1)
+        pdf.set_font("Calibri", size=8)
+        pdf.multi_cell(w=0, h=data_row_height - 3, txt=f"{essay}")
 
-    pdf.set_font("Calibri", size=8)
-    pdf.multi_cell(w=0, h=data_row_height - 3, txt=f"{essay}")
-
-    pdf.cell(w=0, h=data_row_height, txt="", ln=1)
+        pdf.cell(w=0, h=data_row_height, txt="", ln=1)
+    else:
+        pdf.set_font("Calibriz", size=10)
+        pdf.set_text_color(17, 71, 158)
+        pdf.cell(w=95, h=data_row_height, txt=f"Angol nyelvtudás", ln=1)
 
     # SOCIAL SITUATIONS SECTION--------------------------------
     pdf.set_font("Calibriz", size=10)
