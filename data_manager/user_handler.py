@@ -18,6 +18,18 @@ def get_user_fields_by_username(cursor, username: str, field_names: list) -> dic
     return cursor.fetchone()
 
 
+@connection_handler
+def get_full_name_by_username(cursor, username) -> dict:
+    query = """
+    SELECT CONCAT(last_name, '_', first_name, '_') AS full_name
+    FROM users
+    WHERE username LIKE %s
+    """
+    val = (username, )
+    cursor.execute(query, val)
+    return cursor.fetchone()["full_name"]
+
+
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 

@@ -368,104 +368,102 @@ VALUES (1, 'James studies ............. at university.'),
        (3, '............. was/were buried with a dagger in most cases.');
 
 INSERT INTO english_language_option(question_id, option, correct)
-VALUES (1, 'marketing', FALSE),                                -- James studies ............. at university.
+VALUES (1, 'marketing', FALSE), -- James studies ............. at university.
        (1, 'IT', FALSE),
        (1, 'engineering', TRUE),
        (1, 'agriculture', FALSE),
        (1, 'architecture', FALSE),
-       (2, '1',
-        FALSE),                                                -- -- James went to lectures in the lecture rooms at Manchester university for ............. weeks.
+       (2, '1', FALSE),     -- -- James went to lectures in the lecture rooms at Manchester university for ............. weeks.
        (2, '2', FALSE),
        (2, '3', TRUE),
        (2, '4', FALSE),
        (2, '5', FALSE),
-       (3, 'wrote mails', FALSE),                              -- While in lockdown in Manchester, James and his friends ............. .............
+       (3, 'wrote mails', FALSE),   -- While in lockdown in Manchester, James and his friends ............. .............
        (3, 'studied hard', FALSE),
        (3, 'had parties', TRUE),
        (3, 'played basketball', FALSE),
        (3, 'did nothing', FALSE),
-       (4, 'softball', FALSE),                                 -- James wanted to play ............. at university.
+       (4, 'softball', FALSE),  -- James wanted to play ............. at university.
        (4, 'football', FALSE),
        (4, 'basketball', TRUE),
        (4, 'volleyball', FALSE),
        (4, 'handball', FALSE),
-       (5, 'TV series', FALSE),                                -- James watches ............. on his computer for four hours each day.
+       (5, 'TV series', FALSE), -- James watches ............. on his computer for four hours each day.
        (5, 'movies', FALSE),
        (5, 'lectures', TRUE),
        (5, 'project videos', FALSE),
        (5, 'funny images', FALSE),
-       (6, 'his body', FALSE),                                 -- After listening to lectures, James works on .............
+       (6, 'his body', FALSE),  -- After listening to lectures, James works on .............
        (6, 'the garden', FALSE),
        (6, 'projects', TRUE),
        (6, 'homework', FALSE),
        (6, 'articles', FALSE),
-       (7, 'basketball matches', FALSE),                       -- He likes having ............. with other students these days.
+       (7, 'basketball matches', FALSE),    -- He likes having ............. with other students these days.
        (7, 'meals', FALSE),
        (7, 'discussions', TRUE),
        (7, 'joint joggings', FALSE),
        (7, 'meetings', FALSE),
-       (8, 'to the church', FALSE),                            -- James goes ............. every day.
+       (8, 'to the church', FALSE), -- James goes ............. every day.
        (8, 'playing basketball', FALSE),
        (8, 'jogging', TRUE),
        (8, 'shopping', FALSE),
        (8, 'to the toilet', FALSE),
-       (9, 'before', FALSE),                                   -- He hopes to return to Manchester ............. Easter.
+       (9, 'before', FALSE),    -- He hopes to return to Manchester ............. Easter.
        (9, 'at', FALSE),
        (9, 'after', TRUE),
        (9, 'next year before', FALSE),
        (9, 'next year after', FALSE),
-       (10, 'post office', FALSE),                             -- At Easter, James is going to work at a .............
+       (10, 'post office', FALSE),  -- At Easter, James is going to work at a .............
        (10, 'construction', FALSE),
        (10, 'farm', TRUE),
        (10, 'cinema', FALSE),
        (10, 'shopping center', FALSE),
-       (11, 'a chocolate factory', FALSE),                     -- Bournville is .............
+       (11, 'a chocolate factory', FALSE),  -- Bournville is .............
        (11, 'a river', FALSE),
        (11, 'a village', TRUE),
        (11, 'the founder of a chocolate factory', FALSE),
        (11, 'a chocolate bunny', FALSE),
-       (12, 'it was close to farms which provided milk',
-        FALSE),                                                -- The new site for the chocolate factory was chosen because .............
+       (12, 'it was close to farms which provided milk', FALSE),    -- The new site for the chocolate factory was chosen because .............
        (12, 'it was easy to build there', FALSE),
        (12, 'it was close to several transportation routes', TRUE),
        (12, 'a lot of people lived nearby.', FALSE),
        (12, 'it was in the centre of the city', FALSE),
-       (13, 'a local town', FALSE),                            -- Bournville takes its name from .............
+       (13, 'a local town', FALSE), -- Bournville takes its name from .............
        (13, 'a French town', FALSE),
        (13, 'a local river and a French word', TRUE),
        (13, 'a kind of French chocolate', FALSE),
        (13, 'a local river', FALSE),
-       (14, 'free for workers', FALSE),                        -- The original houses in Bournville were .............
+       (14, 'free for workers', FALSE), -- The original houses in Bournville were .............
        (14, 'large', FALSE),
        (14, 'traditional in appearance', TRUE),
        (14, 'built by the factory workers', FALSE),
        (14, 'had no garden', FALSE),
-       (15, 'financial social support', FALSE),                -- Workers at the Cadbury received .............
+       (15, 'financial social support', FALSE), -- Workers at the Cadbury received .............
        (15, 'free health care', FALSE),
        (15, 'pensions', TRUE),
        (15, 'dancing lessons', FALSE),
        (15, 'free food and drink', FALSE),
-       (16, 'sporty', FALSE),                                  -- The extract shows that the Cadbury family were .............
+       (16, 'sporty', FALSE), -- The extract shows that the Cadbury family were .............
        (16, 'careful', FALSE),
        (16, 'kind', TRUE),
        (16, 'mean', FALSE),
        (16, 'lazy', FALSE),
-       (17, 'First-time buyers', FALSE),                       -- ............. can live in special homes in Bournville.
+       (17, 'First-time buyers', FALSE), -- ............. can live in special homes in Bournville.
        (17, 'Single people', FALSE),
        (17, 'People with learning problems', TRUE),
        (17, 'Chocolate factory workers', FALSE),
        (17, 'Poor people', FALSE),
-       (18, 'billiard tables', FALSE),                         -- The Cadbury family added a park for the workers, which had .............
+       (18, 'billiard tables', FALSE), -- The Cadbury family added a park for the workers, which had .............
        (18, 'a golf course', FALSE),
        (18, 'a fishing lake', TRUE),
        (18, 'a diving pool', FALSE),
        (18, 'several basketball courts', FALSE),
-       (19, 'cheap', FALSE),                                   -- In the Cadbury’s opinion alcohol was .............
+       (19, 'cheap', FALSE), -- In the Cadbury’s opinion alcohol was .............
        (19, 'hard to get', FALSE),
        (19, 'unhealthy', TRUE),
        (19, 'made by Satan', FALSE),
        (19, 'a luxury item', FALSE),
-       (20, 'pub', FALSE),                                     -- The workers could have dinner in the .............
+       (20, 'pub', FALSE), -- The workers could have dinner in the .............
        (20, 'factory', FALSE),
        (20, 'clubhouse', TRUE),
        (20, 'community centre', FALSE),
@@ -475,8 +473,7 @@ VALUES (1, 'marketing', FALSE),                                -- James studies 
        (21, 'Both the chief and the old man', TRUE),
        (21, 'Chiefs from the Beaker culture', FALSE),
        (21, 'Important members of the Beaker culture', FALSE),
-       (22, 'Both the chief and the old man',
-        FALSE),                                                -- ............. was/were buried with the heads and hooves of four cattle.
+       (22, 'Both the chief and the old man', FALSE),                                                -- ............. was/were buried with the heads and hooves of four cattle.
        (22, 'The old man', FALSE),
        (22, 'The chief', TRUE),
        (22, 'Chiefs from the Beaker culture', FALSE),
