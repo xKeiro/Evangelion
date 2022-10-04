@@ -540,7 +540,14 @@ VALUES ('School notes', 'https://youtu.be/uSliv0T9Zxg', 2),
        ('Nemi megkülönböztetés', '../static/img/img05.png', 1);
 
 INSERT INTO social_situation_question(question, media_id)
-VALUES ('Why do they react the way they do?', 1),
-       ('Have you ever found yourself or experienced a similar situation? Please tell me about it.', 1),
-       ('What did you feel?', 1),
-       ('What did you feel? How did you react?', 3);
+VALUES ('Miért reagálnak úgy ahogy?', 1),
+       ('Voltál-e már hasonló szituációban? Mit csináltál?', 1),
+       ('Mit éreztél?', 1),
+       ('Hogyan jellemeznéd ezt a szituációt?', 2),
+       ('Mit éreztél? Hogyan reagáltál?', 3),
+       ('Mit tennél egy ilyen helyzetben?', 4),
+       ('Hogyan írnád le a légkört?', 5),
+       ('Hogy alakulhat ki egy ilyen szituáció?', 5),
+       ('Mit csinálnak éppen a képen látható emberek?', 6),
+       ('Mi történik a képen?', 7),
+       ('Mit éreztél?', 7);
