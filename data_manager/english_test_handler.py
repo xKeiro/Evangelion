@@ -73,7 +73,7 @@ ORDER BY elt.id
 @connection_handler
 def get_english_test_questions_results_by_username(cursor, username) -> list[dict]:
     query = """
-        SELECT eld.title AS difficulty, elq.question, elo.option AS given_answer, elo.correct, rh.date, elre.essay
+        SELECT elq.question, elo.option AS given_answer, elo.correct
         FROM english_language_result elr
         JOIN english_language_option elo on elr.option_id = elo.id
         JOIN result_header rh on elr.result_id = rh.id
@@ -83,7 +83,7 @@ def get_english_test_questions_results_by_username(cursor, username) -> list[dic
         JOIN english_language_difficulty eld on elet.difficulty_id = eld.id
         JOIN users u on rh.user_id = u.id
         WHERE u.username LIKE %s
-        GROUP BY eld.title, elq.question, elo.option, elq.id, elo.correct, rh.date, elre.essay
+        GROUP BY elq.question, elo.option, elq.id, elo.correct, rh.date
         ORDER BY rh.date DESC, elq.id
         LIMIT 10
     """
@@ -102,7 +102,7 @@ def get_english_test_essay_diff_and_completion_date_by_username(cursor, username
         JOIN english_language_difficulty eld on elet.difficulty_id = eld.id
         JOIN users u on rh.user_id = u.id
         WHERE u.username LIKE %s
-        ORDER BY rh.date DESC
+        ORDER BY rh.date, rh.id DESC
         LIMIT 1
     """
     var = (username,)
