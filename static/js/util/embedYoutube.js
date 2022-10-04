@@ -18,26 +18,20 @@ function onYouTubeIframeAPIReady() {
     "use strict";
     const videoElements = document.querySelectorAll(".media-video");
     for (const videoElement of videoElements) {
-        let url = videoElement.getAttribute("url");
-        url = url.substring(url.indexOf("=") + 1)
+        let long_url = videoElement.getAttribute("url");
+        let url = long_url.substring(long_url.indexOf("=") + 1)
 
-        player = new YT.Player('yt-player', {
+        player = new YT.Player(long_url, {
             width: '720',
             videoId: url,
             playerVars: {
                 'playsinline': 1
             },
             events: {
-                'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
             }
         });
     }
-}
-
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    event.target.playVideo();
 }
 
 // 5. The API calls this function when the player's state changes.

@@ -531,8 +531,8 @@ VALUES ('image'),
        ('video');
 
 INSERT INTO social_situation_media(title, url, type_id)
-VALUES ('School notes', 'https://youtu.be/uSliv0T9Zxg', 2),
-       ('Paintballing', 'https://youtu.be/bkhE-SMh1-Q', 2),
+VALUES ('School notes', 'https://www.youtube.com/watch?v=uSliv0T9Zxg', 2),
+       ('Paintballing', 'https://www.youtube.com/watch?v=bkhE-SMh1-Q', 2),
        ('Csoportos beszélgetés összejövetelen', '../static/img/img01.png', 1),
        ('A bor baleset', '../static/img/img02.png', 1),
        ('Klikkesedés', '../static/img/img03.png', 1),

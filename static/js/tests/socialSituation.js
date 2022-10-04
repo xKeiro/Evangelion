@@ -14,7 +14,7 @@ async function save() {
     const text = await textPromise;
     const result = [];
     for(const answ of answers){
-        const id = answ.getAttribute('question-id');
+        const id = answ.getAttribute('data-question-id');
         const value = answ.value;
         result.push([id, value])
     }
