@@ -154,9 +154,9 @@ CREATE TABLE social_situation_result
     id          SERIAL PRIMARY KEY,
     answer      VARCHAR(2000) NOT NULL,
     question_id INTEGER       NOT NULL,
-    user_id     INTEGER       NOT NULL,
+    result_id   INTEGER       NOT NULL,
     FOREIGN KEY (question_id) REFERENCES social_situation_question (id),
-    FOREIGN KEY (user_id) REFERENCES users (id)
+    FOREIGN KEY (result_id) REFERENCES result_header (id)
 );
 
 
@@ -539,8 +539,8 @@ VALUES ('image'),
        ('video');
 
 INSERT INTO social_situation_media(title, url, type_id)
-VALUES ('School notes', 'https://youtu.be/uSliv0T9Zxg', 2),
-       ('Paintballing', 'https://youtu.be/bkhE-SMh1-Q', 2),
+VALUES ('Iskolai jegyzetek', 'https://www.youtube.com/watch?v=uSliv0T9Zxg', 2),
+       ('Paintballozás', 'https://www.youtube.com/watch?v=bkhE-SMh1-Q', 2),
        ('Csoportos beszélgetés összejövetelen', '../static/img/img01.png', 1),
        ('A bor baleset', '../static/img/img02.png', 1),
        ('Klikkesedés', '../static/img/img03.png', 1),
