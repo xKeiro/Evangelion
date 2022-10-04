@@ -154,9 +154,9 @@ CREATE TABLE social_situation_result
     id          SERIAL PRIMARY KEY,
     answer      VARCHAR(2000) NOT NULL,
     question_id INTEGER       NOT NULL,
-    user_id     INTEGER       NOT NULL,
+    result_id   INTEGER       NOT NULL,
     FOREIGN KEY (question_id) REFERENCES social_situation_question (id),
-    FOREIGN KEY (user_id) REFERENCES users (id)
+    FOREIGN KEY (result_id) REFERENCES result_header (id)
 );
 
 

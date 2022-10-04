@@ -1,4 +1,5 @@
 from connection import connection_handler
+from data_manager import data_handler_util
 
 # region --------------------------------------READ-----------------------------------------
 # @connection_handler
@@ -36,14 +37,15 @@ def get_situations(cursor):
 # region ---------------------------------------WRITE----------------------------------------
 @connection_handler
 def save_data(cursor, result, user_id):
+    result_header_id = data_handler_util.add_test_to_result_header(cursor, user_id)
     query = """
-    INSERT INTO social_situation_result(answer, question_id, user_id)
+    INSERT INTO social_situation_result(answer, question_id, result_id)
     VALUES 
     """
-    query += ','.join('(%s, %s, %s)' for l in result) + ';'
+    query += ','.join('(%s, %s, %s)' for _ in result) + ';'
     var = []
     for res in result:
-        var.extend([res[1], res[0], user_id]) # (answer, question_id, user_id)
+        var.extend([res[1], res[0], result_header_id]) # (answer, question_id, result_id)
     cursor.execute(query, var)
 
 # endregion
