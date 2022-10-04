@@ -1,7 +1,13 @@
+/* global console */
+/* global alert */
+/* global confirm */
+/* jshint esversion:11 */
+
+
 // 2. This code loads the IFrame Player API code asynchronously.
-let tag = document.createElement('script');
+const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
-let firstScriptTag = document.getElementsByTagName('script')[0];
+const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // 3. This function creates an <iframe> (and YouTube player)
@@ -9,21 +15,24 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 let player;
 
 function onYouTubeIframeAPIReady() {
+    "use strict";
+    const videoElements = document.querySelectorAll(".media-video");
+    for (const videoElement of videoElements) {
+        let url = videoElement.getAttribute("url");
+        url = url.substring(url.indexOf("=") + 1)
 
-    let url = document.querySelector("#yt-player").getAttribute("url");
-    url = url.substring(url.indexOf("=") + 1)
-
-    player = new YT.Player('yt-player', {
-        width: '720',
-        videoId: url,
-        playerVars: {
-            'playsinline': 1
-        },
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
-    });
+        player = new YT.Player('yt-player', {
+            width: '720',
+            videoId: url,
+            playerVars: {
+                'playsinline': 1
+            },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
 }
 
 // 4. The API will call this function when the video player is ready.

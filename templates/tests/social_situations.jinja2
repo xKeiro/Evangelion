@@ -7,44 +7,33 @@
 {% block content %}
 	<main class="page-body container-fluid">
 		<header class="english-test-header">
-			<h2 class="test-title">{{ text['Szociális készségek'] }}</h2>
+			<h1 class="test-title">{{ text['Szociális készségek'] }}</h1>
 			<hr>
-			<h4 class="test-sub-title">Sub-title</h4>
+			<h2 class="test-sub-title">Sub-title</h2>
 		</header>
 		<section>
-			<div class="text-center">
-				{% for test in data %}
-					<article class="card question-card">
-						{% for question in test['questions'] %}
-							<header class="card-header card-title">
-								{{ loop.index }}. {{ question }}
-							</header>
+			{% for situation in situations %}
+				<article class="card question-card">
+					<header class="card-header card-title">{{ situation.media.title }}</header>
+					<div class="card-body">
+						{% if situation.media.type == "video" %}
+							<div class="media-container"></div>
+							<div class="rounded mx-auto d-block media-content media-video" url="{{ situation.media.url }}"></div>
+						{% else %}
+							<div class="media-container">
+								<img class="media-content media-image" src="{{ situation.media.url }}"
+								     alt="{{ situation.media.title }}">
+							</div>
+						{% endif %}
+						{% for question in situation.questions %}
+							<div class="d-flex flex-column justify-content-center align-items-center">
+							<div class="answer-label">{{ question.question }}</div>
+								<textarea class="form-control test-answer" data-question-id="{{ question.question.id }}" maxlength="200"></textarea>
+							</div>
 						{% endfor %}
-						<div class="card-body">
-							{% if test['type'] == "video" %}
-								<div class="media-container">
-									<div id="yt-player" class="rounded mx-auto d-block media-content"
-									     url='{{ test["url"] }}'></div>
-								</div>
-							{% else %}
-								<div class="media-container">
-									<img class="media-content" src="{{ test["url"] }}">
-								</div>
-							{% endif %}
-							{% for question in test['questions'] %}
-								<div class="d-flex flex-column justify-content-center align-items-center">
-									<h5 class="answer-label">Enter your answer here:</h5>
-									<textarea question-id="{{ test['question_id'] }}"
-									          class="form-control test-answer"
-									          maxlength="2000" value=""></textarea>
-								</div>
-							{% endfor %}
-						</div>
-					</article>
-				{% endfor %}
-				<button id="answer-submit"
-				        class="btn btn-primary button-custom">{{ text["Válaszok elküldése"] }}</button>
-			</div>
+					</div>
+				</article>
+			{% endfor %}
 		</section>
 	</main>
 {% endblock %}
