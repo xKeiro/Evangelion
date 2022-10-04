@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tests.css') }}">
 {% endblock %}
 {% block content %}
-    <main class="page-body container-fluid mt-3">
+    <main class="page-body container-fluid">
         <header><h1>{{ text["Elérhető tesztek"] }}:</h1></header><hr>
         {% set card_text1 = {"title":text["Munka motiváció"],"test1":{"title":text["Munka motiváció"],"description":text["Ennek a tesztnek a lényege, hogy felmérje a hozzáállásodat a munkához"],"url":"/test/work-motivation"}} %}
         {% set card_text2 = {"title":text["Angol nyelv"],"test1":{"title":text["Alapfok"],"description":text["Ez a teszt felméri az alapfokú angol tudásod"],"url":"/test/english_language/1" if not session["is_admin"] else "/admin/test/english_language/1/reading_comprehension/1"},"test2":{"title":text["Középfok"],"description":text["Ez a teszt felméri a középfokú angol tudásod"],"url":"/test/english_language/2" if not session["is_admin"] else "/admin/test/english_language/2/reading_comprehension/1"},"test3":{"title":text["Felső középfok"],"description":text["Ez a teszt felméri a felső középfokú angol tudásod"],"url":"/test/english_language/3" if not session["is_admin"] else "/admin/test/english_language/3/reading_comprehension/1"}} %}
