@@ -216,9 +216,9 @@ VALUES ('Főoldal', 'Home'),
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)
 VALUES ('admin', '$2b$12$PVhM2DgrT9aH19ozic8v9u06tzb.Q2c9IE/qrJ4QvfyPdMlY3X9hS', 'admin@admin.hu', 'Pista', 'Kiss',
-        '1990-01-01', TRUE), ---pw: asd
+        '1990-01-01', TRUE), ---pw: asd.css
        ('test', '$2b$12$PVhM2DgrT9aH19ozic8v9u06tzb.Q2c9IE/qrJ4QvfyPdMlY3X9hS', 'test@test.hu', 'Pista', 'Kiss',
-        '1990-01-01', FALSE); ---pw: asd
+        '1990-01-01', FALSE); ---pw: asd.css
 
 
 INSERT INTO work_motivation_category(title)
