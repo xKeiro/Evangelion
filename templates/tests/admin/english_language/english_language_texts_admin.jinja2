@@ -22,7 +22,7 @@
 								<ul class="list-group">
 									{% for option in test.options %}
 										{% if option.question_id == question.id %}
-											<li class="list-group-item" data-option-id="{{ option.id }}"
+											<li class="list-group-item option" data-question-id="{{ question.id }}"data-option-id="{{ option.id }}"
 											    data-correct="{{ option.correct }}">{{ option.option }}</li>
 										{% endif %}
 									{% endfor %}
