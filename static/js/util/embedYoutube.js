@@ -19,9 +19,10 @@ function onYouTubeIframeAPIReady() {
     const videoElements = document.querySelectorAll(".media-video");
     for (const videoElement of videoElements) {
         let url = videoElement.getAttribute("url");
+        console.log(url)
         url = url.substring(url.indexOf("=") + 1)
-
-        player = new YT.Player('yt-player', {
+        console.log(url)
+        player = new YT.Player(videoElement.id, {
             width: '720',
             videoId: url,
             playerVars: {

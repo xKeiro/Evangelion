@@ -18,7 +18,7 @@
 					<div class="card-body">
 						{% if situation.media.type == "video" %}
 							<div class="media-container"></div>
-							<div class="rounded mx-auto d-block media-content media-video" url="{{ situation.media.url }}"></div>
+							<div id="yt-player-{{ situation.id }}" class="rounded mx-auto d-block media-content media-video" url="{{ situation.media.url }}"></div>
 						{% else %}
 							<div class="media-container">
 								<img class="media-content media-image" src="{{ situation.media.url }}"
