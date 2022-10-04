@@ -102,8 +102,9 @@ def get_applicants_results_into_pdf():
     # PDF A4 width = 210, height = 297
     # -----------------------------PDF formatting-------------------------------------
     pdf = PDF()
+    pdf = add_fonts(pdf)
     pdf.add_page()
-    pdf.set_font("Arial", size=16)
+    pdf.set_font("Calibri", size=16)
     pdf.set_title("Applicants Test Results")
     pdf.set_left_margin(10)
     pdf.set_right_margin(10)
@@ -118,7 +119,7 @@ def get_applicants_results_into_pdf():
     pdf.cell(w=0, h=title_height, txt="Applicants Test Results", ln=1, align="C")
 
     # HEADERS--------------------------------
-    pdf.set_font("Arial", size=8)
+    pdf.set_font("Calibri", size=8)
     for i in range(len(result_headers)):
         if i == 0:
             line_start_x = pdf.get_x()
@@ -150,12 +151,20 @@ def get_applicant_tests_results_into_pdf(username, full_name_for_filename):
     full_name_normal = full_name_for_filename.replace("_", " ").rstrip()
 
     PDF = set_footer_for_pdf()
-
     # PDF A4 width = 210, height = 297
     # -----------------------------PDF formatting-------------------------------------
     pdf = PDF()
+    pdf = add_fonts(pdf)
+    # FONTS
+    # Calibri   - Normal
+    # Calibrib  - Bold
+    # Calibrii  - Italic
+    # Calibril  - Light
+    # Calibrili - Light Italic
+    # Calibriz  - Bold Italic
+
     pdf.add_page()
-    pdf.set_font("Arial", "B", size=16)
+    pdf.set_font("Calibrib", size=16)
     pdf.set_title(f"{full_name_normal} Eredmények")
     pdf.set_left_margin(10)
     pdf.set_right_margin(10)
@@ -168,21 +177,22 @@ def get_applicant_tests_results_into_pdf(username, full_name_for_filename):
     pdf.cell(w=0, h=title_height, txt=f"{full_name_normal} Eredmények", ln=1, align="C")
 
     # ENGLISH LANGUAGE SECTION--------------------------------
+
     eng_test_question_results = english_test_handler.get_english_test_questions_results_by_username(username)
     eng_test_essay_diff_comp_date = english_test_handler.get_english_test_essay_diff_and_completion_date_by_username(username)
-    difficulty = "Alapfok" if eng_test_essay_diff_comp_date["difficulty"] == "Elementary" else "Haladó" if eng_test_essay_diff_comp_date["difficulty"] == "Intermediate" else "Felsőfok"
+    difficulty = "Alapfok" if eng_test_essay_diff_comp_date["difficulty"] == "Elementary" else "Középfok" if eng_test_essay_diff_comp_date["difficulty"] == "Intermediate" else "Felsőfok"
     eng_test_completion_date = change_date_format(eng_test_essay_diff_comp_date["date"])
     essay = eng_test_essay_diff_comp_date["essay"]
 
-    pdf.set_font("Arial", "BI", size=10)
+    pdf.set_font("Calibriz", size=10)
     pdf.set_text_color(17, 71, 158)
     pdf.cell(w=95, h=data_row_height, txt=f"Angol nyelvtudás - {difficulty}", ln=0)
 
-    pdf.set_font("Arial", "I", size=8)
+    pdf.set_font("Calibrii", size=8)
     pdf.set_text_color(0, 0, 0)
     pdf.cell(w=95, h=data_row_height, txt=f"Kitöltötte: {eng_test_completion_date}", ln=1, align="R")
 
-    pdf.set_font("Arial", size=8)
+    pdf.set_font("Calibri", size=8)
     correct_answers = 0
     wrong_answers = 0
     for test_part in eng_test_question_results:
@@ -204,49 +214,51 @@ def get_applicant_tests_results_into_pdf(username, full_name_for_filename):
     pdf.cell(w=0, h=data_row_height, txt=f"Elért pontszám: {correct_answers} / {correct_answers + wrong_answers}", ln=1)
     pdf.ln()
 
-    pdf.set_font("Arial", "BI", size=9)
+    pdf.set_font("Calibriz", size=9)
     pdf.cell(w=0, h=data_row_height, txt=f"{eng_test_essay_diff_comp_date['topic']}", ln=1)
 
-    pdf.set_font("Arial", size=8)
+    pdf.set_font("Calibri", size=8)
     pdf.multi_cell(w=0, h=data_row_height - 3, txt=f"{essay}")
 
     pdf.cell(w=0, h=data_row_height, txt="", ln=1)
 
     # SOCIAL SITUATIONS SECTION--------------------------------
-    pdf.set_font("Arial", "BI", size=10)
+    pdf.set_font("Calibriz", size=10)
     pdf.set_text_color(17, 71, 158)
     pdf.cell(w=0, h=data_row_height, txt="Társasági Szituációk", ln=1)
     pdf.set_text_color(0, 0, 0)
 
-    pdf.set_font("Arial", size=8)
+    pdf.set_font("Calibri", size=8)
 
     # WORK MOTIVATION SECTION--------------------------------
-    categories_max_points = work_motivation_test_handler.get_categories_max_points()
-    work_motivation_results = work_motivation_test_handler.get_results_for_applicant(username)
-    work_motivation_completion_date = work_motivation_test_handler.get_latest_completion_date_by_username(username)
-    work_motivation_completion_date = change_date_format(work_motivation_completion_date["date"])
-
-    pdf.set_font("Arial", "BI", size=10)
+    pdf.set_font("Calibriz", size=10)
     pdf.set_text_color(17, 71, 158)
     pdf.cell(w=95, h=data_row_height, txt="Munka Motiváció", ln=0)
     pdf.set_text_color(0, 0, 0)
 
-    pdf.set_font("Arial", "I", size=8)
-    pdf.cell(w=95, h=data_row_height, txt=f"Kitöltötte: {work_motivation_completion_date}", ln=1, align="R")
+    work_motivation_completion_date = work_motivation_test_handler.get_latest_completion_date_by_username(username)
+    if work_motivation_completion_date is not None:
+        work_motivation_completion_date = change_date_format(work_motivation_completion_date["date"])
+        categories_max_points = work_motivation_test_handler.get_categories_max_points()
+        work_motivation_results = work_motivation_test_handler.get_results_for_applicant(username)
 
-    pdf.set_font("Arial", size=8)
-    for i, category in enumerate(work_motivation_results):
-        pdf.cell(w=30,
-                 h=data_row_height,
-                 txt=f'{category["title"]}',
-                 ln=0,
-                 border=1)
-        pdf.cell(w=10,
-                 h=data_row_height,
-                 txt=f'{category["cat_score"]} / {categories_max_points[i]["max_point"]}',
-                 ln=1,
-                 border=1,
-                 align="C")
+
+        pdf.set_font("Calibrii", size=8)
+        pdf.cell(w=95, h=data_row_height, txt=f"Kitöltötte: {work_motivation_completion_date}", ln=1, align="R")
+
+        pdf.set_font("Calibri", size=8)
+        for i, category in enumerate(work_motivation_results):
+            pdf.cell(w=30,
+                     h=data_row_height,
+                     txt=f'{category["title"]}',
+                     ln=0,
+                     border=1)
+            pdf.cell(w=10,
+                     h=data_row_height,
+                     txt=f'{category["cat_score"]} / {categories_max_points[i]["max_point"]}',
+                     ln=1,
+                     border=1,
+                     align="C")
 
     return pdf.output(output_name)
 
@@ -262,6 +274,15 @@ def set_footer_for_pdf():
             self.cell(0, 10, str(self.page_no()), 0, 0, 'C')
     return PDF
 
+
+def add_fonts(pdf):
+    pdf.add_font('Calibri', fname='static/fonts/Calibri.ttf')
+    pdf.add_font('Calibrib', fname='static/fonts/Calibrib.ttf')
+    pdf.add_font('Calibrii', fname='static/fonts/Calibrii.ttf')
+    pdf.add_font('Calibril', fname='static/fonts/Calibril.ttf')
+    pdf.add_font('Calibrili', fname='static/fonts/Calibrili.ttf')
+    pdf.add_font('Calibriz', fname='static/fonts/Calibriz.ttf')
+    return pdf
 
 def change_date_format(date_to_change):
     date_to_change = str(date_to_change).split("-")
