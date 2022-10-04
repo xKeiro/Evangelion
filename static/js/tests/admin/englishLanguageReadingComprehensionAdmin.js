@@ -105,19 +105,19 @@ async function handleClickOnOption(event) {
     const parentNode = event.currentTarget.parentNode;
     event.currentTarget.classList.add("d-none");
     const inputFieldContainer = document.createElement("div");
-    inputFieldContainer.classList.add("d-flex");
+    inputFieldContainer.classList.add("d-flex", "align-items-center");
     inputFieldContainer.innerHTML= `
-<div class="col-9">
+<div class="col-8">
     <input class="form-control" value="${event.currentTarget.innerText}">
 </div>
 <div class="col-2">
-  <select class="form-select">
+  <select class="form-select form-control">
       <option value="true">Correct</option>
       <option value="false">Incorrect</option>
   </select>
 </div>
 <div class="col-2">
-    <button class="btn btn-primary" type="submit" data-option-id="${event.currentTarget.dataset.optionId}">Elküldés</button>
+    <button class="btn button-custom form-control" type="submit" data-option-id="${event.currentTarget.dataset.optionId}">Elküldés</button>
 </div>`;
     const options = inputFieldContainer.querySelectorAll("option");
     for (const option of options){

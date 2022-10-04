@@ -53,6 +53,7 @@ nav{
     /*border-color: #005e99; Szia Kevin :3 ez nem tetszett szoval kivettem.*/
     max-height: 38px;
     font-weight: 500;
+    color: white;
 }
 
 .button-custom:hover{
@@ -84,4 +85,9 @@ nav{
         min-width: 1920px;
         margin: auto;
     }
+}
+
+.form-control {
+   font-size: 1.2rem;
+   /*font-family: montserrat;*/
 }
