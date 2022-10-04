@@ -213,7 +213,8 @@ def get_applicant_tests_results_into_pdf(username, full_name_for_filename):
             pdf.ln()
 
         pdf.set_font("Arial", "BU", size=8)
-        pdf.cell(w=0, h=data_row_height, txt=f"Elért pontszám: {correct_answers} / {correct_answers + wrong_answers}", ln=1)
+        pdf.cell(w=0, h=data_row_height, txt=f"Elért pontszám: {correct_answers} / {correct_answers + wrong_answers}",
+                 ln=1)
         pdf.ln()
 
         pdf.set_font("Calibriz", size=9)
@@ -222,7 +223,10 @@ def get_applicant_tests_results_into_pdf(username, full_name_for_filename):
         pdf.set_font("Calibri", size=8)
         pdf.multi_cell(w=0, h=data_row_height - 3, txt=f"{essay}")
 
-        pdf.cell(w=0, h=data_row_height, txt="", ln=1)
+        pdf.ln()
+        pdf.set_font("Arial", "B", size=8)
+        pdf.cell(w=0, h=data_row_height, txt="Elért pontszám:__________", ln=1)
+        pdf.ln()
     else:
         pdf.set_font("Calibriz", size=10)
         pdf.set_text_color(17, 71, 158)
