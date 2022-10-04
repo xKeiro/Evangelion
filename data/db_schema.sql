@@ -208,7 +208,8 @@ VALUES ('Főoldal', 'Home'),
         ('Teszt leírás','Test description'),
         ('Teszt kategória', 'Test category'),
         ('Munka-motivációs kérdőiv','Work motivation survey'),
-        ('Tovább a teszthez','To the test');
+        ('Tovább a teszthez','To the test'),
+        ('Nyelv választó', 'Language selector');
 
 
 

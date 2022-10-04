@@ -73,7 +73,7 @@
                     <li>
                         <div class="d-lg-block dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink78"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-{{ request.cookies.get('language','hu') }}"></span> {{ request.cookies.get('language','hu') | upper }}</a>
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{  text["Nyelv választó"] }}"><span class="flag-icon flag-icon-{{ request.cookies.get('language','hu') }}"></span> {{ request.cookies.get('language','hu') | upper }}</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink78">
                                 <a class="dropdown-item" href="{{ url_for("language_select",language="gb") }}">
                                     <span class="flag-icon flag-icon-gb"></span> English
