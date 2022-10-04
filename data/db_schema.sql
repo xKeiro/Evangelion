@@ -27,7 +27,7 @@ CREATE TABLE users
     id         SERIAL PRIMARY KEY,
     username   VARCHAR(25) UNIQUE NOT NULL,
     password   VARCHAR            NOT NULL,
-    email      VARCHAR            NOT NULL UNIQUE,
+    email      VARCHAR UNIQUE     NOT NULL,
     first_name VARCHAR            NOT NULL,
     last_name  VARCHAR            NOT NULL,
     birthday   DATE               NOT NULL,
@@ -193,24 +193,26 @@ VALUES ('Főoldal', 'Home'),
         'There was a problem sending your data, please try again later!'),
        ('Nincs jogosultságod ennek az oldalnak az eléréséhez!',
         E'You don\'t have a necessary permission to access this site!'),
-        ('Tovább a', 'To the'),
-        ('tesztre', 'test'),
-        ('Munka motiváció','Work motivation'),
-        ('Ennek a tesztnek a lényege, hogy felmérje a hozzáállásodat a munkához','The purpose of this test is to asses your work attitude'),
-        ('Angol nyelv', 'English Language'),
-        ('Alapfok','Elementary'),
-        ('Ez a teszt felméri az alapfokú angol tudásod','This test assesses your skills in elementary english'),
-        ('Középfok','Intermediate'),
-        ('Ez a teszt felméri a középfokú angol tudásod','This test assesses your skills in intermediate english'),
-        ('Felső középfok','Upper intermediate'),
-        ('Ez a teszt felméri a felső középfokú angol tudásod','This test assesses your skills in upper intermediate english'),
-        ('Szociális készségek','Social skills'),
-        ('Teszt cím','Test name'),
-        ('Teszt leírás','Test description'),
-        ('Teszt kategória', 'Test category'),
-        ('Munka-motivációs kérdőiv','Work motivation survey'),
-        ('Tovább a teszthez','To the test'),
-        ('Teszt eredmények PDF', 'Test results PDF');
+       ('Tovább a', 'To the'),
+       ('tesztre', 'test'),
+       ('Munka motiváció', 'Work motivation'),
+       ('Ennek a tesztnek a lényege, hogy felmérje a hozzáállásodat a munkához',
+        'The purpose of this test is to asses your work attitude'),
+       ('Angol nyelv', 'English Language'),
+       ('Alapfok', 'Elementary'),
+       ('Ez a teszt felméri az alapfokú angol tudásod', 'This test assesses your skills in elementary english'),
+       ('Középfok', 'Intermediate'),
+       ('Ez a teszt felméri a középfokú angol tudásod', 'This test assesses your skills in intermediate english'),
+       ('Felső középfok', 'Upper intermediate'),
+       ('Ez a teszt felméri a felső középfokú angol tudásod',
+        'This test assesses your skills in upper intermediate english'),
+       ('Szociális készségek', 'Social skills'),
+       ('Teszt cím', 'Test name'),
+       ('Teszt leírás', 'Test description'),
+       ('Teszt kategória', 'Test category'),
+       ('Munka-motivációs kérdőiv', 'Work motivation survey'),
+       ('Tovább a teszthez', 'To the test'),
+       ('Teszt eredmények PDF', 'Test results PDF');
 
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)
@@ -320,7 +322,7 @@ The Cadbury family were religious and believed that it was right to help other p
 Since the Cadbury family believed that their workers and their families should be fit and healthy, they added a park with hockey and football pitches, a running track, bowling green, fishing lake, and an outdoor swimming pool. A large clubhouse was built in the park so that players could change their clothes and relax after a game. Dances and dinners were also held here for the factory workers, who were never charged to use any of the sports facilities. However, because the Cadbury’s believed that alcohol was bad for health and society, no pubs were ever built in Bourneville!
 
 The Cadbury brothers were among the first business owners to ensure that their workers had good standards of living. Soon, other British factory owners were copying their ideas by providing homes and communities for their workers designed with convenience and health in mind. Today, over 25,000 people live in Bournville village. There are several facilities there to help people with special needs, such as care homes for the elderly, a hostel for people with learning difficulties and affordable homes for first-time homeowners and single people. Over a hundred years since the first house in Bournville Village was built, the aims of its founders are still carried out.'
-, 2),
+       , 2),
        ( 'In 2017, archaeologists discovered the remains of a Bronze Age chief in Lechlade, a town in the west of England. The finding is historically interesting as the artefacts with which he was buried indicate that he was very important. Plus, the manner of his burial was significantly different from other burials at the time. Even more fascinating was the discovery of an older man’s remains close to the chief’s. Archaeologists are puzzling over what the relationship between the two men could be, and why they were treated so differently from the norm at the time.
 
 Interestingly, the chief was buried with the heads and hooves of four cattle around 4,200 ago. Carbon dating has revealed that the remains, which were found in an area where a skate park is to be built, date back to the Bronze Age. Archaeologist Andy Hood, who helped to excavate the site, said that it was common for Bronze Age chiefs to be buried with the skull and hooves of a single cattle, but that until now none had been uncovered with multiple cattle remains in the UK. This fact seems to indicate that this chief was especially important. Hood and his colleagues consider it likely that the animals were killed as part of the burial ceremony. The loss of four of them would have been a considerable sacrifice.
@@ -328,7 +330,7 @@ Interestingly, the chief was buried with the heads and hooves of four cattle aro
 Other artefacts found near the chief include a copper dagger, a stone wrist guard, a fire-making kit and some jewellery. These items were typically buried alongside members of the “Beaker culture”. These were people who arrived in Britain from mainland Europe in around 2400BC. They were given this name due to the tall pots which looked like beakers that were typical of this culture. Usually, prominent people from this culture were buried with such a pot, but this chief was not. Archaeologists wonder whether this meant that this chief was especially revered among the Beaker society and was not symbolised by the typical pot.
 
 The chieftain was buried at the centre of a circular pit. At the time, soil would have been piled on top of it. Near the chief, within the circle, were the remains of the older man, who was about 50-60 years old when he died. Newspapers have suggested that the older man was a priest who was sacrificed to help the chief in the afterlife. However, archaeologists say there is no evidence to support this idea. Even so, the older man’s burial is strange, as he was buried in an unusual seated position, with his legs going downwards into the earth. Bronze Age people, including the chief, were almost always buried on their sides. The reason for this unique position, the status of the chief and the relationship between the two men, may remain a mystery forever.'
-, 3);
+       , 3);
 
 -- The question must contain this: ............. / exactly 13 dots
 -- .............
@@ -365,144 +367,145 @@ VALUES (1, 'James studies ............. at university.'),
        (3, '............. was/were buried with a dagger in most cases.');
 
 INSERT INTO english_language_option(question_id, option, correct)
-VALUES (1, 'marketing', FALSE),                 -- James studies ............. at university.
+VALUES (1, 'marketing', FALSE),                                -- James studies ............. at university.
        (1, 'IT', FALSE),
        (1, 'engineering', TRUE),
        (1, 'agriculture', FALSE),
        (1, 'architecture', FALSE),
        (2, '1',
-        FALSE),                                 -- -- James went to lectures in the lecture rooms at Manchester university for ............. weeks.
+        FALSE),                                                -- -- James went to lectures in the lecture rooms at Manchester university for ............. weeks.
        (2, '2', FALSE),
        (2, '3', TRUE),
        (2, '4', FALSE),
        (2, '5', FALSE),
-       (3, 'wrote mails', FALSE),               -- While in lockdown in Manchester, James and his friends ............. .............
+       (3, 'wrote mails', FALSE),                              -- While in lockdown in Manchester, James and his friends ............. .............
        (3, 'studied hard', FALSE),
        (3, 'had parties', TRUE),
        (3, 'played basketball', FALSE),
        (3, 'did nothing', FALSE),
-       (4, 'softball', FALSE),                  -- James wanted to play ............. at university.
+       (4, 'softball', FALSE),                                 -- James wanted to play ............. at university.
        (4, 'football', FALSE),
        (4, 'basketball', TRUE),
        (4, 'volleyball', FALSE),
        (4, 'handball', FALSE),
-       (5, 'TV series', FALSE),                 -- James watches ............. on his computer for four hours each day.
+       (5, 'TV series', FALSE),                                -- James watches ............. on his computer for four hours each day.
        (5, 'movies', FALSE),
        (5, 'lectures', TRUE),
        (5, 'project videos', FALSE),
        (5, 'funny images', FALSE),
-       (6, 'his body', FALSE),                  -- After listening to lectures, James works on .............
+       (6, 'his body', FALSE),                                 -- After listening to lectures, James works on .............
        (6, 'the garden', FALSE),
        (6, 'projects', TRUE),
        (6, 'homework', FALSE),
        (6, 'articles', FALSE),
-       (7, 'basketball matches', FALSE),        -- He likes having ............. with other students these days.
+       (7, 'basketball matches', FALSE),                       -- He likes having ............. with other students these days.
        (7, 'meals', FALSE),
        (7, 'discussions', TRUE),
        (7, 'joint joggings', FALSE),
        (7, 'meetings', FALSE),
-       (8, 'to the church', FALSE),             -- James goes ............. every day.
+       (8, 'to the church', FALSE),                            -- James goes ............. every day.
        (8, 'playing basketball', FALSE),
        (8, 'jogging', TRUE),
        (8, 'shopping', FALSE),
        (8, 'to the toilet', FALSE),
-       (9, 'before', FALSE),                    -- He hopes to return to Manchester ............. Easter.
+       (9, 'before', FALSE),                                   -- He hopes to return to Manchester ............. Easter.
        (9, 'at', FALSE),
        (9, 'after', TRUE),
        (9, 'next year before', FALSE),
        (9, 'next year after', FALSE),
-       (10, 'post office', FALSE),              -- At Easter, James is going to work at a .............
+       (10, 'post office', FALSE),                             -- At Easter, James is going to work at a .............
        (10, 'construction', FALSE),
        (10, 'farm', TRUE),
        (10, 'cinema', FALSE),
        (10, 'shopping center', FALSE),
-       (11, 'a chocolate factory', FALSE),      -- Bournville is .............
+       (11, 'a chocolate factory', FALSE),                     -- Bournville is .............
        (11, 'a river', FALSE),
        (11, 'a village', TRUE),
        (11, 'the founder of a chocolate factory', FALSE),
        (11, 'a chocolate bunny', FALSE),
        (12, 'it was close to farms which provided milk',
-        FALSE),                                 -- The new site for the chocolate factory was chosen because .............
+        FALSE),                                                -- The new site for the chocolate factory was chosen because .............
        (12, 'it was easy to build there', FALSE),
        (12, 'it was close to several transportation routes', TRUE),
        (12, 'a lot of people lived nearby.', FALSE),
        (12, 'it was in the centre of the city', FALSE),
-       (13, 'a local town', FALSE),             -- Bournville takes its name from .............
+       (13, 'a local town', FALSE),                            -- Bournville takes its name from .............
        (13, 'a French town', FALSE),
        (13, 'a local river and a French word', TRUE),
        (13, 'a kind of French chocolate', FALSE),
        (13, 'a local river', FALSE),
-       (14, 'free for workers', FALSE),         -- The original houses in Bournville were .............
+       (14, 'free for workers', FALSE),                        -- The original houses in Bournville were .............
        (14, 'large', FALSE),
        (14, 'traditional in appearance', TRUE),
        (14, 'built by the factory workers', FALSE),
        (14, 'had no garden', FALSE),
-       (15, 'financial social support', FALSE), -- Workers at the Cadbury received .............
+       (15, 'financial social support', FALSE),                -- Workers at the Cadbury received .............
        (15, 'free health care', FALSE),
        (15, 'pensions', TRUE),
        (15, 'dancing lessons', FALSE),
        (15, 'free food and drink', FALSE),
-       (16, 'sporty', FALSE),                   -- The extract shows that the Cadbury family were .............
+       (16, 'sporty', FALSE),                                  -- The extract shows that the Cadbury family were .............
        (16, 'careful', FALSE),
        (16, 'kind', TRUE),
        (16, 'mean', FALSE),
        (16, 'lazy', FALSE),
-       (17, 'First-time buyers', FALSE),        -- ............. can live in special homes in Bournville.
+       (17, 'First-time buyers', FALSE),                       -- ............. can live in special homes in Bournville.
        (17, 'Single people', FALSE),
        (17, 'People with learning problems', TRUE),
        (17, 'Chocolate factory workers', FALSE),
        (17, 'Poor people', FALSE),
-       (18, 'billiard tables', FALSE),          -- The Cadbury family added a park for the workers, which had .............
+       (18, 'billiard tables', FALSE),                         -- The Cadbury family added a park for the workers, which had .............
        (18, 'a golf course', FALSE),
        (18, 'a fishing lake', TRUE),
        (18, 'a diving pool', FALSE),
        (18, 'several basketball courts', FALSE),
-       (19, 'cheap', FALSE),                    -- In the Cadbury’s opinion alcohol was .............
+       (19, 'cheap', FALSE),                                   -- In the Cadbury’s opinion alcohol was .............
        (19, 'hard to get', FALSE),
        (19, 'unhealthy', TRUE),
        (19, 'made by Satan', FALSE),
        (19, 'a luxury item', FALSE),
-       (20, 'pub', FALSE),                      -- The workers could have dinner in the .............
+       (20, 'pub', FALSE),                                     -- The workers could have dinner in the .............
        (20, 'factory', FALSE),
        (20, 'clubhouse', TRUE),
        (20, 'community centre', FALSE),
        (20, 'restaurant', FALSE),
-       (21, 'The chief', FALSE), -- ............. was/were discovered in a park in Lechlade, UK.
+       (21, 'The chief', FALSE),                               -- ............. was/were discovered in a park in Lechlade, UK.
        (21, 'The old man', FALSE),
        (21, 'Both the chief and the old man', TRUE),
        (21, 'Chiefs from the Beaker culture', FALSE),
        (21, 'Important members of the Beaker culture', FALSE),
-       (22, 'Both the chief and the old man', FALSE), -- ............. was/were buried with the heads and hooves of four cattle.
+       (22, 'Both the chief and the old man',
+        FALSE),                                                -- ............. was/were buried with the heads and hooves of four cattle.
        (22, 'The old man', FALSE),
        (22, 'The chief', TRUE),
        (22, 'Chiefs from the Beaker culture', FALSE),
        (22, 'Important members of the Beaker culture', FALSE),
-       (23, 'Journalists', FALSE), -- ............. believe that the cattle were sacrificed.
+       (23, 'Journalists', FALSE),                             -- ............. believe that the cattle were sacrificed.
        (23, 'Scientists', FALSE),
        (23, 'Archaeologists', TRUE),
        (23, 'British people', FALSE),
        (23, 'Local people', FALSE),
-       (24, 'The old man', FALSE), -- ............. was/were buried with a beaker.
+       (24, 'The old man', FALSE),                             -- ............. was/were buried with a beaker.
        (24, 'The chief', FALSE),
        (24, 'Important members of the Beaker culture', TRUE),
        (24, 'Chiefs from the Beaker culture', FALSE),
        (24, 'Both the chief and the old man', FALSE),
-       (25, 'Chiefs from the Beaker culture', FALSE), -- ............. was/were not buried with a beaker.
+       (25, 'Chiefs from the Beaker culture', FALSE),          -- ............. was/were not buried with a beaker.
        (25, 'Both the chief and the old man', FALSE),
        (25, 'The chief', TRUE),
        (25, 'Important members of the Beaker culture', FALSE),
        (25, 'The old man', FALSE),
-       (26, 'The chief', FALSE), -- ............. was/were buried in a circular pit.
+       (26, 'The chief', FALSE),                               -- ............. was/were buried in a circular pit.
        (26, 'The old man', FALSE),
        (26, 'Both the chief and the old man', TRUE),
        (26, 'Important members of the Beaker culture', FALSE),
        (26, 'Chiefs from the Beaker culture', FALSE),
-       (27, 'Scientists', FALSE), -- ............. thought the old man was a religious figure.
+       (27, 'Scientists', FALSE),                              -- ............. thought the old man was a religious figure.
        (27, 'Archaeologists', FALSE),
        (27, 'Journalists', TRUE),
        (27, 'Local people', FALSE),
        (27, 'British people', FALSE),
-       (28, 'Local people', FALSE), -- ............. believe that the old man was sacrificed.
+       (28, 'Local people', FALSE),                            -- ............. believe that the old man was sacrificed.
        (28, 'Scientists', FALSE),
        (28, 'Journalists', TRUE),
        (28, 'British people', FALSE),
@@ -512,7 +515,7 @@ VALUES (1, 'marketing', FALSE),                 -- James studies ............. a
        (29, 'The old man', TRUE),
        (29, 'Both the chief and the old man', FALSE),
        (29, 'The chief', FALSE),
-       (30, 'The chief', FALSE), -- ............. was/were buried with a dagger in most cases.
+       (30, 'The chief', FALSE),                               -- ............. was/were buried with a dagger in most cases.
        (30, 'The old man', FALSE),
        (30, 'Members of the Beaker culture', TRUE),
        (30, 'Both the chief and the old man', FALSE),
