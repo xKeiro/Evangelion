@@ -4,17 +4,21 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card.css') }}">
 {% endblock %}
+{% set card_content1 = {"title":text["SOKSZÍNŰSÉG"],"text":text["Meggyőződésünk, hogy a munkahelyek meg tudják változtatni a világot, ha elköteleződnek a sokszínűség mellett. Gondoljunk csak bele, hogy több mint 4,5 millió ember tölti élete egyharmadát a munkahelyén Magyarországon. Képzeljük el, mi történne, ha itt megtanulnánk együttműködni olyan emberekkel, akik különböznek tőlünk? Egészen biztos, hogy a munkán kívüli szavaink és tetteink is megváltoznának."],"image":"https://media.istockphoto.com/photos/group-of-disabled-people-picture-id1177085622?k=20&m=1177085622&s=612x612&w=0&h=FfndpYW8aATNwU9ttyzaAwYTiWJC6QmldxVKvwvXmCw=","image-alt":"placeholder image"} %}
+{% set card_content2 = {"title":text["MEGTÉRÜLÉS"],"text":text["Ma már szinte minden nagyvállalat tudja, hogy a sokszínűség jó dolog, fontos dolog, hogy az a helyes, ha erre odafigyelünk. De tapasztalataink szerint még nem minden vállalat tudja, hogy gazdaságilag is a sokszínűség a racionális döntés. Számos kutatás bizonyítja ugyanis, hogy a sokszínű cégek, a valóban befogadó cégek üzleti eredménye jelentős mértékben meghaladja a többi vállalatét."],"image":"https://media.istockphoto.com/photos/portrait-of-student-with-disability-in-sports-court-at-school-picture-id1281045590?k=20&m=1281045590&s=612x612&w=0&h=H9KSX-BfKbq2UhOevYz6u4_vsFxGBwDtKxQp1nZXGc8=","image-alt":"placeholder image"} %}
+{% set card_content3 = {"title":text["BEFOGADÁS"],"text":text["A sokszínűségi célkitűzés önmagában azonban nem elég. A befogadásról nem elég beszélni, nem elég számokat kitűzni, azt művelni kell, tenni kell érte. Ebben tud segíteni a cégeknek a Salva Vita Alapítvány tanácsadással, szolgáltatásokkal, tréningekkel, vállalati rendezvényekkel, munkaerő közvetítésével, kiadványokkal. Mi azért dolgozunk, közel 30 éve, hogy segítsük a cégeket egy befogadó munkakörnyezet kialakításában. Keress minket! Együtt. Működünk."],"image":"https://www.downsyndrome.org.au/wp-content/uploads/2019/12/how-to-talk-about-down-syndrome-1024x768.jpg","image-alt":"placeholder image"} %}
+{% set card_content4 = {"title":text["MEGTARTÁS"],"text":text["A megváltozott munkaképességű munkatársak egy megbízható és lojális munkavállalói kört alkotnak, akik produktivitása – az általános vélekedésekkel ellentétben – az átlagostól nem tér el, és hozzáállásukat tekintve elkötelezettebbek, lojálisabbak a munkáltatójuk irányába."],"image":"https://media.istockphoto.com/photos/young-blind-man-with-white-cane-and-guide-dog-sitting-in-park-in-city-picture-id1179580885?k=20&m=1179580885&s=612x612&w=0&h=7KwjDZ51q8IZ8uKTB5jVWvdhLf4EOIHAHvnmOpulfrk=","image-alt":"placeholder image"} %}
+{% set cards = [card_content1,card_content2,card_content3,card_content4] %}
 {% block content %}
     <main>
         <div class="banner container-fluid">
-            <div class="title-container">
-                <h1 class="main-title-text">{{ text["Üdvözöllek a Salva Vita weboldalán!"] }}</h1>
-            </div>
+            <header class="title-container">
+                <h1 class="main-title-text">{{ text["Üdvözöllek Salva Vitán"] }}</h1>
+            </header>
             <img src="https://images6.alphacoders.com/439/439626.jpg" alt="" class="banner-image container-fluid">
-
         </div>
-        {{ index_page_card("Card Title","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","https://motionarray.imgix.net/preview-544162-ZzS9GRuLOhogJpcl-large.jpg?w=3840&q=60&fit=max&auto=format", "Placeholder image") }}
-        {{ index_page_card("Card Title","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","https://rmi.org/wp-content/uploads/2020/04/construction-workers.jpg", "Placeholder image") }}
-        {{ index_page_card("Card Title","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.istockphoto.com%2Fphotos%2Fhappy-worker-picture-id522346253&f=1&nofb=1&ipt=ff5371e633be9d964295f869802daf1fe5173f1c94d2848712188ece2908e8c4&ipo=images", "Placeholder image") }}
+        {% for card in cards %}
+        {{ index_page_card(card) }}
+        {% endfor %}
     </main>
 {% endblock %}

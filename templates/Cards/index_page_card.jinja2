@@ -1,15 +1,15 @@
-{% macro index_page_card(title,text,image, image_alt) %}
+{% macro index_page_card(dict) %}
     <article class="homepage-card card container-fluid justify-content-center align-items-center">
         <section class="row container-fluid card-content">
             <section class="col-12 col-lg-6 card-border-div">
                 <div class="card-image-container">
-                <img src="{{ image }}" alt="{{ image_alt }}" class="card-image container-fluid">
+                <img src="{{ dict["image"] }}" alt="{{ dict["image-alt"] }}" class="card-image container-fluid">
                 </div>
             </section>
             <section class="card-text-container col-12 col-lg-6">
-                <h2 class="card-title">{{ title }}</h2>
+                <h2 class="card-title">{{ dict["title"] }}</h2>
                 <span class="card-text">
-                {{ text }}
+                {{ dict["text"] }}
                 </span>
             </section>
         </section>
