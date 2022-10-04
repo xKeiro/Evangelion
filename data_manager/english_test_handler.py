@@ -89,5 +89,14 @@ def submit_result(cursor, results: dict[list,dict], user_id: int) -> None:
     for answer in results["answers"]:
         var.extend([answer, result_header_id])
     cursor.execute(query,var)
+@connection_handler
+def patch_text_by_id(cursor,id, text):
+    query="""
+    UPDATE english_language_text
+    SET text = %s
+    WHERE id = %s
+    """
+    var=(text, id)
+    cursor.execute(query,var)
 
 # endregion

@@ -19,6 +19,10 @@ export let dataHandler = {
         "use strict";
         return apiPost("/api/english-language", testResults);
     },
+    patchEnglishLanguageText: async function (textId, text){
+      "use strict";
+      return apiPatch(`/api/english-language/text/${textId}`, text);
+    },
     postSocialSituationResults: async function (answer, questionId){
         "use strict";
         return apiPost(`/api/social-situation/question/${questionId}`, answer);

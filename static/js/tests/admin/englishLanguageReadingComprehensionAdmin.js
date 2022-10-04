@@ -6,11 +6,11 @@ import {dataHandler} from "../../data/dataHandler.js";
 // import {util} from "./util/util.js";
 //
 // const language = util("language");
-initEditTestText()
+initEditTestText();
 
 function initEditTestText() {
     "use strict";
-    const testText = document.querySelector(".english-test-text")
+    const testText = document.querySelector(".english-test-text");
     testText.addEventListener("click", handleClickOnTestText);
 }
 
@@ -28,12 +28,12 @@ function handleClickOnTestText(event) {
 
 async function handleTestTextChange(event) {
     "use strict";
-    const questionTitleElement = event.currentTarget.parentNode.querySelector("p");
-    let questionTitle = event.currentTarget.value;
-    const questionId = event.currentTarget.parentNode.parentNode.dataset.questionId;
-    questionTitleElement.innerHTML = questionTitle;
-    // dataHandler.patchWorkMotivationQuestionTitle(questionId, {"title": questionTitle});
+    const testText = document.querySelector(".english-test-text");
+    let changedText = event.currentTarget.value;
+    const testTextId = testText.dataset.textId;
+    testText.innerHTML = changedText;
+    dataHandler.patchEnglishLanguageText(testTextId, {"text": changedText});
     event.currentTarget.remove();
-    questionTitleElement.classList.remove("d-none");
+    testText.classList.remove("d-none");
 
 }

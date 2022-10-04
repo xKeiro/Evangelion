@@ -165,6 +165,15 @@ def api_english_language_submit():
     english_test_handler.submit_result(results, session["user_id"])
     return {"status": "success"}
 
+@app.route("/api/english-language/text/<text_id>", methods=["PATCH"])
+@util.login_required
+@util.json_response
+def api_english_language_text_patch(text_id):
+    text = request.json["text"]
+    english_test_handler.patch_text_by_id(text_id, text)
+    return {"status": "success"}
+
+
 @app.route("/api/social-situation/question/<question_id>", methods=["POST"])
 @util.login_required
 @util.json_response
@@ -172,7 +181,6 @@ def api_social_situation_submit(question_id):
     results = request.json
     social_situation_handler.save_data(results, question_id, session["user_id"])
     return {"status": "success"}
-
 
 # endregion
 
