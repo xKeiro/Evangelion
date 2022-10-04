@@ -49,9 +49,10 @@ nav{
 }
 
 .button-custom{
-    background-color: #0096f2;
-    border-color: #0096f2;
+    background-color: #0078c3;
+    border-color: #005e99;
     max-height: 38px;
+    font-weight: 500;
 }
 
 .button-custom:hover{
