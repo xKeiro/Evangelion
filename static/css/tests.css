@@ -1,20 +1,28 @@
 body {
     min-height: calc(100vh - 76px);
 }
-
+h1{
+    margin: 0;
+    font-weight: bold;
+}
+hr{
+    margin: 0 0 1.5em 0;
+}
 .page-body {
-    background-color: white;
     width: 90%;
     max-width: 1200px;
-    min-height: 800px;
-    border-radius: 10px;
 }
 
 .tests-card-header {
-    background-color: #e0e0e0;
+    background-color: #0096f2;
+    color: white;
+    font-weight: bold;
 }
 
 .tests-card {
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    border-color: #0096f2;
+    border-radius: 10px;
     padding: 0;
     min-width: 24%;
 }
@@ -47,23 +55,30 @@ body {
 .test-button-link {
     width: 100%;
     text-align: center;
-    color: black;
+    color: white;
     text-decoration: none;
 }
-
-.test-button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    background-color: #ffc107;
-    transition: all 0.3s ease 0s;
+.test-list-item{
+    border-bottom: #0096f2 solid 1px;
 }
+
+/*.test-button {*/
+/*    padding: 10px;*/
+/*    border: none;*/
+/*    border-radius: 5px;*/
+/*    width: 100%;*/
+/*    background-color: #ffc107;*/
+/*    transition: all 0.3s ease 0s;*/
+/*}*/
 
 .test-button:hover {
-    background-color: #ffd761;
+    background-color: #ffd454;
+    color: black;
 }
-
+.list-group-item:last-of-type{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
 @media all and (max-width: 991px) {
     .page-body {
         margin-bottom: 100px;

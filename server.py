@@ -14,12 +14,21 @@ from data_manager import language_handler
 from data_manager import social_situation_handler
 from data_manager import user_handler
 from data_manager import work_motivation_test_handler
+from data_manager import start_sql
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
 
 app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
+
+#------------------------------JUST FOR DEVELOPMENT--------------------------------------------
+
+with open("data/db_schema.sql", encoding="UTF-8") as file:
+    sql = file.readlines()
+    start_sql.start(sql)
+
+#----------------------------------------------------------------------------------------------
 
 
 @app.context_processor
@@ -154,6 +163,14 @@ def api_patch_work_motivation_question(question_id):
 def api_english_language_submit():
     results = request.json
     english_test_handler.submit_result(results, session["user_id"])
+    return {"status": "success"}
+
+@app.route("/api/social-situation/question/<question_id>", methods=["POST"])
+@util.login_required
+@util.json_response
+def api_social_situation_submit(question_id):
+    results = request.json
+    social_situation_handler.save_data(results, question_id, session["user_id"])
     return {"status": "success"}
 
 
