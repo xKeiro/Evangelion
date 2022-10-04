@@ -12,11 +12,19 @@ function init() {
 async function save() {
     const answers = document.querySelectorAll("textarea");
     const text = await textPromise;
+    const result = [];
     for(const answ of answers){
         const id = answ.getAttribute('question-id');
         const value = answ.value;
-        await dataHandler.postSocialSituationResults(value, id);
+        result.push([id, value])
     }
-    document.querySelector("main").innerHTML =
+
+    const response = await dataHandler.postSocialSituationResults(result);
+    if (response) {
+        document.querySelector("main").innerHTML =
             `<div class="alert alert-success" role="alert">${text["A teszted eredménye elküldve!"]}</div>`;
+    } else {
+        sessionStorage.setItem(document.location.pathname, JSON.stringify({"test_results": result}));
+        alert(text["Probléme volt az adatok elküldésével, kérlek próbáld meg később!"]);
+    }
 }

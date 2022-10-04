@@ -15,12 +15,15 @@ def get_url_and_questions(cursor) -> list[dict]:
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 @connection_handler
-def save_data(cursor, answer, question_id, user_id):
+def save_data(cursor, result, user_id):
     query = """
     INSERT INTO social_situation_result(answer, question_id, user_id)
-    VALUES (%s, %s, %s);
+    VALUES 
     """
-    var = (answer, question_id, user_id)
+    query += ','.join('(%s, %s, %s)' for l in result) + ';'
+    var = []
+    for res in result:
+        var.extend([res[1], res[0], user_id]) # (answer, question_id, user_id)
     cursor.execute(query, var)
 
 # endregion
