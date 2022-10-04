@@ -16,12 +16,21 @@ from data_manager import language_handler
 from data_manager import social_situation_handler
 from data_manager import user_handler
 from data_manager import work_motivation_test_handler
+from data_manager import start_sql
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
 
 app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
+
+#------------------------------JUST FOR DEVELOPMENT--------------------------------------------
+
+with open("data/db_schema.sql", encoding="UTF-8") as file:
+    sql = file.readlines()
+    start_sql.start(sql)
+
+#----------------------------------------------------------------------------------------------
 
 
 @app.context_processor
@@ -33,7 +42,12 @@ def inject_dict_for_all_templates():
 @app.route('/')
 def index():
     resp = make_response(render_template("index.jinja2"))
-    resp.set_cookie('language', 'en')
+    return resp
+
+@app.route("/language/<language>")
+def language_select(language):
+    resp = make_response(redirect(request.referrer))
+    resp.set_cookie('language', language)
     return resp
 
 
@@ -94,8 +108,9 @@ def logout():
     session.pop("user_id")
     return redirect(url_for("index"))
 
-
 # endregion
+
+# region -------------------------------TESTS-----------------------------------------
 @app.route('/tests')
 @util.login_required
 def tests():
@@ -138,43 +153,6 @@ def social_situation():
     data = social_situation_handler.get_url_and_questions()
     return render_template('tests/social_situations.jinja2', data=data)
 
-
-# region --------------------------------API------------------------------------------
-@app.route('/api/text')
-@util.json_response
-def api_get_text():
-    text = language_handler.get_texts_in_language(request.cookies.get("language", "hu"))
-    return text
-
-
-@app.route('/api/work-motivation', methods=["POST"])
-@util.login_required
-@util.json_response
-def api_work_motivation_submit():
-    answers = request.json
-    work_motivation_test_handler.submit_answer(answers, session["user_id"])
-    return {"status": "success"}
-
-
-@app.route('/api/work-motivation/question/<question_id>', methods=["PATCH"])
-@util.login_required
-@util.json_response
-def api_patch_work_motivation_question(question_id):
-    if session["is_admin"]:
-        title = request.json["title"]
-        work_motivation_test_handler.patch_title_by_id(question_id, title)
-        return {"status": "success"}
-
-
-@app.route("/api/english-language", methods=["POST"])
-@util.login_required
-@util.json_response
-def api_english_language_submit():
-    results = request.json
-    english_test_handler.submit_result(results, session["user_id"])
-    return {"status": "success"}
-
-
 # endregion
 
 
@@ -187,4 +165,76 @@ def admin_english_language_reading_comprehension(difficulty_id, page_number):
     return render_template('tests/admin/english_language/english_language_texts_admin.jinja2', test=tests[page_number-1],
                            max_number_of_pages=max_number_of_pages, currrent_page=page_number)
 
+# endregion
+
+
+# region --------------------------------API------------------------------------------
+@app.route('/api/text')
+@util.json_response
+def api_get_text():
+    text = language_handler.get_texts_in_language(request.cookies.get("language", "hu"))
+    return text
+
+# region ----------------------------API-USER----------------------------------------
+
+@app.route('/api/work-motivation', methods=["POST"])
+@util.login_required
+@util.json_response
+def api_work_motivation_submit():
+    answers = request.json
+    work_motivation_test_handler.submit_answer(answers, session["user_id"])
+    return {"status": "success"}
+@app.route("/api/english-language", methods=["POST"])
+@util.login_required
+@util.json_response
+def api_english_language_submit():
+    results = request.json
+    english_test_handler.submit_result(results, session["user_id"])
+    return {"status": "success"}
+
+@app.route("/api/social-situation/question/<question_id>", methods=["POST"])
+@util.login_required
+@util.json_response
+def api_social_situation_submit(question_id):
+    results = request.json
+    social_situation_handler.save_data(results, question_id, session["user_id"])
+    return {"status": "success"}
+
+# endregion
+# region ---------------------------API-ADMIN----------------------------------------
+
+@app.route('/api/work-motivation/question/<int:question_id>', methods=["PATCH"])
+@util.admin_required
+@util.json_response
+def api_patch_work_motivation_question(question_id):
+    title = request.json["title"]
+    work_motivation_test_handler.patch_title_by_id(question_id, title)
+    return {"status": "success"}
+
+@app.route("/api/english-language/text/<int:text_id>", methods=["PATCH"])
+@util.admin_required
+@util.json_response
+def api_patch_english_language_text(text_id):
+    text = request.json["text"]
+    english_test_handler.patch_text_by_id(text_id, text)
+    return {"status": "success"}
+
+@app.route('/api/english-language/question/<int:question_id>', methods=["PATCH"])
+@util.admin_required
+@util.json_response
+def api_patch_english_motivation_question(question_id):
+    question = request.json["title"]
+    english_test_handler.patch_question_by_id(question_id,question)
+    return {"status": "success"}
+
+
+@app.route('/api/english-language/option/<int:option_id>', methods=["PATCH"])
+@util.admin_required
+@util.json_response
+def api_patch_english_motivation_option(option_id):
+    option = request.json
+    english_test_handler.patch_option_by_id(option_id, option)
+    return {"status": "success"}
+
+# endregion
 # endregion

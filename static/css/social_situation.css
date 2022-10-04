@@ -1,3 +1,48 @@
 img {
     width: 720px;
 }
+.page-body{
+    width: 80%;
+    max-width: 1200px;
+}
+
+.card-header{
+    background-color: #0078c3;
+    color: white;
+}
+
+.card-title{
+    text-align: left;
+}
+
+.question-card{
+    margin-bottom: 1.5em;
+    font-family: montserrat;
+    font-size: 1.2em;
+    border-color: #0096f2;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+.media-content{
+    width: 100%;
+    margin-bottom: 1em;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+.img-container{
+
+}
+
+.test-answer{
+    /*margin-top: 1em;*/
+    /*padding: 0.5em!important;*/
+    min-width: 100%;
+    height: 8em;
+    resize: none;
+}
+
+.answer-label{
+    text-align: left;
+    width: 100%;
+}

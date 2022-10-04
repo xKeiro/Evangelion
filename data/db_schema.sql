@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS social_situation_result CASCADE;
 CREATE TABLE language
 (
     hu VARCHAR PRIMARY KEY,
-    en VARCHAR
+    gb VARCHAR
 );
 
 CREATE TABLE users
@@ -160,7 +160,7 @@ CREATE TABLE social_situation_result
 
 
 
-INSERT INTO language(hu, en)
+INSERT INTO language(hu, gb)
 VALUES ('Főoldal', 'Home'),
        ('Kijelentkezés', 'Logout'),
        ('Bejelentkezés', 'Login'),
@@ -192,8 +192,24 @@ VALUES ('Főoldal', 'Home'),
         'There was a problem sending your data, please try again later!'),
        ('Nincs jogosultságod ennek az oldalnak az eléréséhez!',
         E'You don\'t have a necessary permission to access this site!'),
-       ('Jelöltek eredményei PDF', 'Applicants results PDF'),
-       ('Teszt eredmények PDF', 'Test results PDF');
+        ('Tovább a', 'To the'),
+        ('tesztre', 'test'),
+        ('Munka motiváció','Work motivation'),
+        ('Ennek a tesztnek a lényege, hogy felmérje a hozzáállásodat a munkához','The purpose of this test is to asses your work attitude'),
+        ('Angol nyelv', 'English Language'),
+        ('Alapfok','Elementary'),
+        ('Ez a teszt felméri az alapfokú angol tudásod','This test assesses your skills in elementary english'),
+        ('Középfok','Intermediate'),
+        ('Ez a teszt felméri a középfokú angol tudásod','This test assesses your skills in intermediate english'),
+        ('Felső középfok','Upper intermediate'),
+        ('Ez a teszt felméri a felső középfokú angol tudásod','This test assesses your skills in upper intermediate english'),
+        ('Szociális készségek','Social skills'),
+        ('Teszt cím','Test name'),
+        ('Teszt leírás','Test description'),
+        ('Teszt kategória', 'Test category'),
+        ('Munka-motivációs kérdőiv','Work motivation survey'),
+        ('Tovább a teszthez','To the test'),
+        ('Teszt eredmények PDF', 'Test results PDF');
 
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)
@@ -273,24 +289,37 @@ VALUES ('Elementary'),
        ('Upper-intermediate');
 
 INSERT INTO english_language_text(text, difficulty_id)
-VALUES ( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam malesuada sit amet nisl at dignissim. In dapibus eros id felis interdum, non laoreet magna venenatis. Suspendisse a nisl sodales, luctus neque ac, dictum nunc. Fusce vestibulum at eros mattis convallis. Nam metus neque, accumsan nec ipsum eu, tempor consequat turpis. Nam pretium posuere nunc. Fusce mattis enim enim, ac bibendum augue accumsan sed. Nulla facilisi. Integer tempus lacus felis, quis varius elit gravida bibendum. In hac habitasse platea dictumst. Ut quis nunc suscipit, tempus purus id, scelerisque arcu. Sed et tortor et elit consequat pretium. Duis ornare mi vel augue efficitur, in tristique dui pulvinar. Praesent placerat nibh eget sodales luctus.
+VALUES ( 'To: DomParsons@nitromail.com
 
-Phasellus eget elit sed justo finibus scelerisque at sed nunc. Etiam vitae felis eget risus varius elementum. Vestibulum vulputate, odio sit amet porttitor malesuada, mi velit blandit ex, ac molestie est velit eu turpis. Mauris tincidunt orci dui, ac tempor felis varius a. In efficitur gravida lorem, vitae luctus tellus faucibus placerat. Quisque mauris augue, eleifend vel erat in, faucibus ullamcorper nunc. Nullam feugiat metus eget cursus ultrices. Morbi nunc erat, congue eu ante et, porta maximus felis. Vestibulum pharetra feugiat neque, porta sagittis elit maximus ac. Sed laoreet ac felis at pellentesque. Proin id iaculis ligula. Aliquam lobortis pretium libero, quis cursus lacus pretium eu. Fusce nec auctor tortor, et molestie turpis. Curabitur at lacus sed augue rhoncus euismod. Quisque venenatis, nisi sit amet tristique tempor, nisl ipsum posuere velit, at elementum turpis ipsum at quam. Sed rutrum sodales dolor vel semper.
+From: JamesFSharp@bmail.net
 
-Aenean commodo, mauris ac tincidunt viverra, tortor odio finibus quam, vel convallis orci dui vel urna. Phasellus sed felis lectus. Aenean congue euismod orci, ut mattis mi molestie in. Maecenas a magna non nisi commodo cursus et at nunc. Proin ultricies tellus non commodo euismod. Sed et mi at neque fringilla molestie id quis diam. Phasellus ac sollicitudin quam. Integer ornare vitae ex vitae ornare. Nullam vel justo ac nisl suscipit tincidunt.
+Subject: Hi
 
-Morbi mattis elit et velit egestas volutpat. Aliquam vitae dui tincidunt, tempor lorem vitae, laoreet leo. Mauris ipsum odio, vehicula sit amet sagittis nec, faucibus non sapien. Nullam malesuada turpis nec semper consequat. Integer leo dolor, tristique eget justo ut, blandit interdum lacus. Curabitur mollis blandit mauris ut volutpat. Proin ac quam rhoncus, tincidunt metus in, porttitor tortor.
+Hi Dom,
 
-Duis et nulla mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed tincidunt lacus eget justo rutrum, quis condimentum ante rhoncus. Sed vitae justo eget ligula fringilla ullamcorper sed nec risus. Curabitur vestibulum blandit erat, vitae gravida sem luctus id. Aliquam fringilla tellus sodales sapien consectetur, quis fringilla diam varius. Quisque at porta justo. Mauris nec pulvinar lectus. Duis malesuada metus ut tortor porttitor ultricies vel eget eros. Mauris tellus arcu, ornare nec malesuada id, suscipit at felis.'
-       , 1),
-       ( 'Lorem ipsum dolor sit amet consectetur, adipiscing elit nam potenti, fames tristique eu nascetur blandit, curae sem commodo. Suscipit eleifend vestibulum mattis mauris blandit nec morbi vehicula urna, conubia ligula nullam netus consectetur dolor mus ullamcorper, dignissim sem dui nostra dis condimentum posuere consequat. Id consectetur turpis porta at elementum cubilia euismod rutrum, nostra auctor habitant malesuada cursus ac cum sit faucibus, morbi suspendisse cras urna commodo sociis rhoncus. Nostra sed elementum cubilia nibh pharetra pretium phasellus lectus in nec, consectetur id dis suscipit viverra congue hendrerit ultricies senectus. Fames suscipit nunc quisque eros iaculis leo adipiscing, cras pharetra nec cum phasellus libero vehicula, natoque morbi diam vitae vulputate accumsan.
+How are you? I’m fine. I’m at home, of course, because of lockdown. I started my engineering course at Manchester University last year, but I’m not there now. I went to Manchester in October and I stayed in the student accommodation. We had lectures in the lecture rooms for three weeks, but after that, we had to stay in our accommodation because of Covid-19. I studied by computer. I wanted to go out to bars and join a basketball team, but I couldn’t. Luckily, there were some cool students in my accommodation. I made some good friends and we had cool parties.
 
-Eleifend scelerisque id aliquam laoreet pharetra erat parturient suscipit, netus mollis eros potenti dui non porttitor facilisis, ante montes volutpat viverra vulputate elit quis. Volutpat suscipit ullamcorper semper at nulla nunc magna eget placerat cum, pharetra ad sollicitudin porta curae felis dis ligula diam. Velit parturient tempor class justo ultrices ipsum fusce nunc fames facilisi facilisis, donec mus pretium praesent ad turpis ante viverra nibh sem, fermentum lobortis dui venenatis molestie vulputate mattis cursus consectetur lacus. Orci himenaeos metus curae facilisis est sapien cursus primis, commodo nunc euismod taciti aenean dapibus porta mi pretium, ac porttitor erat dictum cubilia aliquet pellentesque.
+But now I’m at home. I’m still studying by computer. I have four hours of lectures every day and then I work on projects. Actually, it’s quite good. We can do a lot of things by computer. I use different software programmes, read articles, and have discussions with the other students. I enjoy those discussions because I’m alone most of the time. Dad and mum are both at work all day. I can’t leave my town or visit friends, so I work! I work much harder than I did at school!
 
-Elementum fames feugiat laoreet maecenas suspendisse tincidunt integer habitant nam, ligula id morbi rutrum dis malesuada sagittis magna, rhoncus tristique congue condimentum ullamcorper proin lobortis eget. Dis dignissim accumsan phasellus tristique ornare vulputate amet nostra proin ultrices quisque, massa laoreet montes sociis neque integer nec condimentum diam vel faucibus vivamus, sit elit scelerisque pellentesque maecenas gravida luctus eleifend ipsum nunc. Dui euismod dolor sollicitudin taciti ad ligula arcu dictum ridiculus, hac non cursus lectus aliquet adipiscing ante parturient et, justo quis velit felis vel pellentesque vehicula massa. Amet et tristique facilisi eros placerat adipiscing himenaeos convallis ad vivamus nostra non velit montes, hac feugiat cubilia accumsan cras laoreet vehicula faucibus volutpat imperdiet mauris at vitae. Quisque sem placerat eu amet erat ullamcorper sit laoreet habitant, gravida feugiat mi tempus netus elit nascetur consequat metus dapibus, mollis cras per bibendum potenti volutpat cursus hac.
+I miss playing basketball, but I’m keeping active. I go jogging once a day. But I’m watching a lot of videos too.
 
-Vulputate fermentum suscipit ligula sociosqu penatibus sapien bibendum dignissim in cubilia malesuada sem ac, ipsum integer nullam commodo ullamcorper volutpat ridiculus scelerisque suspendisse non inceptos viverra. Sapien nunc nostra id fringilla fusce maecenas lacinia quam imperdiet tincidunt, est primis dictumst consequat mi aptent sociis potenti platea. Dui proin vel scelerisque venenatis nullam luctus ad, nunc bibendum pretium aliquam fermentum diam, potenti laoreet libero sit platea hac. Ad praesent hac volutpat nulla sit ornare vulputate, eget dignissim in a ullamcorper massa. Adipiscing cras quisque parturient vivamus aliquam sed phasellus nam aptent primis himenaeos, class sapien ipsum quis posuere viverra montes dignissim metus suscipit, natoque id ridiculus hendrerit blandit litora ullamcorper nostra pretium imperdiet.'
-       , 2),
+I’m not going to Manchester before Easter, but I hope to go there after Easter. In the Easter Holidays, I’m going to work on a friend’s farm in Wales. I don’t know anything about farming, but it will be great to be somewhere different!
+
+Hope you are well,
+
+from James.'
+, 1),
+       ( 'If you love chocolate, maybe you have eaten a bar of Cadbury’s Bournville chocolate. But Bournville isn’t just the name of an English chocolate bar. It’s the name of a village which was built especially for workers at the Cadbury’s chocolate factory.
+George and Richard Cadbury took over the cocoa and chocolate business from their father in 1861. A few years later, they decided to move the factory out of the centre of Birmingham, a city in the middle of England, to a new location where they could expand. They chose an area close to the railways and canals so that they could receive milk deliveries easily and send the finished products to stores across the country.
+
+Here, the air was much cleaner than in the city centre, and the Cadbury brothers thought it would be a much healthier place for their employees to work. They named the site Bournville after a local river called ‘The Bourn’. ‘Ville’, the French word for town, was used because at the time, people thought French chocolate was the highest quality. The new factory opened in 1879. Close to it, they built a village where the factory workers could live. By 1900, there were 313 houses on the site, and many more were built later.
+
+The Cadbury family were religious and believed that it was right to help other people. They thought their workers deserved to live and work in good conditions. In the factory, workers were given a fair wage, a pension and access to medical treatment. The village was also designed to provide the best possible conditions for workers too. The houses, although traditional in style, had modern interiors, indoor bathrooms and large gardens. The village provided everything that workers needed including a shop, a school and a community centre where evening classes were held to train young members of the workforce.
+
+Since the Cadbury family believed that their workers and their families should be fit and healthy, they added a park with hockey and football pitches, a running track, bowling green, fishing lake, and an outdoor swimming pool. A large clubhouse was built in the park so that players could change their clothes and relax after a game. Dances and dinners were also held here for the factory workers, who were never charged to use any of the sports facilities. However, because the Cadbury’s believed that alcohol was bad for health and society, no pubs were ever built in Bourneville!
+
+The Cadbury brothers were among the first business owners to ensure that their workers had good standards of living. Soon, other British factory owners were copying their ideas by providing homes and communities for their workers designed with convenience and health in mind. Today, over 25,000 people live in Bournville village. There are several facilities there to help people with special needs, such as care homes for the elderly, a hostel for people with learning difficulties and affordable homes for first-time homeowners and single people. Over a hundred years since the first house in Bournville Village was built, the aims of its founders are still carried out.'
+, 2),
        ( 'Lorem ipsum dolor sit amet consectetur adipiscing elit tristique lectus curae, non facilisi dictumst mollis pharetra nec cum sociis. Parturient imperdiet turpis eu fames bibendum class porta euismod, ipsum tempor velit platea nascetur a fermentum litora dolor, pulvinar vel adipiscing porttitor vulputate interdum enim. Augue semper massa mollis imperdiet suscipit tortor orci ornare risus neque potenti, congue leo nisl consectetur penatibus feugiat fames ullamcorper curabitur a justo, magnis vulputate vestibulum mus dictumst ultrices tristique eu torquent elementum. Eget tristique sapien felis leo elit litora habitasse elementum congue vitae, mattis venenatis diam orci nec urna nisi netus ligula magna, convallis fusce dictum metus ullamcorper quisque arcu torquent mauris. Mollis sollicitudin nam augue sociis fringilla curae nibh faucibus, nullam fusce ullamcorper lorem curabitur aliquet a litora penatibus, cum sem velit hendrerit nostra egestas integer. Class leo lobortis cursus dui donec ultrices condimentum cum non, dictumst est pulvinar malesuada magnis mi ridiculus suspendisse aenean parturient, vestibulum venenatis ut nisi dolor nascetur ornare curabitur.
 
 Magnis parturient nostra ligula eu cras ullamcorper, in ultricies a cum et curae, risus ut etiam dictumst magna. Etiam cum donec congue metus aliquam dictum, amet neque ligula consequat ornare, fermentum vulputate maecenas placerat ultricies. Cursus senectus dolor leo nullam potenti magna, ad himenaeos phasellus maecenas mus a ut, fermentum sagittis risus litora accumsan. Urna phasellus ridiculus conubia eleifend felis bibendum dui a aliquam, massa scelerisque diam posuere molestie aenean vel leo habitasse, nam sociis ultrices turpis torquent himenaeos quam senectus. Nec consectetur vehicula netus praesent ad sociosqu fames ante lorem tempus mi, posuere dictumst habitant ultrices quisque suscipit morbi ornare scelerisque. Lacinia faucibus fringilla eleifend magnis dui ultricies phasellus viverra, justo porta in commodo lobortis rhoncus vel tortor, ante senectus orci ipsum fusce natoque purus. Hac metus primis leo litora consequat rhoncus placerat purus consectetur, mattis quisque cursus adipiscing proin dui porttitor natoque, facilisi justo nullam elementum urna vel lacinia dis. Lorem adipiscing conubia porttitor pellentesque donec bibendum nibh cubilia torquent, venenatis lacus suscipit egestas lacinia potenti nunc tellus aliquam velit, litora quam pharetra sed ipsum facilisis cursus sociosqu.
@@ -298,29 +327,31 @@ Magnis parturient nostra ligula eu cras ullamcorper, in ultricies a cum et curae
 Ante dignissim arcu suspendisse donec ultricies, elit accumsan himenaeos feugiat, vulputate neque orci venenatis. Pretium non tortor a mus magnis sociosqu dolor praesent dapibus ultricies augue vulputate, hendrerit integer lobortis penatibus curabitur primis ut class elit duis. Nisi erat hac sem nam curabitur faucibus rutrum diam, tempus odio vel posuere nisl etiam suscipit nullam, habitasse feugiat quam facilisi lectus est vulputate. Sapien congue turpis pulvinar non facilisi consectetur aliquam, eget lobortis vitae fusce potenti dui feugiat purus, orci ante tempus fermentum dapibus massa. Vehicula imperdiet porttitor senectus magna consequat sem litora fusce ante placerat natoque tellus, est nunc conubia suspendisse tempor auctor netus velit a viverra enim varius nullam, nibh bibendum fermentum fames vitae proin inceptos tincidunt phasellus molestie lacinia. Mattis congue nisi suspendisse non ornare vulputate sociosqu penatibus, nullam dignissim pulvinar integer convallis justo risus, dolor feugiat sem ultrices netus platea aptent. Nunc proin torquent hendrerit donec ullamcorper sem senectus hac, lobortis facilisis tempus interdum amet suspendisse libero bibendum aenean, cras dolor nibh parturient elit scelerisque netus. Luctus nibh mattis himenaeos sociosqu ultricies at conubia habitasse lacus parturient libero senectus auctor rutrum placerat, dignissim molestie integer phasellus imperdiet rhoncus mi ultrices vestibulum viverra diam lobortis ad nam.
 
 Aliquam luctus tempor mattis donec ultricies ad tortor tincidunt, interdum scelerisque nisl risus nam venenatis arcu phasellus ut, etiam lorem hendrerit eu eget praesent proin. Commodo leo dictumst mauris quam cum erat torquent, potenti viverra sodales convallis tristique ut urna vitae, parturient porttitor blandit habitant nec sem. Tellus aliquam tristique sed vitae cum facilisis in, etiam gravida senectus dis urna primis ante inceptos, vestibulum auctor litora pharetra semper molestie. Fringilla enim nisi torquent turpis sed cursus adipiscing vel primis, aliquet urna elit porta magna feugiat egestas in ac, accumsan sit maecenas varius odio eleifend pulvinar mauris. Vehicula ultrices malesuada venenatis potenti porta quam ipsum suscipit nascetur consectetur, lacus facilisi donec lobortis semper taciti duis imperdiet nec, egestas est dui metus mauris vulputate cras integer orci. Dictumst metus nibh a egestas primis magna leo, tellus mi facilisis cubilia aliquet suscipit malesuada, massa at accumsan ultricies maecenas potenti.'
-       , 3);
+, 3);
 
+-- The question must contain this: ............. / exactly 13 dots
+-- .............
 INSERT INTO english_language_question(text_id, question)
-VALUES (1, 'Question 1.............'),
-       (1, 'Question 2.............'),
-       (1, 'Question 3.............'),
-       (1, 'Question 4.............'),
-       (1, 'Question 5.............'),
-       (1, 'Question 6.............'),
-       (1, 'Question 7.............'),
-       (1, 'Question 8.............'),
-       (1, 'Question 9.............'),
-       (1, 'Question 10.............'),
-       (2, 'Question 1.............'),
-       (2, 'Question 2.............'),
-       (2, 'Question 3.............'),
-       (2, 'Question 4.............'),
-       (2, 'Question 5.............'),
-       (2, 'Question 6.............'),
-       (2, 'Question 7.............'),
-       (2, 'Question 8.............'),
-       (2, 'Question 9.............'),
-       (2, 'Question 10.............'),
+VALUES (1, 'James studies ............. at university.'),
+       (1, 'James went to lectures in the lecture rooms at Manchester university for ............. weeks.'),
+       (1, 'While in lockdown in Manchester, James and his friends ............. .............'),
+       (1, 'James wanted to play ............. at university.'),
+       (1, 'James watches ............. on his computer for four hours each day.'),
+       (1, 'After listening to lectures, James works on .............'),
+       (1, 'He likes having ............. with other students these days.'),
+       (1, 'James goes ............. every day.'),
+       (1, 'He hopes to return to Manchester ............. Easter.'),
+       (1, 'At Easter, James is going to work at a .............'),
+       (2, 'Bournville is .............'),
+       (2, 'The new site for the chocolate factory was chosen because .............'),
+       (2, 'Bournville takes its name from .............'),
+       (2, 'The original houses in Bournville were .............'),
+       (2, 'Workers at the Cadbury received .............'),
+       (2, 'The extract shows that the Cadbury family were .............'),
+       (2, '............. can live in special homes in Bournville.'),
+       (2, 'The Cadbury family added a park for the workers, which had .............'),
+       (2, 'In the Cadbury’s opinion alcohol was .............'),
+       (2, 'The workers could have dinner in the .............'),
        (3, 'Question 1.............'),
        (3, 'Question 2.............'),
        (3, 'Question 3.............'),
@@ -333,106 +364,106 @@ VALUES (1, 'Question 1.............'),
        (3, 'Question 10.............');
 
 INSERT INTO english_language_option(question_id, option, correct)
-VALUES (1, 'Option 1', FALSE),
-       (1, 'Option 2', FALSE),
-       (1, 'Option 3', TRUE),
-       (1, 'Option 4', FALSE),
-       (1, 'Option 5', FALSE),
-       (2, 'Option 1', FALSE),
-       (2, 'Option 2', FALSE),
-       (2, 'Option 3', TRUE),
-       (2, 'Option 4', FALSE),
-       (2, 'Option 5', FALSE),
-       (3, 'Option 1', FALSE),
-       (3, 'Option 2', FALSE),
-       (3, 'Option 3', TRUE),
-       (3, 'Option 4', FALSE),
-       (3, 'Option 5', FALSE),
-       (4, 'Option 1', FALSE),
-       (4, 'Option 2', FALSE),
-       (4, 'Option 3', TRUE),
-       (4, 'Option 4', FALSE),
-       (4, 'Option 5', FALSE),
-       (5, 'Option 1', FALSE),
-       (5, 'Option 2', FALSE),
-       (5, 'Option 3', TRUE),
-       (5, 'Option 4', FALSE),
-       (5, 'Option 5', FALSE),
-       (6, 'Option 1', FALSE),
-       (6, 'Option 2', FALSE),
-       (6, 'Option 3', TRUE),
-       (6, 'Option 4', FALSE),
-       (6, 'Option 5', FALSE),
-       (7, 'Option 1', FALSE),
-       (7, 'Option 2', FALSE),
-       (7, 'Option 3', TRUE),
-       (7, 'Option 4', FALSE),
-       (7, 'Option 5', FALSE),
-       (8, 'Option 1', FALSE),
-       (8, 'Option 2', FALSE),
-       (8, 'Option 3', TRUE),
-       (8, 'Option 4', FALSE),
-       (8, 'Option 5', FALSE),
-       (9, 'Option 1', FALSE),
-       (9, 'Option 2', FALSE),
-       (9, 'Option 3', TRUE),
-       (9, 'Option 4', FALSE),
-       (9, 'Option 5', FALSE),
-       (10, 'Option 1', FALSE),
-       (10, 'Option 2', FALSE),
-       (10, 'Option 3', TRUE),
-       (10, 'Option 4', FALSE),
-       (10, 'Option 5', FALSE),
-       (11, 'Option 1', FALSE),
-       (11, 'Option 2', FALSE),
-       (11, 'Option 3', TRUE),
-       (11, 'Option 4', FALSE),
-       (11, 'Option 5', FALSE),
-       (12, 'Option 1', FALSE),
-       (12, 'Option 2', FALSE),
-       (12, 'Option 3', TRUE),
-       (12, 'Option 4', FALSE),
-       (12, 'Option 5', FALSE),
-       (13, 'Option 1', FALSE),
-       (13, 'Option 2', FALSE),
-       (13, 'Option 3', TRUE),
-       (13, 'Option 4', FALSE),
-       (13, 'Option 5', FALSE),
-       (14, 'Option 1', FALSE),
-       (14, 'Option 2', FALSE),
-       (14, 'Option 3', TRUE),
-       (14, 'Option 4', FALSE),
-       (14, 'Option 5', FALSE),
-       (15, 'Option 1', FALSE),
-       (15, 'Option 2', FALSE),
-       (15, 'Option 3', TRUE),
-       (15, 'Option 4', FALSE),
-       (15, 'Option 5', FALSE),
-       (16, 'Option 1', FALSE),
-       (16, 'Option 2', FALSE),
-       (16, 'Option 3', TRUE),
-       (16, 'Option 4', FALSE),
-       (16, 'Option 5', FALSE),
-       (17, 'Option 1', FALSE),
-       (17, 'Option 2', FALSE),
-       (17, 'Option 3', TRUE),
-       (17, 'Option 4', FALSE),
-       (17, 'Option 5', FALSE),
-       (18, 'Option 1', FALSE),
-       (18, 'Option 2', FALSE),
-       (18, 'Option 3', TRUE),
-       (18, 'Option 4', FALSE),
-       (18, 'Option 5', FALSE),
-       (19, 'Option 1', FALSE),
-       (19, 'Option 2', FALSE),
-       (19, 'Option 3', TRUE),
-       (19, 'Option 4', FALSE),
-       (19, 'Option 5', FALSE),
-       (20, 'Option 1', FALSE),
-       (20, 'Option 2', FALSE),
-       (20, 'Option 3', TRUE),
-       (20, 'Option 4', FALSE),
-       (20, 'Option 5', FALSE),
+VALUES (1, 'marketing', FALSE), -- James studies ............. at university.
+       (1, 'IT', FALSE),
+       (1, 'engineering', TRUE),
+       (1, 'agriculture', FALSE),
+       (1, 'architecture', FALSE),
+       (2, '1', FALSE),     -- -- James went to lectures in the lecture rooms at Manchester university for ............. weeks.
+       (2, '2', FALSE),
+       (2, '3', TRUE),
+       (2, '4', FALSE),
+       (2, '5', FALSE),
+       (3, 'wrote mails', FALSE),   -- While in lockdown in Manchester, James and his friends ............. .............
+       (3, 'studied hard', FALSE),
+       (3, 'had parties', TRUE),
+       (3, 'played basketball', FALSE),
+       (3, 'did nothing', FALSE),
+       (4, 'softball', FALSE),  -- James wanted to play ............. at university.
+       (4, 'football', FALSE),
+       (4, 'basketball', TRUE),
+       (4, 'volleyball', FALSE),
+       (4, 'handball', FALSE),
+       (5, 'TV series', FALSE), -- James watches ............. on his computer for four hours each day.
+       (5, 'movies', FALSE),
+       (5, 'lectures', TRUE),
+       (5, 'project videos', FALSE),
+       (5, 'funny images', FALSE),
+       (6, 'his body', FALSE),  -- After listening to lectures, James works on .............
+       (6, 'the garden', FALSE),
+       (6, 'projects', TRUE),
+       (6, 'homework', FALSE),
+       (6, 'articles', FALSE),
+       (7, 'basketball matches', FALSE),    -- He likes having ............. with other students these days.
+       (7, 'meals', FALSE),
+       (7, 'discussions', TRUE),
+       (7, 'joint joggings', FALSE),
+       (7, 'meetings', FALSE),
+       (8, 'to the church', FALSE), -- James goes ............. every day.
+       (8, 'playing basketball', FALSE),
+       (8, 'jogging', TRUE),
+       (8, 'shopping', FALSE),
+       (8, 'to the toilet', FALSE),
+       (9, 'before', FALSE),    -- He hopes to return to Manchester ............. Easter.
+       (9, 'at', FALSE),
+       (9, 'after', TRUE),
+       (9, 'next year before', FALSE),
+       (9, 'next year after', FALSE),
+       (10, 'post office', FALSE),  -- At Easter, James is going to work at a .............
+       (10, 'construction', FALSE),
+       (10, 'farm', TRUE),
+       (10, 'cinema', FALSE),
+       (10, 'shopping center', FALSE),
+       (11, 'a chocolate factory', FALSE),  -- Bournville is .............
+       (11, 'a river', FALSE),
+       (11, 'a village', TRUE),
+       (11, 'the founder of a chocolate factory', FALSE),
+       (11, 'a chocolate bunny', FALSE),
+       (12, 'it was close to farms which provided milk', FALSE),    -- The new site for the chocolate factory was chosen because .............
+       (12, 'it was easy to build there', FALSE),
+       (12, 'it was close to several transportation routes', TRUE),
+       (12, 'a lot of people lived nearby.', FALSE),
+       (12, 'it was in the centre of the city', FALSE),
+       (13, 'a local town', FALSE), -- Bournville takes its name from .............
+       (13, 'a French town', FALSE),
+       (13, 'a local river and a French word', TRUE),
+       (13, 'a kind of French chocolate', FALSE),
+       (13, 'a local river', FALSE),
+       (14, 'free for workers', FALSE), -- The original houses in Bournville were .............
+       (14, 'large', FALSE),
+       (14, 'traditional in appearance', TRUE),
+       (14, 'built by the factory workers', FALSE),
+       (14, 'had no garden', FALSE),
+       (15, 'financial social support', FALSE), -- Workers at the Cadbury received .............
+       (15, 'free health care', FALSE),
+       (15, 'pensions', TRUE),
+       (15, 'dancing lessons', FALSE),
+       (15, 'free food and drink', FALSE),
+       (16, 'sporty', FALSE), -- The extract shows that the Cadbury family were .............
+       (16, 'careful', FALSE),
+       (16, 'kind', TRUE),
+       (16, 'mean', FALSE),
+       (16, 'lazy', FALSE),
+       (17, 'First-time buyers', FALSE), -- ............. can live in special homes in Bournville.
+       (17, 'Single people', FALSE),
+       (17, 'People with learning problems', TRUE),
+       (17, 'Chocolate factory workers', FALSE),
+       (17, 'Poor people', FALSE),
+       (18, 'billiard tables', FALSE), -- The Cadbury family added a park for the workers, which had .............
+       (18, 'a golf course', FALSE),
+       (18, 'a fishing lake', TRUE),
+       (18, 'a diving pool', FALSE),
+       (18, 'several basketball courts', FALSE),
+       (19, 'cheap', FALSE), -- In the Cadbury’s opinion alcohol was .............
+       (19, 'hard to get', FALSE),
+       (19, 'unhealthy', TRUE),
+       (19, 'made by Satan', FALSE),
+       (19, 'a luxury item', FALSE),
+       (20, 'pub', FALSE), -- The workers could have dinner in the .............
+       (20, 'factory', FALSE),
+       (20, 'clubhouse', TRUE),
+       (20, 'community centre', FALSE),
+       (20, 'restaurant', FALSE),
        (21, 'Option 1', FALSE),
        (21, 'Option 2', FALSE),
        (21, 'Option 3', TRUE),
@@ -497,7 +528,7 @@ INSERT INTO social_situation_media(url, type_id)
 VALUES ('https://www.youtube.com/watch?v=kMMH8rA1ggI', 2),
        ('https://www.youtube.com/watch?v=fNFzfwLM72c', 2),
        ('../static/img/img01.png', 1),
-       ('../static/img/img02.png', 1);;
+       ('../static/img/img02.png', 1);
 
 INSERT INTO social_situation_question(question, media_id)
 VALUES ('Why do they react the way they do?', 1),

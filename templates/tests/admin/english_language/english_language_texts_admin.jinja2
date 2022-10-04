@@ -3,8 +3,11 @@
 {% block head %}
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/english_language_test.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pagination.css') }}">
-{#	<script src="{{ url_for('static', filename='js/englishLanguageTest.js') }}" type="module" defer></script>#}
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/english_language_reading_comprehension_admin.css') }}">
+	<script src="{{ url_for('static', filename='js/tests/admin/englishLanguageReadingComprehensionAdmin.js') }}"
+	        type="module" defer></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+	      type="text/css">
 {% endblock %}
 {% block content %}
 	<main class="page-body container">
@@ -13,14 +16,15 @@
 			<section class="question-container" id="question-container">
 				{% for question in test.questions[:10] %}
 					<article class="card question-card">
-						<header class="card-header card-title"
+						<header class="card-header card-title question"
 						        data-question-id="{{ question.id }}">{{ question.question }}</header>
 						<div class="card-body">
 							<div class="card-text">
 								<ul class="list-group">
 									{% for option in test.options %}
 										{% if option.question_id == question.id %}
-											<li class="list-group-item" data-option-id="{{ option.id }}" data-correct="{{ option.correct }}">{{ option.option }}</li>
+											<li class="list-group-item option" data-question-id="{{ question.id }}"data-option-id="{{ option.id }}"
+											    data-correct="{{ option.correct }}">{{ option.option }}</li>
 										{% endif %}
 									{% endfor %}
 								</ul>

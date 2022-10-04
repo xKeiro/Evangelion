@@ -1,34 +1,62 @@
 {% extends "default.jinja2" %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
 {% block content %}
-	<main class="container">
-		<div class="d-flex flex-column text-center align-items-center">
-			{% if matching_username %}
-				<div class="alert wy-alert-danger">
-					<strong>{{ text["A felhasználónév foglalt!"] }}</strong> {{ text["Kérlek válassz egy másikat!"] }}
-				</div>
-			{% endif %}
-			<form action="{{ url_for("register") }}" method="POST">
-				<div class="form-group mt-5">
-					<label class="form-label fw-bold mb-1" for="username">{{ text["Felhasználónév"] }}:</label>
-					<input type="text" name="username" class="form-control" placeholder="{{ text["Felhasználónév"] }}" required>
-
-					<label class="color-primary fw-bold mb-1" for="password">{{ text["Jelszó"] }}: </label>
-					<input type="password" name="password" class="form-control" placeholder="{{ text["Jelszó"] }}" required>
-
-					<label class="color-primary fw-bold mb-1" for="email">{{ text["E-mail"] }}: </label>
-					<input type="email" name="email" class="form-control" placeholder="{{ text["E-mail"] }}" required>
-
-					<label class="color-primary fw-bold mb-1" for="last_name">{{ text["Családnév"] }}: </label>
-					<input type="text" name="last_name" class="form-control" placeholder="{{ text["Családnév"] }}" required>
-
-					<label class="color-primary fw-bold mb-1" for="first_name">{{ text["Keresztnév"] }}: </label>
-					<input type="text" name="first_name" class="form-control" placeholder="{{ text["Keresztnév"] }}" required>
-
-					<label class="color-primary fw-bold mb-1" for="birthday">{{ text["Születési idő"] }}: </label>
-					<input type="date" name="birthday" class="form-control" required>
-				</div>
-				<div><input type="submit" value="{{ text["Regisztráció"] }}" class="btn btn-primary mt-3"></div>
-			</form>
-		</div>
-	</main>
+    <main class="container page-body">
+        <header class="english-test-header">
+            <h2 class="test-title">{{ text["Regisztráció"] }}</h2>
+            <hr>
+        </header>
+        <div class="d-flex flex-column text-center align-items-center">
+            {% if matching_username %}
+                <div class="alert wy-alert-danger">
+                    <strong>{{ text["A felhasználónév foglalt!"] }}</strong> {{ text["Kérlek válassz egy másikat!"] }}
+                </div>
+            {% endif %}
+            <form action="{{ url_for("register") }}" method="POST" class="form-container">
+                <div class="form-group mt-5">
+                    <div class="material-container">
+                        <label class="form-label fw-bold material-label"
+                               for="username">{{ text["Felhasználónév"] }}:</label>
+                        <input type="text" name="username" class="form-control material-input"
+                               aria-label="{{ text["Felhasználónév"] }}:"
+                               required>
+                    </div>
+                    <div class="material-container">
+                        <label class="color-primary fw-bold material-label"
+                               for="password">{{ text["Jelszó"] }}: </label>
+                        <input type="password" name="password" class="form-control material-input"
+                               aria-label="{{ text["Jelszó"] }}"
+                               required>
+                    </div>
+                    <div class="material-container">
+                        <label class="color-primary fw-bold material-label" for="email">{{ text["E-mail"] }}: </label>
+                        <input type="email" name="email" class="form-control material-input"
+                               aria-label="{{ text["E-mail"] }}" required>
+                    </div>
+                    <div class="material-container">
+                        <label class="color-primary fw-bold material-label"
+                               for="last_name">{{ text["Családnév"] }}: </label>
+                        <input type="text" name="last_name" class="form-control material-input"
+                               aria-label="{{ text["Családnév"] }}"
+                               required>
+                    </div>
+                    <div class="material-container">
+                        <label class="color-primary fw-bold material-label"
+                               for="first_name">{{ text["Keresztnév"] }}: </label>
+                        <input type="text" name="first_name" class="form-control material-input"
+                               aria-label="{{ text["Keresztnév"] }}"
+                               required>
+                    </div>
+                    <div class="material-container">
+                        <label class="color-primary fw-bold material-label"
+                               for="birthday">{{ text["Születési idő"] }}: </label>
+                        <input type="date" name="birthday" class="form-control material-input" required>
+                    </div>
+                </div>
+                <div><input type="submit" value="{{ text["Regisztráció"] }}" class="btn btn-primary button-custom mt-3"></div>
+            </form>
+        </div>
+    </main>
 {% endblock %}

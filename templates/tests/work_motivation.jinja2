@@ -1,31 +1,41 @@
 {% extends "default.jinja2" %}
 {% block head %}
-	<script src="{{ url_for('static', filename='js/tests/admin/workMotivationAdmin.js') if session["is_admin"] else url_for('static', filename='js/tests/workMotivation.js') }}"
-	        type="module" defer></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/work-motivation.css') }}">
+    <script src="{{ url_for('static', filename='js/tests/admin/workMotivationAdmin.js') if session["is_admin"] else url_for('static', filename='js/tests/workMotivation.js') }}"
+            type="module" defer></script>
 {% endblock %}
 {% block content %}
-	<main class="container">
-		{% for question in questions %}
-			<div class="row mt-5 mb-5 question-row" data-question-id="{{ question.id }}">
-				<div class="col-lg-1 col-1 question-id">{{ question.id }}</div>
-				<div class="col-lg-6 col-11 question" data-question-id="{{ question.id }}"><p>{{ question.title }}</p></div>
-				<div class="col-lg-1 col-2">
-					<button class="btn ps-4 pe-4">1</button>
-				</div>
-				<div class="col-lg-1 col-2">
-					<button class="btn ps-4 pe-4">2</button>
-				</div>
-				<div class="col-lg-1 col-2">
-					<button class="btn ps-4 pe-4">3</button>
-				</div>
-				<div class="col-lg-1 col-2">
-					<button class="btn ps-4 pe-4">4</button>
-				</div>
-				<div class="col-lg-1 col-2">
-					<button class="btn ps-4 pe-4">5</button>
-				</div>
-			</div>
-		{% endfor %}
-		<button type="submit" id="question-submit" class="btn btn-primary">{{ text["Válaszok elküldése"] }}</button>
-	</main>
+    <main class="page-body container">
+        <header class="work-motiv-header">
+            <h2 class="test-title">{{ text["Munka-motivációs kérdőiv"] }}</h2><hr>
+            <h4 class="test-sub-title" tabindex="0">Úgy érzi, hogy egy ideális munkahelyen fontos, hogy....</h4>
+        </header>
+        <section class="answers">
+            {% for question in questions %}
+                <div class="row mt-5 mb-5 question-row" data-question-id="{{ question.id }}">
+                    <div class="col-lg-1 col-1 question-id" aria-hidden="true">{{ question.id }}</div>
+                    <div class="col-lg-6 col-11 question"
+                         data-question-id="{{ question.id }}" tabindex="0"><p>{{ question.title }}</p></div>
+                    <div class="col-lg-5 btn-group btn-group-toggle" role="group" data-toggle="buttons">
+                        <div class="btn btn-primary button-custom option-button">
+                            <input class="work-motiv-radio-button btn-check" aria-label="Egyáltalán nem fontos" type="radio" name="option-{{ loop.index }}" id="question-{{ question.id }}-option-1" autocomplete="off"><span aria-hidden="true" value="1">1</span>
+                        </div>
+                        <div class="btn btn-primary button-custom option-button">
+                            <input class="work-motiv-radio-button btn-check" aria-label="Nem fontos" type="radio" name="option-{{ loop.index }}" id="question-{{ question.id }}-option-2" autocomplete="off" value="2"><span aria-hidden="true" value="2">2</span>
+                        </div>
+                        <div class="btn btn-primary button-custom option-button">
+                            <input class="work-motiv-radio-button btn-check" aria-label="Semleges" type="radio" name="option-{{ loop.index }}" id="question-{{ question.id }}-option-3" autocomplete="off" value="3"><span aria-hidden="true" value="3">3</span>
+                        </div>
+                        <div class="btn btn-primary button-custom option-button">
+                            <input class="work-motiv-radio-button btn-check" aria-label="Fontos" type="radio" name="option-{{ loop.index }}" id="question-{{ question.id }}-option-4" autocomplete="off" value="4"><span aria-hidden="true" value="4">4</span>
+                        </div>
+                        <div class="btn btn-primary button-custom option-button">
+                            <input class="work-motiv-radio-button btn-check" aria-label="Nagyon fontos" type="radio" name="option-{{ loop.index }}" id="question-{{ question.id }}-option-5" autocomplete="off" value="5"><span aria-hidden="true" value="5">5</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+        <button type="submit" id="question-submit" class="btn btn-primary button-custom">{{ text["Válaszok elküldése"] }}</button>
+    </main>
 {% endblock %}

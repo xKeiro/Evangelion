@@ -3,7 +3,7 @@
 /* jshint esversion:11 */
 
 export let dataHandler = {
-    getText: async function (){
+    getText: async function () {
         "use strict";
         return await apiGet("/api/text");
     },
@@ -11,19 +11,35 @@ export let dataHandler = {
         "use strict";
         return await apiPost("/api/work-motivation", answers);
     },
-    patchWorkMotivationQuestionTitle: async function (questionId, questionTitle){
+    patchWorkMotivationQuestionTitle: async function (questionId, questionTitle) {
         "use strict";
         return apiPatch(`/api/work-motivation/question/${questionId}`, questionTitle);
     },
-    postEnglishLanguageTestResults: async function (testResults){
+    postEnglishLanguageTestResults: async function (testResults) {
         "use strict";
         return apiPost("/api/english-language", testResults);
+    },
+    patchEnglishLanguageText: async function (textId, text) {
+        "use strict";
+        return apiPatch(`/api/english-language/text/${textId}`, text);
+    },
+    patchEnglishLanguageTextQuestionTitle: async function (questionId, questionTitle) {
+        "use strict";
+        return apiPatch(`/api/english-language/question/${questionId}`, questionTitle);
+    },
+    patchEnglishLanguageOption: async function (optionId, option){
+        "use strict";
+        return apiPatch(`/api/english-language/option/${optionId}`, option);
+    },
+    postSocialSituationResults: async function (answer, questionId) {
+        "use strict";
+        return apiPost(`/api/social-situation/question/${questionId}`, answer);
     }
 };
 
 export let text = apiGet("/api/text");
 
-async function apiGet(url){
+async function apiGet(url) {
     "use strict";
     const response = await fetch(url);
     return await response.json();

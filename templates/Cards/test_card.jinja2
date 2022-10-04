@@ -1,4 +1,4 @@
-{% macro test_card(dict) %}
+{% macro test_card(dict,text) %}
     <article class="tests-card card col-lg-2">
         <header class="tests-card-header card-header">
             {{ dict.title }}
@@ -7,7 +7,7 @@
             <ul class="list-group list-group-flush">
                 {% for key,value in dict.items() %}
                     {% if 'test' in key %}
-                        <li class="list-group-item">
+                        <li class="list-group-item test-list-item">
                             <div class="test-container">
                                 <header class="test-title">
                                 {{ value["title"] }}
@@ -16,7 +16,7 @@
                                 {{ value["description"] }}
                                 </div>
                             <footer class="test-button-container">
-                                <a href="/test/{{ value["url"] }}" class="test-button-link"><button class="test-button">To the test</button></a>
+                                <a href="{{ value["url"] }}" class="test-button-link btn btn-primary button-custom" type="button" aria-label="{{ [text['Tovább a'], dict.title, value['title'], text['tesztre']] | join(' ') }}">{{ text['Tovább a teszthez'] }}</a>
                             </footer>
                             </div>
                         </li>

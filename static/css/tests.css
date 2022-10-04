@@ -1,27 +1,47 @@
 body {
     min-height: calc(100vh - 76px);
 }
-
+h1{
+    margin: 0;
+    font-weight: bold;
+}
+hr{
+    margin: 0 0 1.5em 0;
+}
 .page-body {
-    background-color: white;
     width: 90%;
     max-width: 1200px;
-    min-height: 800px;
+}
+
+
+
+.tests-card {
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    border: #0078c3 solid 1px;
+    /*border-color: #0078c3;*/
+    /*background-color: #0078c3;*/
     border-radius: 10px;
+    padding: 0;
+    min-width: 24%;
+    overflow: hidden;
+    background-color: #0078c3;
+
 }
 
 .tests-card-header {
-    font-family: ;
-    background-color: #e0e0e0;
-}
+    width: 100%;
+    /*border-top-right-radius: 10px!important;*/
+    /*border-top-left-radius: 10px!important;*/
+    background-color: #0078c3;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
 
-.tests-card {
-    padding: 0;
-    min-width: 24%;
 }
 
 .tests-card-body {
     padding: 0;
+    background-color: white;
 }
 
 .test-container {
@@ -29,13 +49,14 @@ body {
     flex-direction: column;
 }
 
+
 .test-title {
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 .test-description {
     margin: 0;
-    font-size: 0.8em;
+    font-size: 1rem;
 }
 
 .test-button-container {
@@ -47,22 +68,32 @@ body {
 
 .test-button-link {
     width: 100%;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+.test-list-item{
+    border-bottom: #0096f2 solid 1px;
 }
 
-.test-button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    background-color: #ffc107;
-    transition: all 0.3s ease 0s;
-
-}
+/*.test-button {*/
+/*    padding: 10px;*/
+/*    border: none;*/
+/*    border-radius: 5px;*/
+/*    width: 100%;*/
+/*    background-color: #ffc107;*/
+/*    transition: all 0.3s ease 0s;*/
+/*}*/
 
 .test-button:hover {
-    background-color: #ffd761;
+    background-color: #ffd454;
+    color: black;
 }
-
+.list-group-item:last-of-type{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
 @media all and (max-width: 991px) {
     .page-body {
         margin-bottom: 100px;
