@@ -31,7 +31,7 @@ function handleClickOnQuestion(event) {
 async function handleQuestionChange(event) {
     "use strict";
     const questionTitleElement = event.currentTarget.parentNode.querySelector("p");
-    let questionTitle = event.currentTarget.value;
+    const questionTitle = event.currentTarget.value;
     const questionId = event.currentTarget.parentNode.parentNode.dataset.questionId;
     questionTitleElement.innerHTML = questionTitle;
     dataHandler.patchWorkMotivationQuestionTitle(questionId, {"title": questionTitle});

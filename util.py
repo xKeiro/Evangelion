@@ -28,9 +28,9 @@ def login_required(func):
     def decorated_function(*args, **kwargs):
         try:
             session["username"]
-            return (func(*args, **kwargs))
         except (KeyError):
             return render_template("authentication/login_required.jinja2")
+        return (func(*args, **kwargs))
 
     return decorated_function
 
@@ -44,11 +44,12 @@ def admin_required(func):
     @wraps(func)
     def decorated_function(*args, **kwargs):
         try:
-            if session["is_admin"]:
-                return (func(*args, **kwargs))
-            else:
-                return render_template("authentication/admin_required.jinja2")
+            is_admin = session["is_admin"]
         except KeyError:
+            return render_template("authentication/admin_required.jinja2")
+        if is_admin:
+            return (func(*args, **kwargs))
+        else:
             return render_template("authentication/admin_required.jinja2")
 
     return decorated_function
