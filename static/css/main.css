@@ -50,7 +50,7 @@ nav{
 
 .button-custom{
     background-color: #0078c3;
-    border-color: #005e99;
+    /*border-color: #005e99; Szia Kevin :3 ez nem tetszett szoval kivettem.*/
     max-height: 38px;
     font-weight: 500;
 }
