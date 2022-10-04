@@ -31,9 +31,9 @@ export let dataHandler = {
         "use strict";
         return apiPatch(`/api/english-language/option/${optionId}`, option);
     },
-    postSocialSituationResults: async function (answer, questionId) {
+    postSocialSituationResults: async function (result) {
         "use strict";
-        return apiPost(`/api/social-situation/question/${questionId}`, answer);
+        return apiPost(`/api/social-situation/`, result);
     }
 };
 
