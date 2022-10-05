@@ -213,7 +213,14 @@ VALUES ('Főoldal', 'Home'),
        ('Munka-motivációs kérdőiv', 'Work motivation survey'),
        ('Tovább a teszthez', 'To the test'),
        ('PDF kezelés', 'Manage PDF'),
-       ('PDF letöltés', 'Download PDF');
+       ('PDF letöltés', 'Download PDF'),
+       ('-tól', '-from'),
+       ('-ig', '-to'),
+       ('Legalább 1 szűrőt állíts be!', 'You must set at least 1 filter!'),
+       ('Nincs ilyen felhasználó!', 'There is no such user!'),
+       ('Nincs ilyen e-mail cím!', 'There is no such e-mail address!'),
+       ('Egy pályázó legutóbbi eredményei', 'One applicant''s latest results'),
+       ('Több pályázó legutóbbi eredményei', 'More applicants latest results');
 
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)
