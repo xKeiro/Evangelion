@@ -46,7 +46,7 @@ def get_categories_max_points(cursor) -> list[dict]:
 
 
 @connection_handler
-def get_latest_completion_date_by_username(cursor, username) -> list[dict]:
+def get_latest_completion_date_from_work_motivation_by_username(cursor, username) -> list[dict]:
     query = """
         SELECT rh.date
         FROM work_motivation_result wmr
