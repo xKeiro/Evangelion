@@ -24,7 +24,7 @@
 				</div>
 			{% endif %}
 			<h4>{{ text["Egy pályázó legutóbbi eredményei"] }}</h4>
-			<form action="{{ url_for("one_applicant_pdf") }}" method="GET" class="form-container">
+			<form action="{{ url_for("one_applicant_pdf") }}" method="GET" class="form-container material-form-container">
 				<div class="form-group mt-5">
 					<div class="material-container">
 						<label class="form-label fw-bold material-label"
@@ -43,7 +43,7 @@
 			</form>
             <hr style="width: 100%">
 			<h4>{{ text["Több pályázó legutóbbi eredményei"] }}</h4>
-			<form action="{{ url_for("more_applicants_pdf") }}" method="GET" class="form-container">
+			<form action="{{ url_for("more_applicants_pdf") }}" method="GET" class="form-container material-form-container">
 				<div class="form-group mt-5">
 					<div class="material-container">
 						<label class="color-primary fw-bold material-label"

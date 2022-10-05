@@ -1,9 +1,13 @@
 .page-body{
-    width: 600px;
+    width: 900px;
 }
 
-.form-container {
+.form-container{
     width: 100%;
+}
+
+.material-form-container{
+    width: 40%;
 }
 
 .material-container {
@@ -23,6 +27,5 @@
 
 .material-input {
     border-color: #0078c3;
-    width: 100%;
     height: 2.5em;
 }
