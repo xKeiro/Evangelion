@@ -8,7 +8,7 @@ from data_manager import english_test_handler
 from data_manager import social_situation_handler
 
 
-def get_applicant_tests_results_into_pdf(username="", full_name="", email="", applicants=[], multi_applicant=False):
+def get_applicant_tests_results_into_pdf(username="", full_name="", email="", applicants=[], multi_applicant=False, date_from="", date_to=""):
     # -----------------------------PDF formatting-------------------------------------
     # PDF A4 width = 210, height = 297
 
@@ -34,6 +34,7 @@ def get_applicant_tests_results_into_pdf(username="", full_name="", email="", ap
     if multi_applicant:
         filename = "Applicants_test_results_"
         pdf.set_title(f"Pályázók Teszt Eredményei")
+        current_date = date_from + "_to_" + date_to
         if len(applicants) != 0:
             applicant_number = len(applicants)
     else:

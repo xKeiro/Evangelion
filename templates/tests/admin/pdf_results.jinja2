@@ -1,5 +1,6 @@
 {% extends "default.jinja2" %}
 {% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pdf-manage.css') }}">
 	<script src="{{ url_for('static', filename='js/tests/admin/pdf.js') }}" type="module" defer></script>
 {% endblock %}
 {% block content %}
@@ -40,6 +41,7 @@
 				<div><input type="submit" value="{{ text["PDF letöltés"] }}" class="btn btn-primary button-custom mt-3">
 				</div>
 			</form>
+            <hr style="width: 100%">
 			<h4>{{ text["Több pályázó legutóbbi eredményei"] }}</h4>
 			<form action="{{ url_for("more_applicants_pdf") }}" method="GET" class="form-container">
 				<div class="form-group mt-5">

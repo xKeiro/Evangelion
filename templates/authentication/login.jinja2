@@ -17,14 +17,14 @@
 			<form action="{{ url_for("login") }}" method="POST" class="form-container">
 				<div class="form-group material-container">
 					<label class="form-label fw-bold mb-1 material-label"
-					       for="username">{{ text["Felhasználónév"] }}:</label>
+					       for="username">{{ text["Felhasználónév"] }}</label>
 					<input type="text" name="username" class="form-control material-input"
 					       aria-label="{{ text["Felhasználónév"] }}"
 					       required>
 				</div>
 				<div class="form-group form-outline material-container">
 					<label class="color-primary fw-bold mb-1 material-label"
-					       for="password">{{ text["Jelszó"] }}: </label>
+					       for="password">{{ text["Jelszó"] }}</label>
 					<input type="password" name="password" class="form-control material-input"
 					       aria-label="{{ text["Jelszó"] }}"
 					       required>
