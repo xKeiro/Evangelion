@@ -5,6 +5,7 @@ from data_manager import work_motivation_test_handler
 from data_manager import user_handler
 from data_manager import common_queries
 from data_manager import english_test_handler
+from data_manager import social_situation_handler
 
 
 def get_applicants_results_into_pdf():
@@ -162,10 +163,27 @@ def get_applicant_tests_results_into_pdf(username, full_name, email):
     # SOCIAL SITUATIONS SECTION--------------------------------
     pdf.set_font("Calibriz", size=10)
     pdf.set_text_color(17, 71, 158)
-    pdf.cell(w=0, h=data_row_height, txt="Társasági Szituációk", ln=1)
+    pdf.cell(w=95, h=data_row_height, txt="Társasági Szituációk", ln=0)
     pdf.set_text_color(0, 0, 0)
 
-    pdf.set_font("Calibri", size=8)
+    soc_situations_completion_date = social_situation_handler.get_latest_completion_date_from_social_situation_by_username(username)
+    if soc_situations_completion_date is not None:
+        soc_situations_completion_date = change_date_format(soc_situations_completion_date["date"])
+        situations_and_answers = social_situation_handler.get_situations_for_pdf_by_username(username)
+
+        pdf.set_font("Calibrii", size=8)
+        pdf.cell(w=95, h=data_row_height, txt=f"Kitöltötte: {soc_situations_completion_date}", ln=1, align="R")
+
+        for part in situations_and_answers:
+            pdf.set_font("Calibriz", size=9)
+            pdf.cell(w=0,
+                     h=data_row_height,
+                     txt=f'{part["question"]}',
+                     ln=1)
+
+            pdf.set_font("Calibri", size=8)
+            pdf.multi_cell(w=0, h=data_row_height - 3, txt=f'{part["answer"]}')
+            pdf.ln()
 
     # WORK MOTIVATION SECTION--------------------------------
     pdf.set_font("Calibriz", size=10)
@@ -173,7 +191,7 @@ def get_applicant_tests_results_into_pdf(username, full_name, email):
     pdf.cell(w=95, h=data_row_height, txt="Munka Motiváció", ln=0)
     pdf.set_text_color(0, 0, 0)
 
-    work_motivation_completion_date = work_motivation_test_handler.get_latest_completion_date_by_username(username)
+    work_motivation_completion_date = work_motivation_test_handler.get_latest_completion_date_from_work_motivation_by_username(username)
     if work_motivation_completion_date is not None:
         work_motivation_completion_date = change_date_format(work_motivation_completion_date["date"])
         categories_max_points = work_motivation_test_handler.get_categories_max_points()
@@ -181,10 +199,11 @@ def get_applicant_tests_results_into_pdf(username, full_name, email):
 
         pdf.set_font("Calibrii", size=8)
         pdf.cell(w=95, h=data_row_height, txt=f"Kitöltötte: {work_motivation_completion_date}", ln=1, align="R")
+        pdf.ln()
 
         pdf.set_font("Calibri", size=8)
         for i, category in enumerate(work_motivation_results):
-            pdf.cell(w=30,
+            pdf.cell(w=28,
                      h=data_row_height,
                      txt=f'{category["title"]}',
                      ln=0,
@@ -192,7 +211,7 @@ def get_applicant_tests_results_into_pdf(username, full_name, email):
             pdf.cell(w=10,
                      h=data_row_height,
                      txt=f'{category["cat_score"]} / {categories_max_points[i]["max_point"]}',
-                     ln=1,
+                     ln=1 if i > 0 and i % 5 == 4 else 0,
                      border=1,
                      align="C")
 

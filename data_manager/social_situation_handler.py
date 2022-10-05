@@ -35,6 +35,43 @@ def get_situations(cursor):
     return situations
 
 
+@connection_handler
+def get_situations_for_pdf_by_username(cursor, username):
+    query = """
+        SELECT ssq.question, ssr.answer
+        FROM social_situation_result ssr
+        JOIN result_header rh on ssr.result_id = rh.id
+        JOIN social_situation_question ssq on ssr.question_id = ssq.id
+        JOIN users u on rh.user_id = u.id
+        WHERE u.username LIKE %s AND rh.date =
+            (SELECT rh.date
+            FROM social_situation_result ssr
+            JOIN result_header rh on ssr.result_id = rh.id
+            JOIN social_situation_question ssq on ssr.question_id = ssq.id
+            JOIN users u on rh.user_id = u.id
+            WHERE u.username LIKE %s
+            ORDER BY rh.date DESC, ssr.id
+            LIMIT 1)
+        ORDER BY rh.date DESC, ssr.id
+        """
+    cursor.execute(query, (username, username))
+    return cursor.fetchall()
+
+
+@connection_handler
+def get_latest_completion_date_from_social_situation_by_username(cursor, username) -> list[dict]:
+    query = """
+        SELECT rh.date
+        FROM social_situation_result ssr
+        JOIN result_header rh on ssr.result_id = rh.id
+        JOIN users u on u.id = rh.user_id
+        WHERE u.username LIKE %s
+        ORDER BY rh.date DESC
+        LIMIT 1
+        """
+    cursor.execute(query, (username,))
+    return cursor.fetchone()
+
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 @connection_handler

@@ -196,7 +196,8 @@ def one_applicant_pdf():
             try:
                 user_and_full_name = user_handler.get_username_and_full_name_by_email(email)
                 username = user_and_full_name["username"]
-                full_name_for_filename = user_and_full_name["full_name"]
+                full_name = user_and_full_name["full_name"]
+                full_name_for_filename = full_name.replace(" ", "_") + "_"
             except TypeError:
                 filtered = "no email"
             else:
