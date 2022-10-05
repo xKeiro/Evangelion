@@ -150,7 +150,16 @@ def admin_english_language_reading_comprehension(difficulty_id, page_number):
     max_number_of_pages = len(tests)
     return render_template('tests/admin/english_language/english_language_texts_admin.jinja2',
                            test=tests[page_number - 1],
-                           max_number_of_pages=max_number_of_pages, currrent_page=page_number)
+                           max_number_of_pages=max_number_of_pages, currrent_page=page_number,
+                           difficulty_id=difficulty_id)
+
+
+@app.route('/admin/test/english_language/<int:difficulty_id>/essay_topics')
+@util.admin_required
+def admin_english_language_essay_topics(difficulty_id):
+    essay_topics = english_test_handler.get_all_english_essay_topic_by_difficulty_id(difficulty_id)
+    return render_template('tests/admin/english_language/english_language_essay_admin.jinja2',
+                           essay_topics=essay_topics)
 
 
 # endregion
@@ -229,6 +238,14 @@ def api_patch_english_motivation_question(question_id):
 def api_patch_english_motivation_option(option_id):
     option = request.json
     english_test_handler.patch_option_by_id(option_id, option)
+    return {"status": "success"}
+
+@app.route("/api/english-language/essay_topic/<int:essay_topic_id>", methods=["PATCH"])
+@util.admin_required
+@util.json_response
+def api_patch_english_language_essay_topic(essay_topic_id):
+    topic = request.json["topic"]
+    english_test_handler.patch_essay_topic_by_id(essay_topic_id, topic)
     return {"status": "success"}
 
 # endregion

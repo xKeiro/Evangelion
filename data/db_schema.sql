@@ -226,7 +226,8 @@ VALUES ('Főoldal', 'Home'),
        ('A megváltozott munkaképességű munkatársak egy megbízható és lojális munkavállalói kört alkotnak, akik produktivitása – az általános vélekedésekkel ellentétben – az átlagostól nem tér el, és hozzáállásukat tekintve elkötelezettebbek, lojálisabbak a munkáltatójuk irányába.',
         'Disabled workers are a reliable and loyal group of employees who, contrary to common perceptions, are productive, not different from the average, and have a more committed and loyal attitude towards their employer.'),
        ('Ugrás a fő tartalomra!', 'Skip to main content!'),
-       ('Salva Vita logó', 'Salva Vita logo');
+       ('Salva Vita logó', 'Salva Vita logo'),
+       ('Tovább az essay témákhoz!', 'Go to the essay topics!');
 
 
 INSERT INTO users(username, password, email, first_name, last_name, birthday, is_admin)
@@ -537,7 +538,14 @@ VALUES (1, 'marketing', FALSE),                                -- James studies 
 
 INSERT INTO english_language_essay_topic(difficulty_id, topic)
 VALUES (1, 'Describe your home! How does it look like from outside, rooms, what is in the rooms, etc.'),
-       (2, 'Write your opinion about the role of physical education in the school system.'),
+       (1, 'Is vaccination for everyone?'),
+       (1, 'Does social media violate our privacy?'),
+       (2, 'Does consumerism pose a big issue for the world?'),
+       (2, 'Is vaping as harmful as smoking cigarettes?'),
+       (2, 'Does our tax system benefit everyone fairly?'),
+       (2, 'Is capital punishment ever justified?'),
+       (3, 'Will people ever be able to live without the Internet?'),
+       (3, 'Write your opinion about the role of physical education in the school system.'),
        (3, 'Should the death sentence be implemented globally? Write an essay about this topic!');
 
 INSERT INTO social_situation_type(type)
