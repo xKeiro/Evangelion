@@ -27,13 +27,25 @@ export let dataHandler = {
         "use strict";
         return apiPatch(`/api/english-language/question/${questionId}`, questionTitle);
     },
-    patchEnglishLanguageOption: async function (optionId, option){
+    patchEnglishLanguageOption: async function (optionId, option) {
         "use strict";
         return apiPatch(`/api/english-language/option/${optionId}`, option);
+    },
+    patchEnglishLanguageEssayTopic: async function (essayTopicId, essay_topic) {
+        "use strict";
+        return apiPatch(`/api/english-language/essay_topic/${essayTopicId}`, essay_topic);
     },
     postSocialSituationResults: async function (result) {
         "use strict";
         return apiPost(`/api/social-situation/`, result);
+    },
+    patchSocialSituationMediaTitle: async function (mediaId, title) {
+        "use strict";
+        return apiPatch(`/api/social-situation/media/${mediaId}/title`, title);
+    },
+    patchSocialSituationQuestion: async function (questionId, question) {
+        "use strict";
+        return apiPatch(`/api/social-situation/question/${questionId}`, question);
     }
 };
 

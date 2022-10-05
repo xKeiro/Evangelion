@@ -11,41 +11,42 @@ initActions();
 
 async function initActions() {
     "use strict";
-    initEditTestText();
+    initEditMediaTitle();
     initEditQuestion();
     initEditOption();
 }
 
 
-// region ---------------------------------------TEXT----------------------------------------
-function initEditTestText() {
+// region -------------------------------------MEDIA TITLE----------------------------------------
+function initEditMediaTitle() {
     "use strict";
-    const testText = document.querySelector(".english-test-text");
-    testText.addEventListener("click", handleClickOnTestText);
+    const mediaTopicElements = document.querySelectorAll(".media-title");
+    for (const mediaTopicElement of mediaTopicElements) {
+        mediaTopicElement.addEventListener("click", handleClickOnMediaTitle);
+    }
 }
 
-function handleClickOnTestText(event) {
+function handleClickOnMediaTitle(event) {
     "use strict";
     const parentNode = event.currentTarget.parentNode;
     event.currentTarget.classList.add("d-none");
     const edit_field = document.createElement("textarea");
+    edit_field.dataset.mediaId = event.currentTarget.dataset.mediaId;
     edit_field.classList.add("form-control");
-    edit_field.rows = "26";
     edit_field.value = event.currentTarget.innerText;
     parentNode.insertBefore(edit_field, event.currentTarget);
-    edit_field.addEventListener("change", handleTestTextChange);
+    edit_field.addEventListener("change", handleMediaTitleChange);
 }
 
-async function handleTestTextChange(event) {
+async function handleMediaTitleChange(event) {
     "use strict";
-    const testText = document.querySelector(".english-test-text");
+    const mediaId = event.currentTarget.dataset.mediaId;
+    const essayTopicElement = document.querySelector(`.media-title[data-media-id="${mediaId}"]`);
     let changedText = event.currentTarget.value;
-    const testTextId = testText.dataset.textId;
-    testText.innerHTML = changedText;
-    dataHandler.patchEnglishLanguageText(testTextId, {"text": changedText});
+    essayTopicElement.innerHTML = changedText;
+    dataHandler.patchSocialSituationMediaTitle(mediaId, {"title": changedText});
     event.currentTarget.remove();
-    testText.classList.remove("d-none");
-
+    essayTopicElement.classList.remove("d-none");
 }
 
 // endregion
@@ -73,16 +74,13 @@ async function handleClickOnQuestion(event) {
 async function handleQuestionChange(event) {
     "use strict";
     const questionTitle = event.currentTarget.value;
-    if (questionTitle.includes("............")) {
-        const questionTitleElement = event.currentTarget.parentNode.querySelector(".question");
-        const questionId = questionTitleElement.dataset.questionId;
-        questionTitleElement.innerHTML = questionTitle;
-        dataHandler.patchEnglishLanguageTextQuestionTitle(questionId, {"title": questionTitle});
-        event.currentTarget.remove();
-        questionTitleElement.classList.remove("d-none");
-    } else {
-        alert("A kérdésnek tartalmaznia kell: ............");
-    }
+    const questionTitleElement = event.currentTarget.parentNode.querySelector(".question");
+    const questionId = questionTitleElement.dataset.questionId;
+    questionTitleElement.innerHTML = questionTitle;
+    dataHandler.patchSocialSituationQuestion(questionId, {"question": questionTitle});
+    event.currentTarget.remove();
+    questionTitleElement.classList.remove("d-none");
+
 }
 
 // endregion

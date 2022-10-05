@@ -1,0 +1,26 @@
+{% from 'macros/pagination.jinja2' import Pagination %}
+{% extends "default.jinja2" %}
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/english_language_test.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pagination.css') }}">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+	      type="text/css">
+		<script src="{{ url_for('static', filename='js/tests/admin/englishLanguageEssayTopicsAdmin.js') }}"
+	        type="module" defer></script>
+{% endblock %}
+{% block content %}
+	<main class="page-body container" id="main-content">
+		<section class="essay-topics" id="essay-writing">
+			<article class="essay-container" id="essay-container">
+				<header class="english-test-header">
+					<h1 class="test-title">English language topics</h1>
+				</header>
+			<ul class="list-group">
+				{% for essay_topic in essay_topics %}
+				<li class="list-group-item essay-topic" data-essay-topic-id="{{ essay_topic.id }}">{{ essay_topic.topic }}</li>
+				{% endfor %}
+			</ul>
+			</article>
+		</section>
+	</main>
+{% endblock %}

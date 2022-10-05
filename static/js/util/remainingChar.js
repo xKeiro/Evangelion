@@ -5,6 +5,6 @@ let info = document.querySelector('#characters');
 //Init the count for the first time
 info.textContent = max - textarea.value.length;
 
-textarea.addEventListener('input', function() {
-  info.textContent = max - this.value.length;
+textarea.addEventListener('input', function () {
+    info.textContent = max - this.value.length;
 })

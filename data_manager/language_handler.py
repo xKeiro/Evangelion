@@ -1,5 +1,5 @@
-from connection import connection_handler
 from psycopg import sql
+from connection import connection_handler
 
 
 # region --------------------------------------READ-----------------------------------------
@@ -7,8 +7,8 @@ from psycopg import sql
 @connection_handler
 def get_texts_in_language(cursor, language):
     query = sql.SQL("""
-    SELECT hu as default_language, {}
-    FROM language
+    SELECT hu AS default_language, {}
+    FROM LANGUAGE
     """).format(sql.Identifier(language))
     cursor.execute(query)
     text = cursor.fetchall()

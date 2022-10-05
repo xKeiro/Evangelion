@@ -1,5 +1,7 @@
 from connection import connection_handler
 from data_manager import data_handler_util
+
+
 # region --------------------------------------READ-----------------------------------------
 
 @connection_handler
@@ -63,7 +65,7 @@ def get_latest_completion_date_by_username(cursor, username) -> list[dict]:
 @connection_handler
 def submit_answer(cursor, answers, user_id) -> None:
     result_header_id = data_handler_util.add_test_to_result_header(cursor, user_id)
-    query ="""
+    query = """
     INSERT INTO work_motivation_result(question_id, result_header_id, score) VALUES"""
     for _ in answers:
         query += " (%s, %s, %s),"
@@ -71,19 +73,17 @@ def submit_answer(cursor, answers, user_id) -> None:
     var = []
     for question_id, score in answers.items():
         var.extend([question_id, result_header_id, score])
-    cursor.execute(query,var)
-
-
+    cursor.execute(query, var)
 
 
 @connection_handler
 def patch_title_by_id(cursor, question_id, title):
-    query="""
+    query = """
     UPDATE work_motivation_question
     SET title = %s
     WHERE id = %s
     """
-    var=(title, question_id)
-    cursor.execute(query,var)
+    var = (title, question_id)
+    cursor.execute(query, var)
 
 # endregion

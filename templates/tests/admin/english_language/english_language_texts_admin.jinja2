@@ -3,15 +3,19 @@
 {% block head %}
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/english_language_test.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pagination.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/english_language_reading_comprehension_admin.css') }}">
+	<link rel="stylesheet" type="text/css"
+	      href="{{ url_for('static', filename='css/english_language_reading_comprehension_admin.css') }}">
 	<script src="{{ url_for('static', filename='js/tests/admin/englishLanguageReadingComprehensionAdmin.js') }}"
 	        type="module" defer></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
 	      type="text/css">
 {% endblock %}
 {% block content %}
-	<main class="page-body container">
-		<section id="reading-comprehension">
+	<main class="page-body container" id="main-content">
+	<div class="d-flex justify-content-center">
+		<a class="btn button-custom form-control w-50" type="submit" id="question-submit" href="/admin/test/english_language/{{difficulty_id}}/essay_topics">{{ text["Tovább az essay témákhoz!"] }}</a>
+	</div>
+		<section id="reading-comprehension" class="mt-3">
 			<article class="english-test-text" data-text-id="{{ test.text.id }}">{{ test.text.text }}</article>
 			<section class="question-container" id="question-container">
 				{% for question in test.questions[:10] %}
@@ -23,7 +27,8 @@
 								<ul class="list-group">
 									{% for option in test.options %}
 										{% if option.question_id == question.id %}
-											<li class="list-group-item option" data-question-id="{{ question.id }}"data-option-id="{{ option.id }}"
+											<li class="list-group-item option" data-question-id="{{ question.id }}"
+											    data-option-id="{{ option.id }}"
 											    data-correct="{{ option.correct }}">{{ option.option }}</li>
 										{% endif %}
 									{% endfor %}
@@ -32,8 +37,6 @@
 						</div>
 					</article>
 				{% endfor %}
-				<button class="btn btn-primary" type="submit"
-				        id="question-submit">{{ text["Tovább az esszé íráshoz!"] }}</button>
 			</section>
 			{{ Pagination(currrent_page,max_number_of_pages) }}
 		</section>

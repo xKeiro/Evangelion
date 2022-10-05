@@ -1,10 +1,12 @@
 .page-body {
     max-width: 400px;
 }
-.form-container{
+
+.form-container {
     width: 100%;
 }
-.material-container{
+
+.material-container {
     position: relative;
     margin: 2em 0 2em 0;
 }
@@ -18,7 +20,8 @@
     color: #0078c3;
     line-height: 1em;
 }
-.material-input{
+
+.material-input {
     border-color: #0078c3;
     width: 100%;
     height: 2.5em;
@@ -28,6 +31,6 @@
 /*    box-shadow: 0px 0px 5px #0096f2;*/
 /*}*/
 
-.material-input:focus{
+.material-input:focus {
     box-shadow: 0px 0px 5px #0078c3;
 }

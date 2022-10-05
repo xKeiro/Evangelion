@@ -154,9 +154,9 @@ CREATE TABLE social_situation_result
     id          SERIAL PRIMARY KEY,
     answer      VARCHAR(2000) NOT NULL,
     question_id INTEGER       NOT NULL,
-    user_id     INTEGER       NOT NULL,
+    result_id   INTEGER       NOT NULL,
     FOREIGN KEY (question_id) REFERENCES social_situation_question (id),
-    FOREIGN KEY (user_id) REFERENCES users (id)
+    FOREIGN KEY (result_id) REFERENCES result_header (id)
 );
 
 
@@ -184,7 +184,7 @@ VALUES ('Főoldal', 'Home'),
        ('A teszted eredménye elküldve!', 'The result of your test has been submitted!'),
        ('Kérlek válaszolj az összes kérdésre elküldés előtt!',
         'Please answer all questions before sending your answers!'),
-       ('Üdvözöllek a Salva Vita weboldalán!', E'Welcome on Salva Vita\'s website!'),
+       ('Üdvözöllek Salva Vitán', 'Welcome to Salva Vita'),
        ('Elérhető tesztek', 'Available tests'),
        ('Tovább az esszé íráshoz!', 'Onward to the essay writing!'),
        ('Teszt elküldése!', 'Send test!'),
@@ -212,6 +212,22 @@ VALUES ('Főoldal', 'Home'),
        ('Teszt kategória', 'Test category'),
        ('Munka-motivációs kérdőiv', 'Work motivation survey'),
        ('Tovább a teszthez', 'To the test'),
+       ('Teszt eredmények PDF', 'Test results PDF'),
+       ('SOKSZÍNŰSÉG', 'DIVERSITY'),
+       ('Meggyőződésünk, hogy a munkahelyek meg tudják változtatni a világot, ha elköteleződnek a sokszínűség mellett. Gondoljunk csak bele, hogy több mint 4,5 millió ember tölti élete egyharmadát a munkahelyén Magyarországon. Képzeljük el, mi történne, ha itt megtanulnánk együttműködni olyan emberekkel, akik különböznek tőlünk? Egészen biztos, hogy a munkán kívüli szavaink és tetteink is megváltoznának.',
+        'We believe that workplaces can change the world if they commit to diversity. Just think, more than 4.5 million people spend a third of their lives at work in Hungary. Imagine what would happen if we learned to work with people here who are different from us? Our words and actions outside work would certainly change.'),
+       ('MEGTÉRÜLÉS', 'PAY-OFF'),
+       ('Ma már szinte minden nagyvállalat tudja, hogy a sokszínűség jó dolog, fontos dolog, hogy az a helyes, ha erre odafigyelünk. De tapasztalataink szerint még nem minden vállalat tudja, hogy gazdaságilag is a sokszínűség a racionális döntés. Számos kutatás bizonyítja ugyanis, hogy a sokszínű cégek, a valóban befogadó cégek üzleti eredménye jelentős mértékben meghaladja a többi vállalatét.',
+        'Today, almost every large company knows that diversity is a good thing, that it is important to do the right thing by paying attention to it. But in our experience, not all companies know that diversity is the rational economic choice. In fact, there is a lot of research showing that diverse companies, truly inclusive companies, significantly outperform other companies.'),
+       ('BEFOGADÁS', 'INCLUSION'),
+       ('A sokszínűségi célkitűzés önmagában azonban nem elég. A befogadásról nem elég beszélni, nem elég számokat kitűzni, azt művelni kell, tenni kell érte. Ebben tud segíteni a cégeknek a Salva Vita Alapítvány tanácsadással, szolgáltatásokkal, tréningekkel, vállalati rendezvényekkel, munkaerő közvetítésével, kiadványokkal. Mi azért dolgozunk, közel 30 éve, hogy segítsük a cégeket egy befogadó munkakörnyezet kialakításában. Keress minket! Együtt. Működünk.',
+        'But the diversity objective alone is not enough. Inclusion is not enough to talk about, it is not enough to set numbers, it must be cultivated, it must be acted upon. This is where the Salva Vita Foundation can help companies through advice, services, training, company events, recruitment, publications. We have been working for nearly 30 years to help companies create an inclusive working environment. Contact us! Together. We work.'),
+       ('MEGTARTÁS', 'LOYALTY'),
+       ('A megváltozott munkaképességű munkatársak egy megbízható és lojális munkavállalói kört alkotnak, akik produktivitása – az általános vélekedésekkel ellentétben – az átlagostól nem tér el, és hozzáállásukat tekintve elkötelezettebbek, lojálisabbak a munkáltatójuk irányába.',
+        'Disabled workers are a reliable and loyal group of employees who, contrary to common perceptions, are productive, not different from the average, and have a more committed and loyal attitude towards their employer.'),
+       ('Ugrás a fő tartalomra!', 'Skip to main content!'),
+       ('Salva Vita logó', 'Salva Vita logo'),
+       ('Tovább az essay témákhoz!', 'Go to the essay topics!'),
        ('PDF kezelés', 'Manage PDF'),
        ('PDF letöltés', 'Download PDF'),
        ('-tól', '-from'),
@@ -375,102 +391,104 @@ VALUES (1, 'James studies ............. at university.'),
        (3, '............. was/were buried with a dagger in most cases.');
 
 INSERT INTO english_language_option(question_id, option, correct)
-VALUES (1, 'marketing', FALSE), -- James studies ............. at university.
+VALUES (1, 'marketing', FALSE),                                -- James studies ............. at university.
        (1, 'IT', FALSE),
        (1, 'engineering', TRUE),
        (1, 'agriculture', FALSE),
        (1, 'architecture', FALSE),
-       (2, '1', FALSE),     -- -- James went to lectures in the lecture rooms at Manchester university for ............. weeks.
+       (2, '1',
+        FALSE),                                                -- -- James went to lectures in the lecture rooms at Manchester university for ............. weeks.
        (2, '2', FALSE),
        (2, '3', TRUE),
        (2, '4', FALSE),
        (2, '5', FALSE),
-       (3, 'wrote mails', FALSE),   -- While in lockdown in Manchester, James and his friends ............. .............
+       (3, 'wrote mails', FALSE),                              -- While in lockdown in Manchester, James and his friends ............. .............
        (3, 'studied hard', FALSE),
        (3, 'had parties', TRUE),
        (3, 'played basketball', FALSE),
        (3, 'did nothing', FALSE),
-       (4, 'softball', FALSE),  -- James wanted to play ............. at university.
+       (4, 'softball', FALSE),                                 -- James wanted to play ............. at university.
        (4, 'football', FALSE),
        (4, 'basketball', TRUE),
        (4, 'volleyball', FALSE),
        (4, 'handball', FALSE),
-       (5, 'TV series', FALSE), -- James watches ............. on his computer for four hours each day.
+       (5, 'TV series', FALSE),                                -- James watches ............. on his computer for four hours each day.
        (5, 'movies', FALSE),
        (5, 'lectures', TRUE),
        (5, 'project videos', FALSE),
        (5, 'funny images', FALSE),
-       (6, 'his body', FALSE),  -- After listening to lectures, James works on .............
+       (6, 'his body', FALSE),                                 -- After listening to lectures, James works on .............
        (6, 'the garden', FALSE),
        (6, 'projects', TRUE),
        (6, 'homework', FALSE),
        (6, 'articles', FALSE),
-       (7, 'basketball matches', FALSE),    -- He likes having ............. with other students these days.
+       (7, 'basketball matches', FALSE),                       -- He likes having ............. with other students these days.
        (7, 'meals', FALSE),
        (7, 'discussions', TRUE),
        (7, 'joint joggings', FALSE),
        (7, 'meetings', FALSE),
-       (8, 'to the church', FALSE), -- James goes ............. every day.
+       (8, 'to the church', FALSE),                            -- James goes ............. every day.
        (8, 'playing basketball', FALSE),
        (8, 'jogging', TRUE),
        (8, 'shopping', FALSE),
        (8, 'to the toilet', FALSE),
-       (9, 'before', FALSE),    -- He hopes to return to Manchester ............. Easter.
+       (9, 'before', FALSE),                                   -- He hopes to return to Manchester ............. Easter.
        (9, 'at', FALSE),
        (9, 'after', TRUE),
        (9, 'next year before', FALSE),
        (9, 'next year after', FALSE),
-       (10, 'post office', FALSE),  -- At Easter, James is going to work at a .............
+       (10, 'post office', FALSE),                             -- At Easter, James is going to work at a .............
        (10, 'construction', FALSE),
        (10, 'farm', TRUE),
        (10, 'cinema', FALSE),
        (10, 'shopping center', FALSE),
-       (11, 'a chocolate factory', FALSE),  -- Bournville is .............
+       (11, 'a chocolate factory', FALSE),                     -- Bournville is .............
        (11, 'a river', FALSE),
        (11, 'a village', TRUE),
        (11, 'the founder of a chocolate factory', FALSE),
        (11, 'a chocolate bunny', FALSE),
-       (12, 'it was close to farms which provided milk', FALSE),    -- The new site for the chocolate factory was chosen because .............
+       (12, 'it was close to farms which provided milk',
+        FALSE),                                                -- The new site for the chocolate factory was chosen because .............
        (12, 'it was easy to build there', FALSE),
        (12, 'it was close to several transportation routes', TRUE),
        (12, 'a lot of people lived nearby.', FALSE),
        (12, 'it was in the centre of the city', FALSE),
-       (13, 'a local town', FALSE), -- Bournville takes its name from .............
+       (13, 'a local town', FALSE),                            -- Bournville takes its name from .............
        (13, 'a French town', FALSE),
        (13, 'a local river and a French word', TRUE),
        (13, 'a kind of French chocolate', FALSE),
        (13, 'a local river', FALSE),
-       (14, 'free for workers', FALSE), -- The original houses in Bournville were .............
+       (14, 'free for workers', FALSE),                        -- The original houses in Bournville were .............
        (14, 'large', FALSE),
        (14, 'traditional in appearance', TRUE),
        (14, 'built by the factory workers', FALSE),
        (14, 'had no garden', FALSE),
-       (15, 'financial social support', FALSE), -- Workers at the Cadbury received .............
+       (15, 'financial social support', FALSE),                -- Workers at the Cadbury received .............
        (15, 'free health care', FALSE),
        (15, 'pensions', TRUE),
        (15, 'dancing lessons', FALSE),
        (15, 'free food and drink', FALSE),
-       (16, 'sporty', FALSE), -- The extract shows that the Cadbury family were .............
+       (16, 'sporty', FALSE),                                  -- The extract shows that the Cadbury family were .............
        (16, 'careful', FALSE),
        (16, 'kind', TRUE),
        (16, 'mean', FALSE),
        (16, 'lazy', FALSE),
-       (17, 'First-time buyers', FALSE), -- ............. can live in special homes in Bournville.
+       (17, 'First-time buyers', FALSE),                       -- ............. can live in special homes in Bournville.
        (17, 'Single people', FALSE),
        (17, 'People with learning problems', TRUE),
        (17, 'Chocolate factory workers', FALSE),
        (17, 'Poor people', FALSE),
-       (18, 'billiard tables', FALSE), -- The Cadbury family added a park for the workers, which had .............
+       (18, 'billiard tables', FALSE),                         -- The Cadbury family added a park for the workers, which had .............
        (18, 'a golf course', FALSE),
        (18, 'a fishing lake', TRUE),
        (18, 'a diving pool', FALSE),
        (18, 'several basketball courts', FALSE),
-       (19, 'cheap', FALSE), -- In the Cadbury’s opinion alcohol was .............
+       (19, 'cheap', FALSE),                                   -- In the Cadbury’s opinion alcohol was .............
        (19, 'hard to get', FALSE),
        (19, 'unhealthy', TRUE),
        (19, 'made by Satan', FALSE),
        (19, 'a luxury item', FALSE),
-       (20, 'pub', FALSE), -- The workers could have dinner in the .............
+       (20, 'pub', FALSE),                                     -- The workers could have dinner in the .............
        (20, 'factory', FALSE),
        (20, 'clubhouse', TRUE),
        (20, 'community centre', FALSE),
@@ -480,7 +498,8 @@ VALUES (1, 'marketing', FALSE), -- James studies ............. at university.
        (21, 'Both the chief and the old man', TRUE),
        (21, 'Chiefs from the Beaker culture', FALSE),
        (21, 'Important members of the Beaker culture', FALSE),
-       (22, 'Both the chief and the old man', FALSE),                                                -- ............. was/were buried with the heads and hooves of four cattle.
+       (22, 'Both the chief and the old man',
+        FALSE),                                                -- ............. was/were buried with the heads and hooves of four cattle.
        (22, 'The old man', FALSE),
        (22, 'The chief', TRUE),
        (22, 'Chiefs from the Beaker culture', FALSE),
@@ -528,7 +547,14 @@ VALUES (1, 'marketing', FALSE), -- James studies ............. at university.
 
 INSERT INTO english_language_essay_topic(difficulty_id, topic)
 VALUES (1, 'Describe your home! How does it look like from outside, rooms, what is in the rooms, etc.'),
-       (2, 'Write your opinion about the role of physical education in the school system.'),
+       (1, 'Is vaccination for everyone?'),
+       (1, 'Does social media violate our privacy?'),
+       (2, 'Does consumerism pose a big issue for the world?'),
+       (2, 'Is vaping as harmful as smoking cigarettes?'),
+       (2, 'Does our tax system benefit everyone fairly?'),
+       (2, 'Is capital punishment ever justified?'),
+       (3, 'Will people ever be able to live without the Internet?'),
+       (3, 'Write your opinion about the role of physical education in the school system.'),
        (3, 'Should the death sentence be implemented globally? Write an essay about this topic!');
 
 INSERT INTO social_situation_type(type)
@@ -536,8 +562,8 @@ VALUES ('image'),
        ('video');
 
 INSERT INTO social_situation_media(title, url, type_id)
-VALUES ('School notes', 'https://youtu.be/uSliv0T9Zxg', 2),
-       ('Paintballing', 'https://youtu.be/bkhE-SMh1-Q', 2),
+VALUES ('Iskolai jegyzetek', 'https://www.youtube.com/watch?v=uSliv0T9Zxg', 2),
+       ('Paintballozás', 'https://www.youtube.com/watch?v=bkhE-SMh1-Q', 2),
        ('Csoportos beszélgetés összejövetelen', '../static/img/img01.png', 1),
        ('A bor baleset', '../static/img/img02.png', 1),
        ('Klikkesedés', '../static/img/img03.png', 1),
@@ -545,7 +571,14 @@ VALUES ('School notes', 'https://youtu.be/uSliv0T9Zxg', 2),
        ('Nemi megkülönböztetés', '../static/img/img05.png', 1);
 
 INSERT INTO social_situation_question(question, media_id)
-VALUES ('Why do they react the way they do?', 1),
-       ('Have you ever found yourself or experienced a similar situation? Please tell me about it.', 1),
-       ('What did you feel?', 1),
-       ('What did you feel? How did you react?', 3);
+VALUES ('Miért reagálnak úgy ahogy?', 1),
+       ('Voltál-e már hasonló szituációban? Mit csináltál?', 1),
+       ('Mit éreztél?', 1),
+       ('Hogyan jellemeznéd ezt a szituációt?', 2),
+       ('Mit éreztél? Hogyan reagáltál?', 3),
+       ('Mit tennél egy ilyen helyzetben?', 4),
+       ('Hogyan írnád le a légkört?', 5),
+       ('Hogy alakulhat ki egy ilyen szituáció?', 5),
+       ('Mit csinálnak éppen a képen látható emberek?', 6),
+       ('Mi történik a képen?', 7),
+       ('Mit éreztél?', 7);

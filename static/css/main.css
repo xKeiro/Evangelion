@@ -2,7 +2,8 @@
     font-family: montserrat;
     src: url("/static/font/Montserrat-VariableFont_wght.ttf");
 }
-body{
+
+body {
     width: 100%;
     position: relative;
     top: 56px;
@@ -10,7 +11,8 @@ body{
     min-height: calc(100vh - 56px);
     font-family: montserrat;
 }
-nav{
+
+nav {
     background-color: white;
 }
 
@@ -20,35 +22,44 @@ nav{
     border-radius: 10px;
     padding: 1.5em;
     margin-bottom: 100px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.navbar-container{
+.navbar-container {
     margin: 0;
     min-width: 100%;
 }
 
-.selected{
+.selected {
     background-color: forestgreen;
 }
 
-.navbar-nav{
+.navbar-nav {
     width: 100%;
 }
-.navbar-text-user{
+
+.navbar-text-user {
     color: #1a1a1a;
     font-weight: bold;
 }
-.nav-spacer {
 
+.home-button {
+    display: flex;
+    flex-direction: row;
 }
-.user-login-logout{
+
+.nav-image {
+    margin: 0 0.5em 0 0.5em;
+    max-width: 32px;
+}
+
+.user-login-logout {
     margin-left: auto;
     display: flex;
     flex-direction: row;
 }
 
-.button-custom{
+.button-custom {
     background-color: #0078c3;
     /*border-color: #005e99; Szia Kevin :3 ez nem tetszett szoval kivettem.*/
     max-height: 38px;
@@ -56,38 +67,67 @@ nav{
     color: white;
 }
 
-.button-custom:hover{
-    background-color: #ffd454!important;
-    border-color: #ffd454!important;
-    color: black!important;
+.button-custom:hover {
+    background-color: #ffd454 !important;
+    border-color: #ffd454 !important;
+    color: black !important;
 }
 
-.test-title{
+.test-title {
     font-family: montserrat;
     font-weight: bold;
 }
 
-.test-sub-title{
+.test-sub-title {
     font-family: montserrat;
 }
 
-@media all and (max-width: 991px){
-    .user-login-logout{
+@media all and (max-width: 991px) {
+    .user-login-logout {
         margin-left: 0;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
+
+    .nav-image-link {
+        /*margin-left: 0;*/
+        display: none;
+    }
+
+    .nav-list-container {
+        margin-top: 1em;
+    }
 }
 
-@media all and (min-width: 1920px){
-    .navbar-container{
+@media all and (min-width: 1920px) {
+    .navbar-container {
         min-width: 1920px;
         margin: auto;
     }
 }
 
 .form-control {
-   font-size: 1.2rem;
-   /*font-family: montserrat;*/
+    font-size: 1.2rem;
+    /*font-family: montserrat;*/
+}
+
+.skip-link {
+    width: 25rem;
+    margin: auto;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: #0078c3;
+    color: white;
+    padding: .5rem;
+    translate: 0 -100%;
+    z-index: 10000;
+    translation: translate 150ms ease-in-out;
+}
+
+.skip-link:focus {
+    translate: 0
 }

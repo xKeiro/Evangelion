@@ -1,5 +1,5 @@
-from typing import TYPE_CHECKING
 import random
+from typing import TYPE_CHECKING
 
 from connection import connection_handler
 from data_manager import data_handler_util
@@ -10,7 +10,8 @@ if TYPE_CHECKING:
 
 # region --------------------------------------READ-----------------------------------------
 @connection_handler
-def get_random_english_test_by_difficulty_id(cursor: 'Cursor', difficulty_id: int) -> dict[dict, list[dict], list[dict], dict]:
+def get_random_english_test_by_difficulty_id(cursor: 'Cursor', difficulty_id: int) -> dict[
+    dict, list[dict], list[dict], dict]:
     query = """
 SELECT ARRAY [elt.id::VARCHAR, elt.text]                                                 AS "text",
        ARRAY_AGG(DISTINCT ARRAY [elq.id::VARCHAR, elq.question])                         AS questions,
@@ -74,6 +75,21 @@ ORDER BY elt.id
         tests[index]["questions"] = questions
         tests[index]["options"] = options
     return tests
+
+@connection_handler
+def get_all_english_essay_topic_by_difficulty_id(cursor: 'Cursor', difficulty_id: int) -> list[dict, dict]:
+    query = """
+    SELECT id, topic
+    FROM english_language_essay_topic
+    WHERE difficulty_id = %s
+    ORDER BY id
+    """
+    var = (difficulty_id,)
+    cursor.execute(query,var)
+    essay_topics = cursor.fetchall()
+    return essay_topics
+
+
 
 
 @connection_handler
@@ -168,6 +184,16 @@ def patch_option_by_id(cursor: 'Cursor', option_id: int, option: dict) -> None:
     """
     var = (option["option"], option["correct"], option_id)
     print(type(cursor))
+    cursor.execute(query, var)
+
+@connection_handler
+def patch_essay_topic_by_id(cursor: 'Cursor', id: int, topic: str) -> None:
+    query = """
+    UPDATE english_language_essay_topic
+    SET topic = %s
+    WHERE id = %s
+    """
+    var = (topic, id)
     cursor.execute(query, var)
 
 # endregion
