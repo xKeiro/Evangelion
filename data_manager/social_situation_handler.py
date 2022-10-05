@@ -60,4 +60,15 @@ def patch_media_title_by_id(cursor, media_id, title):
     var = (title, media_id)
     cursor.execute(query, var)
 
+
+@connection_handler
+def patch_question_by_id(cursor, question_id, question):
+    query = """
+    UPDATE social_situation_question
+    SET question = %s
+    WHERE id = %s
+    """
+    var = (question, question_id)
+    cursor.execute(query, var)
+
 # endregion

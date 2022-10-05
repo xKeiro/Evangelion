@@ -47,8 +47,6 @@ async function handleMediaTitleChange(event) {
     dataHandler.patchSocialSituationMediaTitle(mediaId, {"title": changedText});
     event.currentTarget.remove();
     essayTopicElement.classList.remove("d-none");
-
-
 }
 
 // endregion
@@ -76,16 +74,13 @@ async function handleClickOnQuestion(event) {
 async function handleQuestionChange(event) {
     "use strict";
     const questionTitle = event.currentTarget.value;
-    if (questionTitle.includes("............")) {
-        const questionTitleElement = event.currentTarget.parentNode.querySelector(".question");
-        const questionId = questionTitleElement.dataset.questionId;
-        questionTitleElement.innerHTML = questionTitle;
-        dataHandler.patchEnglishLanguageTextQuestionTitle(questionId, {"title": questionTitle});
-        event.currentTarget.remove();
-        questionTitleElement.classList.remove("d-none");
-    } else {
-        alert("A kérdésnek tartalmaznia kell: ............");
-    }
+    const questionTitleElement = event.currentTarget.parentNode.querySelector(".question");
+    const questionId = questionTitleElement.dataset.questionId;
+    questionTitleElement.innerHTML = questionTitle;
+    dataHandler.patchSocialSituationQuestion(questionId, {"question": questionTitle});
+    event.currentTarget.remove();
+    questionTitleElement.classList.remove("d-none");
+
 }
 
 // endregion

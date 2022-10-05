@@ -33,7 +33,7 @@
 						{% endif %}
 						{% for question in situation.questions %}
 							<div class="d-flex flex-column justify-content-center align-items-center">
-								<div class="answer-label">{{ question.question }}</div>
+								<div class="answer-label question" data-question-id="{{ question.id }}">{{ question.question }}</div>
 								<textarea class="form-control test-answer" data-question-id="{{ question.id }}"
 								          maxlength="200"></textarea>
 							</div>

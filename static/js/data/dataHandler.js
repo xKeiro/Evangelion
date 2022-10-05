@@ -31,9 +31,9 @@ export let dataHandler = {
         "use strict";
         return apiPatch(`/api/english-language/option/${optionId}`, option);
     },
-    patchEnglishLanguageEssayTopic: async function (essay_topic_id, essay_topic) {
+    patchEnglishLanguageEssayTopic: async function (essayTopicId, essay_topic) {
         "use strict";
-        return apiPatch(`/api/english-language/essay_topic/${essay_topic_id}`, essay_topic);
+        return apiPatch(`/api/english-language/essay_topic/${essayTopicId}`, essay_topic);
     },
     postSocialSituationResults: async function (result) {
         "use strict";
@@ -42,6 +42,10 @@ export let dataHandler = {
     patchSocialSituationMediaTitle: async function (mediaId, title) {
         "use strict";
         return apiPatch(`/api/social-situation/media/${mediaId}/title`, title);
+    },
+    patchSocialSituationQuestion: async function (questionId, question) {
+        "use strict";
+        return apiPatch(`/api/social-situation/question/${questionId}`, question);
     }
 };
 

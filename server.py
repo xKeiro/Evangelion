@@ -259,5 +259,13 @@ def api_patch_social_situation_media_title(media_id):
     topic = request.json["title"]
     social_situation_handler.patch_media_title_by_id(media_id, topic)
     return {"status": "success"}
+
+@app.route("/api/social-situation/question/<question_id>", methods=["PATCH"])
+@util.admin_required
+@util.json_response
+def api_patch_social_situation_question(question_id):
+    question = request.json["question"]
+    social_situation_handler.patch_question_by_id(question_id, question)
+    return {"status": "success"}
 # endregion
 # endregion
