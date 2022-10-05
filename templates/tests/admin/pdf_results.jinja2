@@ -1,57 +1,62 @@
 {% extends "default.jinja2" %}
+{% block head %}
+	<script src="{{ url_for('static', filename='js/tests/admin/pdf.js') }}" type="module" defer></script>
+{% endblock %}
 {% block content %}
-    <main class="container page-body">
-        <header class="english-test-header">
-            <h2 class="test-title">{{ text["PDF kezelés"] }}</h2>
-            <hr>
-        </header>
-        <div class="d-flex flex-column text-center align-items-center">
-            {% if filtered == "no filter" %}
-                <div class="alert wy-alert-danger">
-                    <strong>{{ text["Legalább 1 szűrőt állíts be!"] }}</strong>
-                </div>
-            {% elif filtered == "no username" %}
-                <div class="alert wy-alert-danger">
-                    <strong>{{ text["Nincs ilyen felhasználó!"] }}</strong>
-                </div>
-            {% elif filtered == "no email" %}
-                <div class="alert wy-alert-danger">
-                    <strong>{{ text["Nincs ilyen e-mail cím!"] }}</strong>
-                </div>
-            {% endif %}
-            <h4>{{ text["Egy pályázó legutóbbi eredményei"] }}</h4>
-            <form action="{{ url_for("one_applicant_pdf") }}" method="GET" class="form-container">
-                <div class="form-group mt-5">
-                    <div class="material-container">
-                        <label class="form-label fw-bold material-label"
-                               for="username">{{ text["Felhasználónév"] }}</label>
-                        <input type="text" name="username" class="form-control material-input"
-                               aria-label="{{ text["Felhasználónév"] }}:">
-                    </div>
-                    <div class="material-container">
-                        <label class="color-primary fw-bold material-label" for="email">{{ text["E-mail"] }}</label>
-                        <input type="email" name="email" class="form-control material-input"
-                               aria-label="{{ text["E-mail"] }}">
-                    </div>
-                </div>
-                <div><input type="submit" value="{{ text["PDF letöltés"] }}" class="btn btn-primary button-custom mt-3"></div>
-            </form>
-            <h4>{{ text["Több pályázó legutóbbi eredményei"] }}</h4>
-            <form action="{{ url_for("more_applicants_pdf") }}" method="GET" class="form-container">
-                <div class="form-group mt-5">
-                    <div class="material-container">
-                        <label class="color-primary fw-bold material-label"
-                               for="from_date">{{ text["-tól"] }}</label>
-                        <input type="date" name="from_date" class="form-control material-input">
-                    </div>
-                    <div class="material-container">
-                        <label class="color-primary fw-bold material-label"
-                               for="to_date">{{ text["-ig"] }}</label>
-                        <input type="date" name="to_date" class="form-control material-input">
-                    </div>
-                </div>
-                <div><input type="submit" value="{{ text["PDF letöltés"] }}" class="btn btn-primary button-custom mt-3"></div>
-            </form>
-        </div>
-    </main>
+	<main class="container page-body">
+		<header class="english-test-header">
+			<h2 class="test-title">{{ text["PDF kezelés"] }}</h2>
+			<hr>
+		</header>
+		<div class="d-flex flex-column text-center align-items-center">
+			{% if filtered == "no filter" %}
+				<div class="alert wy-alert-danger">
+					<strong>{{ text["Legalább 1 szűrőt állíts be!"] }}</strong>
+				</div>
+			{% elif filtered == "no username" %}
+				<div class="alert wy-alert-danger">
+					<strong>{{ text["Nincs ilyen felhasználó!"] }}</strong>
+				</div>
+			{% elif filtered == "no email" %}
+				<div class="alert wy-alert-danger">
+					<strong>{{ text["Nincs ilyen e-mail cím!"] }}</strong>
+				</div>
+			{% endif %}
+			<h4>{{ text["Egy pályázó legutóbbi eredményei"] }}</h4>
+			<form action="{{ url_for("one_applicant_pdf") }}" method="GET" class="form-container">
+				<div class="form-group mt-5">
+					<div class="material-container">
+						<label class="form-label fw-bold material-label"
+						       for="username">{{ text["Felhasználónév"] }}</label>
+						<input type="text" name="username" id="username" class="form-control material-input"
+						       aria-label="{{ text["Felhasználónév"] }}:">
+					</div>
+					<div class="material-container">
+						<label class="color-primary fw-bold material-label" for="email">{{ text["E-mail"] }}</label>
+						<input type="email" name="email" id="email" class="form-control material-input"
+						       aria-label="{{ text["E-mail"] }}">
+					</div>
+				</div>
+				<div><input type="submit" value="{{ text["PDF letöltés"] }}" class="btn btn-primary button-custom mt-3">
+				</div>
+			</form>
+			<h4>{{ text["Több pályázó legutóbbi eredményei"] }}</h4>
+			<form action="{{ url_for("more_applicants_pdf") }}" method="GET" class="form-container">
+				<div class="form-group mt-5">
+					<div class="material-container">
+						<label class="color-primary fw-bold material-label"
+						       for="from_date">{{ text["-tól"] }}</label>
+						<input type="date" name="from_date" class="form-control material-input">
+					</div>
+					<div class="material-container">
+						<label class="color-primary fw-bold material-label"
+						       for="to_date">{{ text["-ig"] }}</label>
+						<input type="date" name="to_date" class="form-control material-input">
+					</div>
+				</div>
+				<div><input type="submit" value="{{ text["PDF letöltés"] }}" class="btn btn-primary button-custom mt-3">
+				</div>
+			</form>
+		</div>
+	</main>
 {% endblock %}
