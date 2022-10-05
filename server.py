@@ -18,6 +18,7 @@ from data_manager import user_handler
 from data_manager import work_motivation_test_handler
 from data_manager import start_sql
 from data_manager import pdf_handler
+from data_manager import common_queries
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
@@ -214,8 +215,19 @@ def one_applicant_pdf():
 @app.route('/admin/manage_pdf/more_applicant')
 @util.admin_required
 def more_applicants_pdf():
+    from_date = request.args["from_date"]
+    to_date = request.args["to_date"]
+    if not from_date and not to_date:
+        filtered = "no filter"
+    else:
+        applicants = common_queries.get_applicants_who_made_a_test_between_two_dates(from_date, to_date)
+        pdf_handler.get_applicant_tests_results_into_pdf(applicants=applicants, multi_applicant=True)
 
-    pass
+        filename = "Applicants_test_results_"
+        current_date = str(date.today()).replace("-", "_")
+        return send_file(f"{filename}{current_date}.pdf", as_attachment=True)
+
+    return render_template("tests/admin/pdf_results.jinja2", filtered=filtered)
 
 # endregion
 
