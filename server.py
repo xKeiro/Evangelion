@@ -27,8 +27,6 @@ app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
-
 #------------------------------JUST FOR DEVELOPMENT--------------------------------------------
 
 # with open("data/db_schema.sql", encoding="UTF-8") as file:
@@ -186,7 +184,10 @@ def one_applicant_pdf():
     else:
         if username:
             try:
-                full_name_for_filename = user_handler.get_full_name_by_username(username)["full_name"]
+                email_and_full_name = user_handler.get_email_and_full_name_by_username(username)
+                email = email_and_full_name["email"]
+                full_name = email_and_full_name["full_name"]
+                full_name_for_filename = full_name.replace(" ", "_") + "_"
             except TypeError:
                 filtered = "no username"
             else:
@@ -203,7 +204,7 @@ def one_applicant_pdf():
 
         if filtered == "True":
             current_date = str(date.today()).replace("-", "_")
-            pdf_handler.get_applicant_tests_results_into_pdf(username, full_name_for_filename)
+            pdf_handler.get_applicant_tests_results_into_pdf(username, full_name, email)
             return send_file(f"{full_name_for_filename}{current_date}.pdf", as_attachment=True)
 
     return render_template("tests/admin/pdf_results.jinja2", filtered=filtered)

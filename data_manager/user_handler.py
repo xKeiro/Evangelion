@@ -18,9 +18,9 @@ def get_user_fields_by_username(cursor, username: str, field_names: list) -> dic
 
 
 @connection_handler
-def get_full_name_by_username(cursor, username) -> dict:
+def get_email_and_full_name_by_username(cursor, username) -> dict:
     query = """
-    SELECT CONCAT(last_name, '_', first_name, '_') AS full_name
+    SELECT CONCAT(last_name, ' ', first_name) AS full_name, email
     FROM users
     WHERE username LIKE %s
     """
@@ -32,7 +32,7 @@ def get_full_name_by_username(cursor, username) -> dict:
 @connection_handler
 def get_username_and_full_name_by_email(cursor, email) -> dict:
     query = """
-    SELECT username, CONCAT(last_name, '_', first_name, '_') AS full_name
+    SELECT username, CONCAT(last_name, ' ', first_name) AS full_name
     FROM users
     WHERE email LIKE %s
     """
