@@ -7,6 +7,8 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
+from flask import send_file
+from datetime import date
 
 import util
 from data_manager import english_test_handler
@@ -15,6 +17,8 @@ from data_manager import social_situation_handler
 from data_manager import start_sql
 from data_manager import user_handler
 from data_manager import work_motivation_test_handler
+from data_manager import pdf_handler
+from data_manager import common_queries
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
@@ -163,6 +167,68 @@ def admin_english_language_essay_topics(difficulty_id):
     return render_template('tests/admin/english_language/english_language_essay_admin.jinja2',
                            essay_topics=essay_topics)
 
+
+
+@app.route('/admin/manage_pdf')
+@util.admin_required
+def manage_pdf():
+    return render_template("tests/admin/pdf_results.jinja2")
+
+
+@app.route('/admin/manage_pdf/one_applicant')
+@util.admin_required
+def one_applicant_pdf():
+    username = request.args["username"]
+    email = request.args["email"]
+
+    if not username and not email:
+        filtered = "no filter"
+    else:
+        if username:
+            try:
+                email_and_full_name = user_handler.get_email_and_full_name_by_username(username)
+                email = email_and_full_name["email"]
+                full_name = email_and_full_name["full_name"]
+                full_name_for_filename = full_name.replace(" ", "_") + "_"
+            except TypeError:
+                filtered = "no username"
+            else:
+                filtered = "True"
+        elif email:
+            try:
+                user_and_full_name = user_handler.get_username_and_full_name_by_email(email)
+                username = user_and_full_name["username"]
+                full_name = user_and_full_name["full_name"]
+                full_name_for_filename = full_name.replace(" ", "_") + "_"
+            except TypeError:
+                filtered = "no email"
+            else:
+                filtered = "True"
+
+        if filtered == "True":
+            current_date = str(date.today()).replace("-", "_")
+            pdf_handler.get_applicant_tests_results_into_pdf(username, full_name, email)
+            return send_file(f"{full_name_for_filename}{current_date}.pdf", as_attachment=True)
+
+    return render_template("tests/admin/pdf_results.jinja2", filtered=filtered)
+
+
+@app.route('/admin/manage_pdf/more_applicant')
+@util.admin_required
+def more_applicants_pdf():
+    from_date = request.args["from_date"]
+    to_date = request.args["to_date"]
+    if not from_date and not to_date:
+        filtered = "no filter"
+    else:
+        applicants = common_queries.get_applicants_who_made_a_test_between_two_dates(from_date, to_date)
+        pdf_handler.get_applicant_tests_results_into_pdf(applicants=applicants, multi_applicant=True)
+
+        filename = "Applicants_test_results_"
+        current_date = str(date.today()).replace("-", "_")
+        return send_file(f"{filename}{current_date}.pdf", as_attachment=True)
+
+    return render_template("tests/admin/pdf_results.jinja2", filtered=filtered)
 
 # endregion
 

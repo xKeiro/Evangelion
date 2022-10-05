@@ -91,6 +91,47 @@ def get_all_english_essay_topic_by_difficulty_id(cursor: 'Cursor', difficulty_id
     return essay_topics
 
 
+
+
+@connection_handler
+def get_english_test_questions_results_by_username(cursor, username) -> list[dict]:
+    query = """
+        SELECT elq.question, elo.option AS given_answer, elo.correct
+        FROM english_language_result elr
+        JOIN english_language_option elo on elr.option_id = elo.id
+        JOIN result_header rh on elr.result_id = rh.id
+        JOIN english_language_result_essay elre on rh.id = elre.result_header_id
+        JOIN english_language_question elq on elo.question_id = elq.id
+        JOIN english_language_essay_topic elet on elre.topic_id = elet.id
+        JOIN english_language_difficulty eld on elet.difficulty_id = eld.id
+        JOIN users u on rh.user_id = u.id
+        WHERE u.username LIKE %s
+        GROUP BY elq.question, elo.option, elq.id, elo.correct, rh.date
+        ORDER BY rh.date DESC, elq.id
+        LIMIT 10
+    """
+    var = (username,)
+    cursor.execute(query, var)
+    return cursor.fetchall()
+
+
+@connection_handler
+def get_english_test_essay_diff_and_completion_date_by_username(cursor, username) -> list[dict]:
+    query = """
+        SELECT eld.title AS difficulty, elet.topic, elre.essay, rh.date
+        FROM english_language_result_essay elre
+        JOIN result_header rh on rh.id = elre.result_header_id
+        JOIN english_language_essay_topic elet on elre.topic_id = elet.id
+        JOIN english_language_difficulty eld on elet.difficulty_id = eld.id
+        JOIN users u on rh.user_id = u.id
+        WHERE u.username LIKE %s
+        ORDER BY rh.date, rh.id DESC
+        LIMIT 1
+    """
+    var = (username,)
+    cursor.execute(query, var)
+    return cursor.fetchone()
+
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 

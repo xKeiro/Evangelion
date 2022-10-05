@@ -20,6 +20,51 @@ def get_questions(cursor: 'Cursor') -> list[dict]:
     return cursor.fetchall()
 
 
+@connection_handler
+def get_results_for_applicant(cursor, username) -> list[dict]:
+    query = """
+    SELECT wmc.title, SUM(wmr.score) as cat_score
+    FROM work_motivation_result wmr
+    JOIN work_motivation_question wmq on wmr.question_id = wmq.id
+    JOIN work_motivation_category wmc on wmq.category_id = wmc.id
+    JOIN result_header rh on wmr.result_header_id = rh.id
+    JOIN users u on u.id = rh.user_id
+    WHERE u.username LIKE %s
+    GROUP BY  wmc.title, u.username, wmc.id
+    ORDER BY wmc.id
+    """
+    cursor.execute(query, (username,))
+    return cursor.fetchall()
+
+
+@connection_handler
+def get_categories_max_points(cursor) -> list[dict]:
+    query = """
+    SELECT wmc.title, COUNT(wmq.*) * 5 AS max_point
+    FROM work_motivation_category wmc
+    JOIN work_motivation_question wmq on wmc.id = wmq.category_id
+    GROUP BY wmc.title, wmc.id
+    ORDER BY wmc.id
+    """
+    cursor.execute(query)
+    return cursor.fetchall()
+
+
+@connection_handler
+def get_latest_completion_date_from_work_motivation_by_username(cursor, username) -> list[dict]:
+    query = """
+        SELECT rh.date
+        FROM work_motivation_result wmr
+        JOIN result_header rh on wmr.result_header_id = rh.id
+        JOIN users u on u.id = rh.user_id
+        WHERE u.username LIKE %s
+        ORDER BY rh.date DESC
+        LIMIT 1
+        """
+    cursor.execute(query, (username,))
+    return cursor.fetchone()
+
+
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 @connection_handler

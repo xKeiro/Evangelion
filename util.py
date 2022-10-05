@@ -72,6 +72,7 @@ def admin_required(func):
     return decorated_function
 
 
+# region ---------------------------------------LANGUAGE----------------------------------------
 # def get_language(func):
 #     """
 #     Sets language to hungarian if there's no language in cookies
