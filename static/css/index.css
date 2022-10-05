@@ -34,6 +34,7 @@
     color: white;
     line-height: 0.8;
     text-shadow: 0 0 10px black;
+    margin-bottom: 0.5em;
 }
 
 @media all and (min-width: 1200px) {
@@ -52,12 +53,26 @@
     }
 
     .main-title-text {
-        font-size: 75px;
+        font-size: 100px;
     }
 }
 
-/*@media all and (max-width: 991px){*/
-/*    .main-title-text{*/
-/*        font-size: 50px;*/
-/*    }*/
-/*}*/
+@media all and (max-width: 991px) {
+    .main-title-text {
+        font-size: 120px;
+        margin-bottom: 1.5em;
+    }
+
+    .card-title {
+        font-size: 1.5em;
+    }
+
+    .card-border-div{
+        padding: 0;
+    }
+    .card-image-container {
+        min-width: 100%;
+    }
+
+
+}

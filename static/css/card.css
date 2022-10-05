@@ -62,6 +62,7 @@
 }
 
 .homepage-card:nth-of-type(odd) > .row > .card-text-container {
+    /*border: #ffc107 solid 1px;*/
     align-items: flex-start;
     justify-content: center;
 }
