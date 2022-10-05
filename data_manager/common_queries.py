@@ -17,4 +17,4 @@ def get_applicants_who_made_a_test_between_two_dates(cursor, date_from="", date_
     WHERE rh.date BETWEEN %s AND %s
     """
     cursor.execute(query, (date_from, date_to))
-    return cursor.fetchall()
+    return cursor.fetchall(), date_from, date_to

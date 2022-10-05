@@ -227,11 +227,13 @@ def more_applicants_pdf():
     if not from_date and not to_date:
         filtered = "no filter"
     else:
-        applicants = common_queries.get_applicants_who_made_a_test_between_two_dates(from_date, to_date)
-        pdf_handler.get_applicant_tests_results_into_pdf(applicants=applicants, multi_applicant=True)
-
+        applicants, date_from, date_to = common_queries.get_applicants_who_made_a_test_between_two_dates(from_date, to_date)
+        date_from = date_from.replace("-", "_")
+        date_to = date_to.replace("-", "_")
+        pdf_handler.get_applicant_tests_results_into_pdf(applicants=applicants, multi_applicant=True,
+                                                         date_from=date_from, date_to=date_to)
         filename = "Applicants_test_results_"
-        current_date = str(date.today()).replace("-", "_")
+        current_date = date_from + "_to_" + date_to
         return send_file(f"static\\pdf\\{filename}{current_date}.pdf", as_attachment=True)
 
     return render_template("tests/admin/pdf_results.jinja2", filtered=filtered)
