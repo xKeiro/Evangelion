@@ -17,7 +17,7 @@ from data_manager import data_handler_util
 @connection_handler
 def get_situations(cursor):
     query = """
-    SELECT ARRAY[sst.type, ssm.url, ssm.title] AS media, ARRAY_AGG(ARRAY[ssq.id::VARCHAR, ssq.question]) AS questions
+    SELECT ARRAY[sst.type, ssm.url, ssm.title, ssm.id::varchar] AS media, ARRAY_AGG(ARRAY[ssq.id::VARCHAR, ssq.question]) AS questions
     FROM social_situation_media ssm
     JOIN social_situation_type sst ON ssm.type_id = sst.id
     JOIN social_situation_question ssq ON ssm.id = ssq.media_id
@@ -27,7 +27,7 @@ def get_situations(cursor):
     cursor.execute(query)
     situations = cursor.fetchall()
     for index, situation in enumerate(situations):
-        media = {"type": situation["media"][0], "url": situation["media"][1], "title": situation["media"][2]}
+        media = {"type": situation["media"][0], "url": situation["media"][1], "title": situation["media"][2], "id": int(situation["media"][3])}
         questions = [{"id": int(question[0]), "question": question[1]} for question in
                      situation["questions"]]
         situations[index]["media"] = media
@@ -48,6 +48,16 @@ def save_data(cursor, result, user_id):
     var = []
     for res in result:
         var.extend([res[1], res[0], result_header_id])  # (answer, question_id, result_id)
+    cursor.execute(query, var)
+
+@connection_handler
+def patch_media_title_by_id(cursor, media_id, title):
+    query = """
+    UPDATE social_situation_media
+    SET title = %s
+    WHERE id = %s
+    """
+    var = (title, media_id)
     cursor.execute(query, var)
 
 # endregion

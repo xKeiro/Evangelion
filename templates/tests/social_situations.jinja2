@@ -1,7 +1,7 @@
 {% extends "default.jinja2" %}
 {% block head %}
 	<script src="{{ url_for('static', filename='js/util/embedYoutube.js') }}" defer></script>
-	<script type="module" src="{{ url_for('static', filename='js/tests/socialSituation.js') }}" defer></script>
+	<script type="module" src="{{ url_for('static', filename='js/tests/admin/englishSocialSituationAdmin.js') if session["is_admin"] else url_for('static', filename='js/tests/socialSituation.js') }}" defer></script>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/social_situation.css') }}">
 {% endblock %}
 {% block content %}
@@ -17,16 +17,17 @@
 		<section>
 			{% for situation in situations %}
 				<article class="card question-card">
-					<header class="card-header card-title">{{ situation.media.title }}</header>
+					<header class="card-header card-title media-title" data-media-id="{{ situation.media.id }}">{{ situation.media.title }}</header>
 					<div class="card-body">
 						{% if situation.media.type == "video" %}
 							<div class="media-container"></div>
 							<div id="{{ situation.media.url }}"
 							     class="rounded mx-auto d-block media-content media-video"
+							     data-media-id="{{ situation.media.id }}"
 							     url="{{ situation.media.url }}"></div>
 						{% else %}
 							<div class="media-container">
-								<img class="media-content media-image" src="{{ situation.media.url }}"
+								<img class="media-content media-image" data-media-id="{{ situation.media.id }}" src="{{ situation.media.url }}"
 								     alt="{{ situation.media.title }}">
 							</div>
 						{% endif %}

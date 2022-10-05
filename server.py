@@ -18,9 +18,13 @@ from data_manager import work_motivation_test_handler
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
+UPLOAD_FOLDER = "./static/img"
 
 app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
 
 # ------------------------------JUST FOR DEVELOPMENT--------------------------------------------
 
@@ -248,5 +252,12 @@ def api_patch_english_language_essay_topic(essay_topic_id):
     english_test_handler.patch_essay_topic_by_id(essay_topic_id, topic)
     return {"status": "success"}
 
+@app.route("/api/social-situation/media/<media_id>/title", methods=["PATCH"])
+@util.admin_required
+@util.json_response
+def api_patch_social_situation_media_title(media_id):
+    topic = request.json["title"]
+    social_situation_handler.patch_media_title_by_id(media_id, topic)
+    return {"status": "success"}
 # endregion
 # endregion

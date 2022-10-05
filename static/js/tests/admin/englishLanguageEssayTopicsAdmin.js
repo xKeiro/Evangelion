@@ -12,7 +12,7 @@ async function initActions() {
 }
 
 
-// region ---------------------------------------TEXT----------------------------------------
+// region ---------------------------------------ESSAY TOPIC----------------------------------------
 function initEditEssayTopic() {
     "use strict";
     const essayTopicElements = document.querySelectorAll(".essay-topic");
