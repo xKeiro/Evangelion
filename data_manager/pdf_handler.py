@@ -70,7 +70,7 @@ def get_applicant_tests_results_into_pdf(username="", full_name="", email="", ap
         if eng_test_essay_diff_comp_date is not None:
             eng_test_question_results = english_test_handler.get_english_test_questions_results_by_username(username)
             difficulty = "Alapfok" if eng_test_essay_diff_comp_date["difficulty"] == "Elementary" else "Középfok" if \
-            eng_test_essay_diff_comp_date["difficulty"] == "Intermediate" else "Felsőfok"
+            eng_test_essay_diff_comp_date["difficulty"] == "Intermediate" else "Felső középfok"
             eng_test_completion_date = change_date_format(eng_test_essay_diff_comp_date["date"])
             essay = eng_test_essay_diff_comp_date["essay"]
 
