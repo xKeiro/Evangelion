@@ -67,8 +67,12 @@
         font-size: 1.5em;
     }
 
-    .card-image-container {
-        min-width: calc(100vw - 10%);
+    .card-border-div{
+        padding: 0;
     }
+    .card-image-container {
+        min-width: 100%;
+    }
+
 
 }
