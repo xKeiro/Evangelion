@@ -103,3 +103,23 @@ nav{
    font-size: 1.2rem;
    /*font-family: montserrat;*/
 }
+
+.skip-link{
+    width: 25rem;
+    margin: auto;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: #0078c3;
+    color: white;
+    padding: .5rem;
+    translate: 0 -100%;
+    z-index: 10000;
+    translation: translate 150ms ease-in-out;
+}
+
+.skip-link:focus{
+    translate: 0
+}
