@@ -114,7 +114,7 @@ def get_applicant_tests_results_into_pdf(username, full_name, email):
         eng_test_completion_date = change_date_format(eng_test_essay_diff_comp_date["date"])
         essay = eng_test_essay_diff_comp_date["essay"]
 
-        pdf.set_font("Calibriz", size=10)
+        pdf.set_font("Calibriz", size=11)
         pdf.set_text_color(17, 71, 158)
         pdf.cell(w=95, h=data_row_height, txt=f"Angol nyelvtudás - {difficulty}", ln=0)
 
@@ -122,6 +122,7 @@ def get_applicant_tests_results_into_pdf(username, full_name, email):
         pdf.set_text_color(0, 0, 0)
         pdf.cell(w=95, h=data_row_height, txt=f"Kitöltötte: {eng_test_completion_date}", ln=1, align="R")
 
+        pdf.set_left_margin(15)
         pdf.set_font("Calibri", size=8)
         correct_answers = 0
         wrong_answers = 0
@@ -161,7 +162,8 @@ def get_applicant_tests_results_into_pdf(username, full_name, email):
         pdf.cell(w=95, h=data_row_height, txt=f"Angol nyelvtudás", ln=1)
 
     # SOCIAL SITUATIONS SECTION--------------------------------
-    pdf.set_font("Calibriz", size=10)
+    pdf.set_left_margin(10)
+    pdf.set_font("Calibriz", size=11)
     pdf.set_text_color(17, 71, 158)
     pdf.cell(w=95, h=data_row_height, txt="Társasági Szituációk", ln=0)
     pdf.set_text_color(0, 0, 0)
@@ -173,9 +175,20 @@ def get_applicant_tests_results_into_pdf(username, full_name, email):
 
         pdf.set_font("Calibrii", size=8)
         pdf.cell(w=95, h=data_row_height, txt=f"Kitöltötte: {soc_situations_completion_date}", ln=1, align="R")
+        pdf.ln()
 
+        previous_title = ""
         for part in situations_and_answers:
             pdf.set_font("Calibriz", size=9)
+
+            if previous_title != part['title']:
+                pdf.set_left_margin(10)
+                pdf.set_text_color(28, 176, 235)
+                pdf.write(txt=f"{part['title']}")
+                pdf.ln()
+
+            pdf.set_left_margin(15)
+            pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0,
                      h=data_row_height,
                      txt=f'{part["question"]}',
@@ -184,9 +197,11 @@ def get_applicant_tests_results_into_pdf(username, full_name, email):
             pdf.set_font("Calibri", size=8)
             pdf.multi_cell(w=0, h=data_row_height - 3, txt=f'{part["answer"]}')
             pdf.ln()
+            previous_title = part["title"]
 
     # WORK MOTIVATION SECTION--------------------------------
-    pdf.set_font("Calibriz", size=10)
+    pdf.set_left_margin(10)
+    pdf.set_font("Calibriz", size=11)
     pdf.set_text_color(17, 71, 158)
     pdf.cell(w=95, h=data_row_height, txt="Munka Motiváció", ln=0)
     pdf.set_text_color(0, 0, 0)
