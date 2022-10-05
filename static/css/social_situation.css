@@ -47,3 +47,37 @@ img {
     text-align: left;
     width: 100%;
 }
+
+@media all and (max-width: 991px) {
+    .page-body {
+        margin-bottom: 200px;
+        padding-bottom: 15px;
+        min-width: calc(100vw - 5%);
+        border-radius: 20px;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .test-title {
+        font-size: 2em;
+    }
+
+    .test-sub-title {
+        font-size: 1.5em;
+    }
+
+    .button-custom {
+        margin: 1em 0 1em 0;
+        min-height: 80px;
+    }
+
+    .question-card{
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    .test-answer{
+        border: #0096f2 solid 1px;
+        font-size: 1em;
+        height: 6em;
+    }
+}

@@ -101,20 +101,42 @@ hr {
 
 @media all and (max-width: 991px) {
     .page-body {
-        margin-bottom: 100px;
+        margin-bottom: 200px;
         padding-bottom: 15px;
+        min-width: calc(100vw - 5%);
+        border-radius: 20px;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    header > h1 {
+        font-size: 2em;
     }
 
     .tests-card {
-        border-radius: 0;
+        border-radius: 10px;
+        margin-bottom: 1.5em;
         /*margin-bottom: 20px;*/
     }
 
     .tests-card-header {
-        border-radius: 0 !important;
+        /*border-radius: 0 !important;*/
+        font-size: 1em;
     }
 
-    .test-button-link {
-        width: 30%;
+    .test-title{
+        font-size: 0.9em;
     }
+
+    .test-description{
+        font-size: 0.8em;
+    }
+    .button-custom{
+        /*background-color: #ffc107;*/
+        /*border: none;*/
+        /*color: black;*/
+        margin: 1em;
+        min-height: 80px;
+    }
+
 }

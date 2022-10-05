@@ -44,6 +44,35 @@ hr {
     background-color: #0078c3;
 }
 
-/*.work-motiv-radio-button[type="radio"]:checked, .work-motiv-radio-button[type="radio"]:not(checked){*/
-/*    opacity: 0;*/
-/*}*/
+@media all and (max-width: 991px) {
+    .page-body {
+        margin-bottom: 200px;
+        padding-bottom: 15px;
+        min-width: calc(100vw - 5%);
+        border-radius: 20px;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .test-title {
+        font-size: 2em;
+    }
+
+    .test-sub-title {
+        font-size: 1.5em;
+    }
+
+    .question-id {
+        display: none;
+    }
+
+    .button-custom {
+        margin: 1em 0 1em 0;
+        min-height: 80px;
+    }
+
+    .question-row, .question-row:nth-of-type(odd) {
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+}

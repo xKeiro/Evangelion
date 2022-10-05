@@ -83,6 +83,29 @@ nav {
 }
 
 @media all and (max-width: 991px) {
+    body {
+        top: 170px;
+        font-size: 2.5em;
+    }
+    /*-------------nav items-------------*/
+    .navbar {
+        padding-bottom: 1em;
+        padding-top: 1em;
+    }
+
+    .navbar-toggler-icon {
+        height: 4em;
+        width: 4em;
+    }
+
+    .card-text {
+        min-width: 100%;
+    }
+
+    .dropdown-menu {
+        font-size: 1em;
+    }
+
     .user-login-logout {
         margin-left: 0;
         display: flex;
@@ -96,8 +119,24 @@ nav {
     }
 
     .nav-list-container {
-        margin-top: 1em;
+        margin-top: 0.5em;
     }
+
+    .nav-item{
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+    .home-button{
+        display: block;
+    }
+    /*-------------button-------------*/
+    .button-custom{
+        /*padding: 1em 1em 1em 1em;*/
+        font-size: 1em;
+    }
+
+    /*-------------header text-------------*/
+
 }
 
 @media all and (min-width: 1920px) {
