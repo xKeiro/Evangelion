@@ -17,7 +17,7 @@ from data_manager import social_situation_handler
 from data_manager import user_handler
 from data_manager import work_motivation_test_handler
 from data_manager import start_sql
-from data_manager import common_queries
+from data_manager import pdf_handler
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
@@ -156,18 +156,19 @@ def admin_english_language_reading_comprehension(difficulty_id, page_number):
 def manage_pdf():
     try:
         username = request.args["username"]
+        email = request.args["email"]
+        if username:
+            full_name_for_filename = user_handler.get_full_name_by_username(username)
+        else:
+            user_and_full_name = user_handler.get_username_and_full_name_by_email(email)
+            username = user_and_full_name["username"]
+            full_name_for_filename = user_and_full_name["full_name"]
     except KeyError:
         pass
     else:
-        try:
-            full_name_for_filename = user_handler.get_full_name_by_username(username)
-        except TypeError:
-            pass
-        else:
-            print(full_name_for_filename)
-            current_date = str(date.today()).replace("-", "_")
-            util.get_applicant_tests_results_into_pdf(username, full_name_for_filename)
-            return send_file(f"{full_name_for_filename}{current_date}.pdf", as_attachment=True)
+        current_date = str(date.today()).replace("-", "_")
+        pdf_handler.get_applicant_tests_results_into_pdf(username, full_name_for_filename)
+        return send_file(f"{full_name_for_filename}{current_date}.pdf", as_attachment=True)
 
     return render_template("tests/admin/pdf_results.jinja2")
 

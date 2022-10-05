@@ -30,6 +30,17 @@ def get_full_name_by_username(cursor, username) -> dict:
     return cursor.fetchone()["full_name"]
 
 
+@connection_handler
+def get_username_and_full_name_by_email(cursor, email) -> dict:
+    query = """
+    SELECT username, CONCAT(last_name, '_', first_name, '_') AS full_name
+    FROM users
+    WHERE email LIKE %s
+    """
+    val = (email, )
+    cursor.execute(query, val)
+    return cursor.fetchone()
+
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 
