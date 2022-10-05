@@ -229,7 +229,7 @@ VALUES ('Főoldal', 'Home'),
         'Disabled workers are a reliable and loyal group of employees who, contrary to common perceptions, are productive, not different from the average, and have a more committed and loyal attitude towards their employer.'),
        ('Ugrás a fő tartalomra!', 'Skip to main content!'),
        ('Salva Vita logó', 'Salva Vita logo'),
-       ('Tovább az essay témákhoz!', 'Go to the essay topics!'),
+       ('Tovább az esszé témákhoz!', 'Go to the essay topics!'),
        ('PDF kezelés', 'Manage PDF'),
        ('PDF letöltés', 'Download PDF'),
        ('-tól', '-from'),
@@ -398,8 +398,7 @@ VALUES (1, 'marketing', FALSE),                                -- James studies 
        (1, 'engineering', TRUE),
        (1, 'agriculture', FALSE),
        (1, 'architecture', FALSE),
-       (2, '1',
-        FALSE),                                                -- -- James went to lectures in the lecture rooms at Manchester university for ............. weeks.
+       (2, '1', FALSE),                                        -- James went to lectures in the lecture rooms at Manchester university for ............. weeks.
        (2, '2', FALSE),
        (2, '3', TRUE),
        (2, '4', FALSE),
@@ -449,8 +448,7 @@ VALUES (1, 'marketing', FALSE),                                -- James studies 
        (11, 'a village', TRUE),
        (11, 'the founder of a chocolate factory', FALSE),
        (11, 'a chocolate bunny', FALSE),
-       (12, 'it was close to farms which provided milk',
-        FALSE),                                                -- The new site for the chocolate factory was chosen because .............
+       (12, 'it was close to farms which provided milk',FALSE), -- The new site for the chocolate factory was chosen because .............
        (12, 'it was easy to build there', FALSE),
        (12, 'it was close to several transportation routes', TRUE),
        (12, 'a lot of people lived nearby.', FALSE),
@@ -500,8 +498,7 @@ VALUES (1, 'marketing', FALSE),                                -- James studies 
        (21, 'Both the chief and the old man', TRUE),
        (21, 'Chiefs from the Beaker culture', FALSE),
        (21, 'Important members of the Beaker culture', FALSE),
-       (22, 'Both the chief and the old man',
-        FALSE),                                                -- ............. was/were buried with the heads and hooves of four cattle.
+       (22, 'Both the chief and the old man', FALSE),          -- ............. was/were buried with the heads and hooves of four cattle.
        (22, 'The old man', FALSE),
        (22, 'The chief', TRUE),
        (22, 'Chiefs from the Beaker culture', FALSE),
