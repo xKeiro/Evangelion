@@ -1,5 +1,6 @@
 import mimetypes
 
+import flask
 from flask import Flask  # type: ignore
 from flask import make_response
 from flask import redirect
@@ -30,9 +31,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # ------------------------------JUST FOR DEVELOPMENT--------------------------------------------
 
-with open("data/db_schema.sql", encoding="UTF-8") as file:
-    sql = file.readlines()
-    start_sql.start(sql)
+# with open("data/db_schema.sql", encoding="UTF-8") as file:
+#     sql = file.readlines()
+#     start_sql.start(sql)
 
 
 # ----------------------------------------------------------------------------------------------
@@ -278,6 +279,13 @@ def api_social_situation_submit():
 
 # endregion
 # region ---------------------------API-ADMIN----------------------------------------
+
+@app.route('/api/results/users')
+@util.admin_required
+def api_get_users_for_results():
+    users = user_handler.get_users_by_their_latest_tests()
+    return flask.jsonify(users)
+
 
 @app.route('/api/work-motivation/question/<int:question_id>', methods=["PATCH"])
 @util.admin_required

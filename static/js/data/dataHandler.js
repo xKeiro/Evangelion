@@ -7,6 +7,10 @@ export let dataHandler = {
         "use strict";
         return await apiGet("/api/text");
     },
+    getUsersWithResults: async function (){
+        "use strict";
+        return await apiGet("/api/results/users");
+    },
     postWorkMotivationAsnwers: async function (answers) {
         "use strict";
         return await apiPost("/api/work-motivation", answers);
@@ -54,6 +58,10 @@ export let dataHandler = {
     patchSocialSituationMediaToImage: async function (mediaId, media) {
         "use strict";
         return apiPatchForFiles(`/api/social-situation/media/image/${mediaId}`, media);
+    },
+    sendPdfRequest: async function (username){
+        "use strict";
+        return apiGet(`/admin/manage_pdf/one_applicant?username=${username}`);
     }
 };
 
