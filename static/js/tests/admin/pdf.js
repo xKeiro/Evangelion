@@ -40,9 +40,10 @@ async function createUserTable() {
     const users = await userPromise;
     const userTableContainer = document.getElementById('user-table-container');
     const table = document.createElement('table');
+    if (users.length > 0) {
 
-    table.classList.add('table', 'table-striped', 'mt-5');
-    table.innerHTML = `
+        table.classList.add('table', 'table-striped', 'mt-5');
+        table.innerHTML = `
 <thead class="thead-users">
 <tr>
     <th>${text["Felhasználónév"]}</th>
@@ -56,23 +57,21 @@ async function createUserTable() {
 </thead>
 <tbody>
 </tbody>`;
-    userTableContainer.appendChild(table);
-    for (const user of users) {
-        const date = new Date(user.date);
-        const birthday = new Date(user.birthday)
-        document.querySelector("tbody").innerHTML +=
-            `<td>${user.username}</td>
+        userTableContainer.appendChild(table);
+        for (const user of users) {
+            const date = new Date(user.date);
+            const birthday = new Date(user.birthday)
+            document.querySelector("tbody").innerHTML +=
+                `<td>${user.username}</td>
 <td>${user.email}</td>
 <td>${user["last_name"]}</td>
 <td>${user["first_name"]}</td>
 <td>${birthday.getFullYear()}-${birthday.getMonth() + 1}-${birthday.getDay()}</td>
 <td>${date.getFullYear()}-${date.getMonth() + 1}-${date.getDay()}</td>
 <td><form action="/admin/manage_pdf/one_applicant" method="GET" class="form-container"><button class="form-control user-download-button" type="submit" data-username="${user.username}" name="username" value="${user.username}"><i class="bi bi-file-earmark-arrow-down-fill"></i></button></form></td>`;
+        }
+
     }
-    // const userDownloadButtons = document.querySelectorAll('.user-download-button');
-    // for (const userDownloadButton of userDownloadButtons){
-    //     userDownloadButton.addEventListener('click', handleUserDownload);
-    // }
 }
 
 function handleUserDownload(event) {
