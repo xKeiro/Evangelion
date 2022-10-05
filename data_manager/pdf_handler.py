@@ -107,17 +107,23 @@ def get_applicant_tests_results_into_pdf(username, full_name_for_filename):
     # Calibriz  - Bold Italic
 
     pdf.add_page()
+    pdf.image("static/resources/salva_vita_logo.jpg", x=10, y=5, h=20, w=20)
     pdf.set_font("Calibrib", size=16)
     pdf.set_title(f"{full_name_normal} Eredmények")
     pdf.set_left_margin(10)
     pdf.set_right_margin(10)
     data_row_height = 8
-    title_height = 15
+    title_height = 8
     output_name = f"{full_name_for_filename}{current_date}.pdf"
 
     # -------------------------------PDF CONTENT---------------------------------------
 
-    pdf.cell(w=0, h=title_height, txt=f"{full_name_normal} Eredmények", ln=1, align="C")
+    pdf.cell(w=0, h=title_height, txt=f"{full_name_normal} - Eredmények", ln=1, align="C")
+
+    pdf.set_font("Calibriz", size=9)
+    pdf.cell(w=0, h=data_row_height - 3, txt=f"decent_long@email.com", ln=1, align="C")
+    pdf.ln()
+    pdf.ln()
 
     # ENGLISH LANGUAGE SECTION--------------------------------
     eng_test_essay_diff_comp_date = english_test_handler.get_english_test_essay_diff_and_completion_date_by_username(username)
