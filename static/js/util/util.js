@@ -1,5 +1,6 @@
 /* global console */
 /* global alert */
+
 /* jshint esversion:11 */
 
 export function convertMapToObject(map) {

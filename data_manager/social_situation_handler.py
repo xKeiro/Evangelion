@@ -1,6 +1,7 @@
 from connection import connection_handler
 from data_manager import data_handler_util
 
+
 # region --------------------------------------READ-----------------------------------------
 # @connection_handler
 # def get_url_and_questions(cursor) -> list[dict]:
@@ -15,8 +16,8 @@ from data_manager import data_handler_util
 
 @connection_handler
 def get_situations(cursor):
-    query="""
-    SELECT ARRAY[sst.type, ssm.url, ssm.title] as media, array_agg(ARRAY[ssq.id::varchar, ssq.question]) as questions
+    query = """
+    SELECT ARRAY[sst.type, ssm.url, ssm.title] AS media, ARRAY_AGG(ARRAY[ssq.id::VARCHAR, ssq.question]) AS questions
     FROM social_situation_media ssm
     JOIN social_situation_type sst ON ssm.type_id = sst.id
     JOIN social_situation_question ssq ON ssm.id = ssq.media_id
@@ -33,6 +34,7 @@ def get_situations(cursor):
         situations[index]["questions"] = questions
     return situations
 
+
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 @connection_handler
@@ -45,7 +47,7 @@ def save_data(cursor, result, user_id):
     query += ','.join('(%s, %s, %s)' for _ in result) + ';'
     var = []
     for res in result:
-        var.extend([res[1], res[0], result_header_id]) # (answer, question_id, result_id)
+        var.extend([res[1], res[0], result_header_id])  # (answer, question_id, result_id)
     cursor.execute(query, var)
 
 # endregion

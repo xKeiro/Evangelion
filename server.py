@@ -12,9 +12,9 @@ import util
 from data_manager import english_test_handler
 from data_manager import language_handler
 from data_manager import social_situation_handler
+from data_manager import start_sql
 from data_manager import user_handler
 from data_manager import work_motivation_test_handler
-from data_manager import start_sql
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
@@ -22,13 +22,14 @@ mimetypes.add_type('text/css', '.css')
 app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
 
-#------------------------------JUST FOR DEVELOPMENT--------------------------------------------
+# ------------------------------JUST FOR DEVELOPMENT--------------------------------------------
 
 with open("data/db_schema.sql", encoding="UTF-8") as file:
     sql = file.readlines()
     start_sql.start(sql)
 
-#----------------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------------
 
 
 @app.context_processor
@@ -41,6 +42,7 @@ def inject_dict_for_all_templates():
 def index():
     resp = make_response(render_template("index.jinja2"))
     return resp
+
 
 @app.route("/language/<language>")
 def language_select(language):
@@ -106,6 +108,7 @@ def logout():
     session.pop("user_id")
     return redirect(url_for("index"))
 
+
 # endregion
 
 # region -------------------------------TESTS-----------------------------------------
@@ -135,6 +138,7 @@ def social_situation():
     situations = social_situation_handler.get_situations()
     return render_template('tests/social_situations.jinja2', situations=situations)
 
+
 # endregion
 
 
@@ -144,8 +148,10 @@ def social_situation():
 def admin_english_language_reading_comprehension(difficulty_id, page_number):
     tests = english_test_handler.get_all_english_reading_comprehension_test_by_difficulty_id(difficulty_id)
     max_number_of_pages = len(tests)
-    return render_template('tests/admin/english_language/english_language_texts_admin.jinja2', test=tests[page_number-1],
+    return render_template('tests/admin/english_language/english_language_texts_admin.jinja2',
+                           test=tests[page_number - 1],
                            max_number_of_pages=max_number_of_pages, currrent_page=page_number)
+
 
 # endregion
 
@@ -157,6 +163,7 @@ def api_get_text():
     text = language_handler.get_texts_in_language(request.cookies.get("language", "hu"))
     return text
 
+
 # region ----------------------------API-USER----------------------------------------
 
 @app.route('/api/work-motivation', methods=["POST"])
@@ -166,6 +173,8 @@ def api_work_motivation_submit():
     answers = request.json
     work_motivation_test_handler.submit_answer(answers, session["user_id"])
     return {"status": "success"}
+
+
 @app.route("/api/english-language", methods=["POST"])
 @util.login_required
 @util.json_response
@@ -174,6 +183,7 @@ def api_english_language_submit():
     english_test_handler.submit_result(results, session["user_id"])
     return {"status": "success"}
 
+
 @app.route("/api/social-situation/", methods=["POST"])
 @util.login_required
 @util.json_response
@@ -181,6 +191,7 @@ def api_social_situation_submit():
     results = request.json
     social_situation_handler.save_data(results, session["user_id"])
     return {"status": "success"}
+
 
 # endregion
 # region ---------------------------API-ADMIN----------------------------------------
@@ -193,6 +204,7 @@ def api_patch_work_motivation_question(question_id):
     work_motivation_test_handler.patch_title_by_id(question_id, title)
     return {"status": "success"}
 
+
 @app.route("/api/english-language/text/<int:text_id>", methods=["PATCH"])
 @util.admin_required
 @util.json_response
@@ -201,12 +213,13 @@ def api_patch_english_language_text(text_id):
     english_test_handler.patch_text_by_id(text_id, text)
     return {"status": "success"}
 
+
 @app.route('/api/english-language/question/<int:question_id>', methods=["PATCH"])
 @util.admin_required
 @util.json_response
 def api_patch_english_motivation_question(question_id):
     question = request.json["title"]
-    english_test_handler.patch_question_by_id(question_id,question)
+    english_test_handler.patch_question_by_id(question_id, question)
     return {"status": "success"}
 
 

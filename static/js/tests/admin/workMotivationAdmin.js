@@ -25,7 +25,7 @@ function handleClickOnQuestion(event) {
     edit_field.classList.add("form-control");
     edit_field.value = event.currentTarget.innerText;
     parentNode.insertBefore(edit_field, event.currentTarget);
-    edit_field.addEventListener("change",handleQuestionChange);
+    edit_field.addEventListener("change", handleQuestionChange);
 }
 
 async function handleQuestionChange(event) {

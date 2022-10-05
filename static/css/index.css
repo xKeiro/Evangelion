@@ -1,4 +1,4 @@
-.banner{
+.banner {
     min-height: 600px;
     max-height: 600px;
     overflow: hidden;
@@ -6,14 +6,16 @@
     position: relative;
 
 }
-.banner-image{
+
+.banner-image {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     padding: 0;
 }
-.title-container{
+
+.title-container {
     position: absolute;
     z-index: 1000;
     top: 80%;
@@ -25,7 +27,7 @@
     width: 100%;
 }
 
-.main-title-text{
+.main-title-text {
     user-select: none;
     text-align: center;
     font-size: 100px;
@@ -33,21 +35,23 @@
     line-height: 0.8;
     text-shadow: 0 0 10px black;
 }
-@media all and (min-width: 1200px){
-    .banner-image{
+
+@media all and (min-width: 1200px) {
+    .banner-image {
         object-fit: cover;
         height: 100%;
         width: 100%;
     }
 }
 
-@media all and (max-width: 1199px){
-    .banner-image{
+@media all and (max-width: 1199px) {
+    .banner-image {
         object-fit: cover;
         height: 100%;
         width: 100%;
     }
-    .main-title-text{
+
+    .main-title-text {
         font-size: 75px;
     }
 }
@@ -57,9 +61,3 @@
 /*        font-size: 50px;*/
 /*    }*/
 /*}*/
-
-
-
-
-
-

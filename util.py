@@ -5,7 +5,6 @@ from functools import wraps
 import bcrypt
 from flask import make_response
 from flask import render_template
-from flask import request
 from flask import session
 
 
@@ -33,6 +32,7 @@ def login_required(func):
         return (func(*args, **kwargs))
 
     return decorated_function
+
 
 def admin_required(func):
     """

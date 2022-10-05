@@ -1,5 +1,5 @@
-from typing import TYPE_CHECKING
 import random
+from typing import TYPE_CHECKING
 
 from connection import connection_handler
 from data_manager import data_handler_util
@@ -10,7 +10,8 @@ if TYPE_CHECKING:
 
 # region --------------------------------------READ-----------------------------------------
 @connection_handler
-def get_random_english_test_by_difficulty_id(cursor: 'Cursor', difficulty_id: int) -> dict[dict, list[dict], list[dict], dict]:
+def get_random_english_test_by_difficulty_id(cursor: 'Cursor', difficulty_id: int) -> dict[
+    dict, list[dict], list[dict], dict]:
     query = """
 SELECT ARRAY [elt.id::VARCHAR, elt.text]                                                 AS "text",
        ARRAY_AGG(DISTINCT ARRAY [elq.id::VARCHAR, elq.question])                         AS questions,

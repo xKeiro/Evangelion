@@ -1,28 +1,30 @@
 {% macro test_card(dict,text) %}
-    <article class="tests-card card col-lg-2">
-        <header class="tests-card-header card-header">
-            {{ dict.title }}
-        </header>
-        <div class="tests-card-body card-body">
-            <ul class="list-group list-group-flush">
-                {% for key,value in dict.items() %}
-                    {% if 'test' in key %}
-                        <li class="list-group-item test-list-item">
-                            <div class="test-container">
-                                <header class="test-title">
-                                {{ value["title"] }}
-                                </header>
-                                <div class="test-description">
-                                {{ value["description"] }}
-                                </div>
-                            <footer class="test-button-container">
-                                <a href="{{ value["url"] }}" class="test-button-link btn btn-primary button-custom" type="button" aria-label="{{ [text['Tovább a'], dict.title, value['title'], text['tesztre']] | join(' ') }}">{{ text['Tovább a teszthez'] }}</a>
-                            </footer>
-                            </div>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-    </article>
+	<article class="tests-card card col-lg-2">
+		<header class="tests-card-header card-header">
+			{{ dict.title }}
+		</header>
+		<div class="tests-card-body card-body">
+			<ul class="list-group list-group-flush">
+				{% for key,value in dict.items() %}
+					{% if 'test' in key %}
+						<li class="list-group-item test-list-item">
+							<div class="test-container">
+								<header class="test-title">
+									{{ value["title"] }}
+								</header>
+								<div class="test-description">
+									{{ value["description"] }}
+								</div>
+								<footer class="test-button-container">
+									<a href="{{ value["url"] }}" class="test-button-link btn btn-primary button-custom"
+									   type="button"
+									   aria-label="{{ [text['Tovább a'], dict.title, value['title'], text['tesztre']] | join(' ') }}">{{ text['Tovább a teszthez'] }}</a>
+								</footer>
+							</div>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</article>
 {% endmacro %}

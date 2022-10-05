@@ -1,109 +1,117 @@
 <!DOCTYPE html>
 <html lang="{{ "en-GB" if request.cookies.get("language", "hu") == "gb" else request.cookies.get("language", "hu") }}">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
 
-    <title>Salva Vita</title>
+	<title>Salva Vita</title>
 
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <!-- Bootstrap Font Icon CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
-          type="text/css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+	      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<!-- Bootstrap Font Icon CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+	      type="text/css">
 
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"
-            defer></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous" defer></script>
-    {% block head %}
-    {% endblock %}
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+	        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"
+	        defer></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	        crossorigin="anonymous" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+	        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	        crossorigin="anonymous" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+	        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	        crossorigin="anonymous" defer></script>
+	{% block head %}
+	{% endblock %}
 </head>
 <body class="text-dark" id="main-content">
-<header>
-{#	<a class="skip-link" href="#main-content">{{ text["Ugrás a fő tartalomra!"] }}</a>#}
-<nav class="navbar navbar-expand-lg fixed-top navbar-light">
-    <div class="navbar-container container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse nav-list-container" id="navbarText">
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item home-button">
-                    <a href="{{ url_for("index") }}" class="nav-image-link" aria-label="Salva Vita logo"><img class="navbar-brand nav-image" src="https://salvavita.info/wp-content/uploads/2021/05/cropped-SALVA_logo_kek-02.jpg"></a>
-                    <a class="nav-link" aria-current="page"  href="{{ url_for("index") }}">{{ text["Főoldal"] }}</a>
-                </li>
-                {% if session["username"] is not defined %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for("login") }}">{{ text["Bejelentkezés"] }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for("register") }}">{{ text["Regisztráció"] }}</a>
-                    </li>
-                    <li>
-                        <div class="d-lg-block dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink78"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-{{ request.cookies.get('language','hu') }}"></span> {{ request.cookies.get('language','hu') | upper }}</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink78">
-                                <a class="dropdown-item" href="{{ url_for("language_select",language="gb") }}">
-                                    <span class="flag-icon flag-icon-gb"></span> English
-                                </a>
-                                <a class="dropdown-item" href="{{ url_for("language_select",language="hu") }}">
-                                    <span class="flag-icon flag-icon-hu"></span> Magyar
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ url_for("tests") }}">{{ text["Tesztek"] }}</a>
-                    </li>
-                    <li>
-                        <div class="d-lg-block dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink78"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{  text["Nyelv választó"] }}"><span class="flag-icon flag-icon-{{ request.cookies.get('language','hu') }}"></span> {{ request.cookies.get('language','hu') | upper }}</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink78">
-                                <a class="dropdown-item" href="{{ url_for("language_select",language="gb") }}">
-                                    <span class="flag-icon flag-icon-gb"></span> English
-                                </a>
-                                <a class="dropdown-item" href="{{ url_for("language_select",language="hu") }}">
-                                    <span class="flag-icon flag-icon-hu"></span> Magyar
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item user-login-logout">
+	<header>
+		{#	<a class="skip-link" href="#main-content">{{ text["Ugrás a fő tartalomra!"] }}</a>#}
+		<nav class="navbar navbar-expand-lg fixed-top navbar-light">
+			<div class="navbar-container container">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+				        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse nav-list-container" id="navbarText">
+					<ul class="navbar-nav mb-2 mb-lg-0">
+						<li class="nav-item home-button">
+							<a href="{{ url_for("index") }}" class="nav-image-link" aria-label="Salva Vita logo"><img
+									class="navbar-brand nav-image"
+									src="https://salvavita.info/wp-content/uploads/2021/05/cropped-SALVA_logo_kek-02.jpg"></a>
+							<a class="nav-link" aria-current="page"
+							   href="{{ url_for("index") }}">{{ text["Főoldal"] }}</a>
+						</li>
+						{% if session["username"] is not defined %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ url_for("login") }}">{{ text["Bejelentkezés"] }}</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ url_for("register") }}">{{ text["Regisztráció"] }}</a>
+							</li>
+							<li>
+								<div class="d-lg-block dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink78"
+									   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+											class="flag-icon flag-icon-{{ request.cookies.get('language','hu') }}"></span> {{ request.cookies.get('language','hu') | upper }}
+									</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink78">
+										<a class="dropdown-item" href="{{ url_for("language_select",language="gb") }}">
+											<span class="flag-icon flag-icon-gb"></span> English
+										</a>
+										<a class="dropdown-item" href="{{ url_for("language_select",language="hu") }}">
+											<span class="flag-icon flag-icon-hu"></span> Magyar
+										</a>
+									</div>
+								</div>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<a class="nav-link"
+								   href="{{ url_for("tests") }}">{{ text["Tesztek"] }}</a>
+							</li>
+							<li>
+								<div class="d-lg-block dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink78"
+									   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+									   aria-label="{{ text["Nyelv választó"] }}"><span
+											class="flag-icon flag-icon-{{ request.cookies.get('language','hu') }}"></span> {{ request.cookies.get('language','hu') | upper }}
+									</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink78">
+										<a class="dropdown-item" href="{{ url_for("language_select",language="gb") }}">
+											<span class="flag-icon flag-icon-gb"></span> English
+										</a>
+										<a class="dropdown-item" href="{{ url_for("language_select",language="hu") }}">
+											<span class="flag-icon flag-icon-hu"></span> Magyar
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="nav-item user-login-logout">
                             <span class="navbar-text nav-link">{{ text["Bejelentkezve mint"] }}
                                 <span class="navbar-text-user">{{ session["username"] }}</span>
                             </span>
-                        <a class="nav-link" href="{{ url_for("logout") }}">{{ text["Kijelentkezés"] }}</a>
-                    </li>
-                {% endif %}
-            </ul>
-            {% if session["username"] is defined %}
+								<a class="nav-link" href="{{ url_for("logout") }}">{{ text["Kijelentkezés"] }}</a>
+							</li>
+						{% endif %}
+					</ul>
+					{% if session["username"] is defined %}
 
-            {% endif %}
-        </div>
-    </div>
-</nav>
-</header>
-{% block content %}
+					{% endif %}
+				</div>
+			</div>
+		</nav>
+	</header>
+	{% block content %}
 
-{% endblock %}
+	{% endblock %}
 </body>
 </html>

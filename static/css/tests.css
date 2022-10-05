@@ -1,22 +1,24 @@
 body {
     min-height: calc(100vh - 76px);
 }
-h1{
+
+h1 {
     margin: 0;
     font-weight: bold;
 }
-hr{
+
+hr {
     margin: 0 0 1.5em 0;
 }
+
 .page-body {
     width: 90%;
     max-width: 1200px;
 }
 
 
-
 .tests-card {
-    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
     border: #0078c3 solid 1px;
     /*border-color: #0078c3;*/
     /*background-color: #0078c3;*/
@@ -73,7 +75,8 @@ hr{
     text-decoration: none;
     font-weight: 500;
 }
-.test-list-item{
+
+.test-list-item {
     border-bottom: #0096f2 solid 1px;
 }
 
@@ -90,10 +93,12 @@ hr{
     background-color: #ffd454;
     color: black;
 }
-.list-group-item:last-of-type{
+
+.list-group-item:last-of-type {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+
 @media all and (max-width: 991px) {
     .page-body {
         margin-bottom: 100px;

@@ -1,6 +1,7 @@
-.option[data-correct="true"]{
-    background-color: rgba(0,255,0,0.2);
+.option[data-correct="true"] {
+    background-color: rgba(0, 255, 0, 0.2);
 }
-.option[data-correct="false"]{
-    background-color: rgba(255,40,0,0.2);
+
+.option[data-correct="false"] {
+    background-color: rgba(255, 40, 0, 0.2);
 }

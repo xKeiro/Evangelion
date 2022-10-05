@@ -1,8 +1,8 @@
 {% from 'cards/index_page_card.jinja2' import index_page_card %}
 {% extends "default.jinja2" %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card.css') }}">
 {% endblock %}
 {% set card_content1 = {"title":text["SOKSZÍNŰSÉG"],"text":text["Meggyőződésünk, hogy a munkahelyek meg tudják változtatni a világot, ha elköteleződnek a sokszínűség mellett. Gondoljunk csak bele, hogy több mint 4,5 millió ember tölti élete egyharmadát a munkahelyén Magyarországon. Képzeljük el, mi történne, ha itt megtanulnánk együttműködni olyan emberekkel, akik különböznek tőlünk? Egészen biztos, hogy a munkán kívüli szavaink és tetteink is megváltoznának."],"image":"https://media.istockphoto.com/photos/group-of-disabled-people-picture-id1177085622?k=20&m=1177085622&s=612x612&w=0&h=FfndpYW8aATNwU9ttyzaAwYTiWJC6QmldxVKvwvXmCw=","image-alt":"placeholder image"} %}
 {% set card_content2 = {"title":text["MEGTÉRÜLÉS"],"text":text["Ma már szinte minden nagyvállalat tudja, hogy a sokszínűség jó dolog, fontos dolog, hogy az a helyes, ha erre odafigyelünk. De tapasztalataink szerint még nem minden vállalat tudja, hogy gazdaságilag is a sokszínűség a racionális döntés. Számos kutatás bizonyítja ugyanis, hogy a sokszínű cégek, a valóban befogadó cégek üzleti eredménye jelentős mértékben meghaladja a többi vállalatét."],"image":"https://media.istockphoto.com/photos/portrait-of-student-with-disability-in-sports-court-at-school-picture-id1281045590?k=20&m=1281045590&s=612x612&w=0&h=H9KSX-BfKbq2UhOevYz6u4_vsFxGBwDtKxQp1nZXGc8=","image-alt":"placeholder image"} %}
@@ -10,15 +10,15 @@
 {% set card_content4 = {"title":text["MEGTARTÁS"],"text":text["A megváltozott munkaképességű munkatársak egy megbízható és lojális munkavállalói kört alkotnak, akik produktivitása – az általános vélekedésekkel ellentétben – az átlagostól nem tér el, és hozzáállásukat tekintve elkötelezettebbek, lojálisabbak a munkáltatójuk irányába."],"image":"https://media.istockphoto.com/photos/young-blind-man-with-white-cane-and-guide-dog-sitting-in-park-in-city-picture-id1179580885?k=20&m=1179580885&s=612x612&w=0&h=7KwjDZ51q8IZ8uKTB5jVWvdhLf4EOIHAHvnmOpulfrk=","image-alt":"placeholder image"} %}
 {% set cards = [card_content1,card_content2,card_content3,card_content4] %}
 {% block content %}
-    <main id="main-content">
-        <div class="banner container-fluid">
-            <header class="title-container">
-                <h1 class="main-title-text">{{ text["Üdvözöllek Salva Vitán"] }}</h1>
-            </header>
-            <img src="https://images6.alphacoders.com/439/439626.jpg" alt="" class="banner-image container-fluid">
-        </div>
-        {% for card in cards %}
-        {{ index_page_card(card) }}
-        {% endfor %}
-    </main>
+	<main id="main-content">
+		<div class="banner container-fluid">
+			<header class="title-container">
+				<h1 class="main-title-text">{{ text["Üdvözöllek Salva Vitán"] }}</h1>
+			</header>
+			<img src="https://images6.alphacoders.com/439/439626.jpg" alt="" class="banner-image container-fluid">
+		</div>
+		{% for card in cards %}
+			{{ index_page_card(card) }}
+		{% endfor %}
+	</main>
 {% endblock %}

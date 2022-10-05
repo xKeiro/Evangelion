@@ -1,20 +1,21 @@
 {% from 'cards/test_card.jinja2' import test_card %}
 {% extends "default.jinja2" %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tests.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tests.css') }}">
 {% endblock %}
 {% block content %}
-    <main class="page-body container-fluid" id="main-content">
-        <header><h1>{{ text["Elérhető tesztek"] }}:</h1></header><hr>
-        {% set card_text1 = {"title":text["Munka motiváció"],"test1":{"title":text["Munka motiváció"],"description":text["Ennek a tesztnek a lényege, hogy felmérje a hozzáállásodat a munkához"],"url":"/test/work-motivation"}} %}
-        {% set card_text2 = {"title":text["Angol nyelv"],"test1":{"title":text["Alapfok"],"description":text["Ez a teszt felméri az alapfokú angol tudásod"],"url":"/test/english_language/1" if not session["is_admin"] else "/admin/test/english_language/1/reading_comprehension/1"},"test2":{"title":text["Középfok"],"description":text["Ez a teszt felméri a középfokú angol tudásod"],"url":"/test/english_language/2" if not session["is_admin"] else "/admin/test/english_language/2/reading_comprehension/1"},"test3":{"title":text["Felső középfok"],"description":text["Ez a teszt felméri a felső középfokú angol tudásod"],"url":"/test/english_language/3" if not session["is_admin"] else "/admin/test/english_language/3/reading_comprehension/1"}} %}
-        {% set card_text3 = {"title":text["Szociális készségek"],"test1":{"title":text["Teszt cím"],"description":text["Teszt leírás"],"url":"/test/social_situation"}} %}
-        {% set card_text4 = {"title":text["Teszt kategória"],"test1":{"title":text["Teszt cím"],"description":text["Teszt leírás"],"url":"/test/URL_a_teszthez1"},"test2":{"title":text["Teszt cím"],"description":text["Teszt leírás"],"url":"/test/URL_a_teszthez2"}} %}
-        {% set card_texts = [card_text1,card_text2,card_text3,card_text4] %}
-        <section class="tests-container row justify-content-evenly">
-            {% for card_text in card_texts %}
-                {{ test_card(card_text,text) }}
-            {% endfor %}
-        </section>
-    </main>
+	<main class="page-body container-fluid" id="main-content">
+		<header><h1>{{ text["Elérhető tesztek"] }}:</h1></header>
+		<hr>
+		{% set card_text1 = {"title":text["Munka motiváció"],"test1":{"title":text["Munka motiváció"],"description":text["Ennek a tesztnek a lényege, hogy felmérje a hozzáállásodat a munkához"],"url":"/test/work-motivation"}} %}
+		{% set card_text2 = {"title":text["Angol nyelv"],"test1":{"title":text["Alapfok"],"description":text["Ez a teszt felméri az alapfokú angol tudásod"],"url":"/test/english_language/1" if not session["is_admin"] else "/admin/test/english_language/1/reading_comprehension/1"},"test2":{"title":text["Középfok"],"description":text["Ez a teszt felméri a középfokú angol tudásod"],"url":"/test/english_language/2" if not session["is_admin"] else "/admin/test/english_language/2/reading_comprehension/1"},"test3":{"title":text["Felső középfok"],"description":text["Ez a teszt felméri a felső középfokú angol tudásod"],"url":"/test/english_language/3" if not session["is_admin"] else "/admin/test/english_language/3/reading_comprehension/1"}} %}
+		{% set card_text3 = {"title":text["Szociális készségek"],"test1":{"title":text["Teszt cím"],"description":text["Teszt leírás"],"url":"/test/social_situation"}} %}
+		{% set card_text4 = {"title":text["Teszt kategória"],"test1":{"title":text["Teszt cím"],"description":text["Teszt leírás"],"url":"/test/URL_a_teszthez1"},"test2":{"title":text["Teszt cím"],"description":text["Teszt leírás"],"url":"/test/URL_a_teszthez2"}} %}
+		{% set card_texts = [card_text1,card_text2,card_text3,card_text4] %}
+		<section class="tests-container row justify-content-evenly">
+			{% for card_text in card_texts %}
+				{{ test_card(card_text,text) }}
+			{% endfor %}
+		</section>
+	</main>
 {% endblock %}

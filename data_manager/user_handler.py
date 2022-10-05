@@ -1,5 +1,4 @@
 from connection import connection_handler
-from psycopg import sql
 
 
 # region --------------------------------------READ-----------------------------------------
@@ -13,7 +12,7 @@ def get_user_fields_by_username(cursor, username: str, field_names: list) -> dic
     query = query[:-1] + """ FROM users
     WHERE username=%s
     """
-    val = (username, )
+    val = (username,)
     cursor.execute(query, val)
     return cursor.fetchone()
 

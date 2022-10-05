@@ -73,14 +73,14 @@ async function handleClickOnQuestion(event) {
 async function handleQuestionChange(event) {
     "use strict";
     const questionTitle = event.currentTarget.value;
-    if (questionTitle.includes("............")){
+    if (questionTitle.includes("............")) {
         const questionTitleElement = event.currentTarget.parentNode.querySelector(".question");
         const questionId = questionTitleElement.dataset.questionId;
         questionTitleElement.innerHTML = questionTitle;
         dataHandler.patchEnglishLanguageTextQuestionTitle(questionId, {"title": questionTitle});
         event.currentTarget.remove();
         questionTitleElement.classList.remove("d-none");
-    }else{
+    } else {
         alert("A kérdésnek tartalmaznia kell: ............");
     }
 }
@@ -106,7 +106,7 @@ async function handleClickOnOption(event) {
     event.currentTarget.classList.add("d-none");
     const inputFieldContainer = document.createElement("div");
     inputFieldContainer.classList.add("d-flex", "align-items-center");
-    inputFieldContainer.innerHTML= `
+    inputFieldContainer.innerHTML = `
 <div class="col-8">
     <input class="form-control" value="${event.currentTarget.innerText}">
 </div>
@@ -120,8 +120,8 @@ async function handleClickOnOption(event) {
     <button class="btn button-custom form-control" type="submit" data-option-id="${event.currentTarget.dataset.optionId}">Elküldés</button>
 </div>`;
     const options = inputFieldContainer.querySelectorAll("option");
-    for (const option of options){
-        if (option.value === event.currentTarget.dataset.correct){
+    for (const option of options) {
+        if (option.value === event.currentTarget.dataset.correct) {
             option.setAttribute('selected', true);
         }
     }
@@ -133,7 +133,10 @@ async function handleClickOnOption(event) {
 async function handleOptionChange(event) {
     "use strict";
     const inputFieldContainer = event.currentTarget.parentNode.parentNode;
-    const option = { "option": inputFieldContainer.querySelector("input").value, "correct": inputFieldContainer.querySelector("select").value};
+    const option = {
+        "option": inputFieldContainer.querySelector("input").value,
+        "correct": inputFieldContainer.querySelector("select").value
+    };
     const optionId = event.currentTarget.dataset.optionId;
     const inputFieldContainerParent = inputFieldContainer.parentNode;
     const optionElement = inputFieldContainerParent.querySelector(`.option[data-option-id="${optionId}"]`);

@@ -1,67 +1,67 @@
 {% extends "default.jinja2" %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/english_language_test.css') }}">
-    <script src="{{ url_for('static', filename='js/tests/englishLanguageTest.js') }}" type="module" defer></script>
-    <script src="{{ url_for('static', filename='js/util/remainingChar.js') }}" type="module" defer></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/english_language_test.css') }}">
+	<script src="{{ url_for('static', filename='js/tests/englishLanguageTest.js') }}" type="module" defer></script>
+	<script src="{{ url_for('static', filename='js/util/remainingChar.js') }}" type="module" defer></script>
 {% endblock %}
 {% block content %}
-    <main class="page-body container" id="main-content">
-        <section id="reading-comprehension">
-            <header class="english-test-header">
-                <h2 class="test-title">English language test</h2>
-                <hr>
-                <h4 class="test-sub-title">Part 1: Reading</h4>
-            </header>
-            <article class="english-test-text" data-text-id="{{ test.text.id }}">{{ test.text.text }}</article>
-            <section class="question-container" id="question-container">
-                {% for question in test.questions[:10] %}
-                    <article class="card question-card">
-                        <header class="card-header card-title" tabindex="0"
-                                data-question-id="{{ question.id }}">{{ question.question }}</header>
-                        <div class="card-body answers-body">
-                            <div class="card-text">
-                                {% for option in test.options %}
-                                    {% if option.question_id == question.id %}
+	<main class="page-body container" id="main-content">
+		<section id="reading-comprehension">
+			<header class="english-test-header">
+				<h2 class="test-title">English language test</h2>
+				<hr>
+				<h4 class="test-sub-title">Part 1: Reading</h4>
+			</header>
+			<article class="english-test-text" data-text-id="{{ test.text.id }}">{{ test.text.text }}</article>
+			<section class="question-container" id="question-container">
+				{% for question in test.questions[:10] %}
+					<article class="card question-card">
+						<header class="card-header card-title" tabindex="0"
+						        data-question-id="{{ question.id }}">{{ question.question }}</header>
+						<div class="card-body answers-body">
+							<div class="card-text">
+								{% for option in test.options %}
+									{% if option.question_id == question.id %}
 
-                                        <div class="form-check answer">
-                                            <input class="form-check-input question-radio-button" type="radio"
-                                                   name="question-{{ question.id }}-options"
-                                                   id="question-{{ question.id }}-option-{{ option.id }}"
-                                                   data-option-id="{{ option.id }}"
-                                                   data-question-id="{{ question.id }}">
-                                            <label class="form-check-label question-label"
-                                                   for="question-{{ question.id }}-option-{{ option.id }}"
-                                                   data-option-id="{{ option.id }}">
-                                                {{ option.option }}
-                                            </label>
-                                        </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </article>
-                {% endfor %}
-                <button class="btn btn-primary button-custom" type="submit"
-                        id="question-submit">{{ text["Tovább az esszé íráshoz!"] }}</button>
-            </section>
-        </section>
-        <section class="d-none" id="essay-writing">
-            <article class="essay-container" id="essay-container">
-                <header class="english-test-header">
-                    <h2 class="test-title">English language test</h2>
-                    <hr>
-                    <h4 class="test-sub-title">Part 2: Writing</h4>
-                </header>
-                <section data-essay-id="{{ test.essay_topic.id }}">{{ test.essay_topic.topic }}</section>
-                <section class="essay-text-container">
-                    <label for="essay"></label>
-                    <textarea class="form-control essay-text" aria-label="With textarea" name="essay" maxlength="2000"
-                              rows="22" id="essay" data-essay-id="{{ test.essay_topic.id }}"></textarea>
-                    <span id="characters" class="remaining-char"></span>
-                </section>
-                <button class="btn btn-primary button-custom" type="submit"
-                        id="test-submit">{{ text["Teszt elküldése!"] }}</button>
-            </article>
-        </section>
-    </main>
+										<div class="form-check answer">
+											<input class="form-check-input question-radio-button" type="radio"
+											       name="question-{{ question.id }}-options"
+											       id="question-{{ question.id }}-option-{{ option.id }}"
+											       data-option-id="{{ option.id }}"
+											       data-question-id="{{ question.id }}">
+											<label class="form-check-label question-label"
+											       for="question-{{ question.id }}-option-{{ option.id }}"
+											       data-option-id="{{ option.id }}">
+												{{ option.option }}
+											</label>
+										</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+					</article>
+				{% endfor %}
+				<button class="btn btn-primary button-custom" type="submit"
+				        id="question-submit">{{ text["Tovább az esszé íráshoz!"] }}</button>
+			</section>
+		</section>
+		<section class="d-none" id="essay-writing">
+			<article class="essay-container" id="essay-container">
+				<header class="english-test-header">
+					<h2 class="test-title">English language test</h2>
+					<hr>
+					<h4 class="test-sub-title">Part 2: Writing</h4>
+				</header>
+				<section data-essay-id="{{ test.essay_topic.id }}">{{ test.essay_topic.topic }}</section>
+				<section class="essay-text-container">
+					<label for="essay"></label>
+					<textarea class="form-control essay-text" aria-label="With textarea" name="essay" maxlength="2000"
+					          rows="22" id="essay" data-essay-id="{{ test.essay_topic.id }}"></textarea>
+					<span id="characters" class="remaining-char"></span>
+				</section>
+				<button class="btn btn-primary button-custom" type="submit"
+				        id="test-submit">{{ text["Teszt elküldése!"] }}</button>
+			</article>
+		</section>
+	</main>
 {% endblock %}

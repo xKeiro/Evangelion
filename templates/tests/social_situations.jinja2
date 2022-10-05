@@ -1,15 +1,18 @@
 {% extends "default.jinja2" %}
 {% block head %}
-    <script src="{{ url_for('static', filename='js/util/embedYoutube.js') }}" defer></script>
-    <script type="module" src="{{ url_for('static', filename='js/tests/socialSituation.js') }}" defer></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/social_situation.css') }}">
+	<script src="{{ url_for('static', filename='js/util/embedYoutube.js') }}" defer></script>
+	<script type="module" src="{{ url_for('static', filename='js/tests/socialSituation.js') }}" defer></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/social_situation.css') }}">
 {% endblock %}
 {% block content %}
 	<main class="page-body container-fluid" id="main-content">
 		<header class="english-test-header">
 			<h1 class="test-title">{{ text['Szociális készségek'] }}</h1>
 			<hr>
-			<p class="test-sub-title">Ezek a tesztek a szociális képességed fogják tesztelni.Kérlek próbálj minél őszíntébb és precízebb leírást adni az egyes szituációkról! Képeket és videókat fogsz találni ezen az oldalon, az alattuk található kérdésekre kell írásban válaszolnod.</p>
+			<p class="test-sub-title">Ezek a tesztek a szociális képességed fogják tesztelni.Kérlek próbálj minél
+			                          őszíntébb és precízebb leírást adni az egyes szituációkról! Képeket és videókat
+			                          fogsz találni ezen az oldalon, az alattuk található kérdésekre kell írásban
+			                          válaszolnod.</p>
 		</header>
 		<section>
 			{% for situation in situations %}
@@ -18,7 +21,9 @@
 					<div class="card-body">
 						{% if situation.media.type == "video" %}
 							<div class="media-container"></div>
-							<div id="{{ situation.media.url }}" class="rounded mx-auto d-block media-content media-video" url="{{ situation.media.url }}"></div>
+							<div id="{{ situation.media.url }}"
+							     class="rounded mx-auto d-block media-content media-video"
+							     url="{{ situation.media.url }}"></div>
 						{% else %}
 							<div class="media-container">
 								<img class="media-content media-image" src="{{ situation.media.url }}"
@@ -27,15 +32,16 @@
 						{% endif %}
 						{% for question in situation.questions %}
 							<div class="d-flex flex-column justify-content-center align-items-center">
-							<div class="answer-label">{{ question.question }}</div>
-								<textarea class="form-control test-answer" data-question-id="{{ question.id }}" maxlength="200"></textarea>
+								<div class="answer-label">{{ question.question }}</div>
+								<textarea class="form-control test-answer" data-question-id="{{ question.id }}"
+								          maxlength="200"></textarea>
 							</div>
 						{% endfor %}
 					</div>
 				</article>
 			{% endfor %}
-            <button id="answer-submit"
-                        class="btn btn-primary button-custom">{{ text["Válaszok elküldése"] }}</button>
+			<button id="answer-submit"
+			        class="btn btn-primary button-custom">{{ text["Válaszok elküldése"] }}</button>
 		</section>
 	</main>
 {% endblock %}
