@@ -38,10 +38,11 @@ def get_situations(cursor):
 @connection_handler
 def get_situations_for_pdf_by_username(cursor, username):
     query = """
-        SELECT ssq.question, ssr.answer
+        SELECT ssm.title, ssq.question, ssr.answer
         FROM social_situation_result ssr
         JOIN result_header rh on ssr.result_id = rh.id
         JOIN social_situation_question ssq on ssr.question_id = ssq.id
+        JOIN social_situation_media ssm on ssm.id = ssq.media_id
         JOIN users u on rh.user_id = u.id
         WHERE u.username LIKE %s AND rh.date =
             (SELECT rh.date
