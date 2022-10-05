@@ -40,7 +40,7 @@ def get_applicant_tests_results_into_pdf(username="", full_name="", email="", ap
         filename = full_name.replace(" ", "_") + "_"
         pdf.set_title(f"{full_name} Eredmények")
 
-    output_name = f"{filename}{current_date}.pdf"
+    output_name = f"static/pdf/{filename}{current_date}.pdf"
 
     applicant_counter = applicant_number
     while applicant_counter > 0:

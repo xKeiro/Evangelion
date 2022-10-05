@@ -208,7 +208,7 @@ def one_applicant_pdf():
         if filtered == "True":
             current_date = str(date.today()).replace("-", "_")
             pdf_handler.get_applicant_tests_results_into_pdf(username, full_name, email)
-            return send_file(f"{full_name_for_filename}{current_date}.pdf", as_attachment=True)
+            return send_file(f"static\\pdf\\{full_name_for_filename}{current_date}.pdf", as_attachment=True)
 
     return render_template("tests/admin/pdf_results.jinja2", filtered=filtered)
 
