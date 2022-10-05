@@ -20,7 +20,6 @@ async function initUsernameEmailCheck() {
     });
     emailField.addEventListener('change', (event) => {
         const userNameField = document.querySelector("#username");
-        console.log("szia")
         if (event.currentTarget.value === "") {
             userNameField.removeAttribute('disabled');
         } else {

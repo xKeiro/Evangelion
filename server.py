@@ -226,7 +226,7 @@ def more_applicants_pdf():
 
         filename = "Applicants_test_results_"
         current_date = str(date.today()).replace("-", "_")
-        return send_file(f"{filename}{current_date}.pdf", as_attachment=True)
+        return send_file(f"static\\pdf\\{filename}{current_date}.pdf", as_attachment=True)
 
     return render_template("tests/admin/pdf_results.jinja2", filtered=filtered)
 
