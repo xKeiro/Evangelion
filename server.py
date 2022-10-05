@@ -178,8 +178,14 @@ def manage_pdf():
 @app.route('/admin/manage_pdf/one_applicant')
 @util.admin_required
 def one_applicant_pdf():
-    username = request.args["username"]
-    email = request.args["email"]
+    try:
+        username = request.args["username"]
+    except KeyError:
+        username = ""
+    try:
+        email = request.args["email"]
+    except KeyError:
+        email = ""
 
     if not username and not email:
         filtered = "no filter"
