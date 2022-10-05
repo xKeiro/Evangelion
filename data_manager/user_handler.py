@@ -27,7 +27,7 @@ def get_full_name_by_username(cursor, username) -> dict:
     """
     val = (username, )
     cursor.execute(query, val)
-    return cursor.fetchone()["full_name"]
+    return cursor.fetchone()
 
 
 @connection_handler
