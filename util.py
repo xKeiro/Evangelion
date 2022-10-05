@@ -1,26 +1,29 @@
 import gzip
 import json
+import os
 from functools import wraps
 
-import os
 import bcrypt
 from flask import make_response
 from flask import render_template
-from flask import session
 from flask import request
+from flask import session
 from werkzeug.utils import secure_filename
 
 ALLOWED_EXTENSIONS = ('png', 'jpg', 'jpeg', 'webp')
 
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 def save_image(app):
     file = request.files['image']
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
 
 def hash_password(password):
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')

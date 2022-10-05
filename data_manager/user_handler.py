@@ -1,11 +1,15 @@
+from typing import TYPE_CHECKING
 from connection import connection_handler
+
+if TYPE_CHECKING:
+    pass
 
 
 # region --------------------------------------READ-----------------------------------------
 
 
 @connection_handler
-def get_user_fields_by_username(cursor, username: str, field_names: list) -> dict:
+def get_user_fields_by_username(cursor: 'Cursor', username: str, field_names: list) -> dict:
     query = "SELECT "
     for field_name in field_names:
         query += f"{field_name},"
@@ -22,7 +26,7 @@ def get_user_fields_by_username(cursor, username: str, field_names: list) -> dic
 
 
 @connection_handler
-def add_new_user(cursor, fields):
+def add_new_user(cursor: 'Cursor', fields: dict) -> None:
     query = """
     INSERT INTO users(""" + ", ".join(fields) + ") VALUES ("
     for _ in fields:

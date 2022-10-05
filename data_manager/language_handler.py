@@ -1,11 +1,16 @@
+from typing import TYPE_CHECKING
+
 from psycopg import sql
 from connection import connection_handler
+
+if TYPE_CHECKING:
+    from psycopg import Cursor
 
 
 # region --------------------------------------READ-----------------------------------------
 
 @connection_handler
-def get_texts_in_language(cursor, language):
+def get_texts_in_language(cursor: 'Cursor', language: str) -> dict:
     query = sql.SQL("""
     SELECT hu AS default_language, {}
     FROM LANGUAGE

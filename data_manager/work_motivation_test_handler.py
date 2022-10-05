@@ -1,11 +1,16 @@
+from typing import TYPE_CHECKING
+
 from connection import connection_handler
 from data_manager import data_handler_util
+
+if TYPE_CHECKING:
+    pass
 
 
 # region --------------------------------------READ-----------------------------------------
 
 @connection_handler
-def get_questions(cursor) -> list[dict]:
+def get_questions(cursor: 'Cursor') -> list[dict]:
     query = """
     SELECT id, title
     FROM work_motivation_question
@@ -18,7 +23,7 @@ def get_questions(cursor) -> list[dict]:
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 @connection_handler
-def submit_answer(cursor, answers, user_id) -> None:
+def submit_answer(cursor: 'Cursor', answers: dict, user_id: int) -> None:
     result_header_id = data_handler_util.add_test_to_result_header(cursor, user_id)
     query = """
     INSERT INTO work_motivation_result(question_id, result_header_id, score) VALUES"""

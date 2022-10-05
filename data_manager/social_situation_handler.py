@@ -1,5 +1,9 @@
+from typing import TYPE_CHECKING
 from connection import connection_handler
 from data_manager import data_handler_util
+
+if TYPE_CHECKING:
+    from psycopg import Cursor
 
 
 # region --------------------------------------READ-----------------------------------------
@@ -15,7 +19,7 @@ from data_manager import data_handler_util
 #     return cursor.fetchall()
 
 @connection_handler
-def get_situations(cursor):
+def get_situations(cursor:'Cursor') -> list[dict,list[dict]]:
     query = """
     SELECT ARRAY[sst.type, ssm.url, ssm.title, ssm.id::VARCHAR] AS media, ARRAY_AGG(ARRAY[ssq.id::VARCHAR, ssq.question]) AS questions
     FROM social_situation_media ssm
@@ -39,7 +43,7 @@ def get_situations(cursor):
 # endregion
 # region ---------------------------------------WRITE----------------------------------------
 @connection_handler
-def save_data(cursor, result, user_id):
+def save_data(cursor:'Cursor', result: list, user_id: int) -> None:
     result_header_id = data_handler_util.add_test_to_result_header(cursor, user_id)
     query = """
     INSERT INTO social_situation_result(answer, question_id, result_id)
@@ -53,7 +57,7 @@ def save_data(cursor, result, user_id):
 
 
 @connection_handler
-def patch_media_title_by_id(cursor, media_id: int, title: str):
+def patch_media_title_by_id(cursor:'Cursor', media_id: int, title: str) -> None:
     query = """
     UPDATE social_situation_media
     SET title = %s
@@ -64,7 +68,7 @@ def patch_media_title_by_id(cursor, media_id: int, title: str):
 
 
 @connection_handler
-def patch_question_by_id(cursor, question_id: int, question: str):
+def patch_question_by_id(cursor:'Cursor', question_id: int, question: str) -> None:
     query = """
     UPDATE social_situation_question
     SET question = %s
@@ -75,7 +79,7 @@ def patch_question_by_id(cursor, question_id: int, question: str):
 
 
 @connection_handler
-def patch_media_by_id(cursor, media_id: int, media: dict):
+def patch_media_by_id(cursor:'Cursor', media_id: int, media: dict) -> None:
     query = """
     SELECT id
     FROM social_situation_type
