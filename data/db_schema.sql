@@ -136,7 +136,7 @@ CREATE TABLE social_situation_media
 (
     id      SERIAL PRIMARY KEY,
     title   VARCHAR NOT NULL,
-    url     VARCHAR NOT NULL,
+    url     VARCHAR NOT NULL UNIQUE,
     type_id INTEGER NOT NULL,
     FOREIGN KEY (type_id) REFERENCES social_situation_type (id)
 );

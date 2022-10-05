@@ -46,8 +46,17 @@ export let dataHandler = {
     patchSocialSituationQuestion: async function (questionId, question) {
         "use strict";
         return apiPatch(`/api/social-situation/question/${questionId}`, question);
+    },
+    patchSocialSituationMediaToVideo: async function (mediaId, media) {
+        "use strict";
+        return apiPatch(`/api/social-situation/media/video/${mediaId}`, media);
+    },
+    patchSocialSituationMediaToImage: async function (mediaId, media) {
+        "use strict";
+        return apiPatchForFiles(`/api/social-situation/media/image/${mediaId}`, media);
     }
 };
+
 
 export let text = apiGet("/api/text");
 
@@ -83,5 +92,13 @@ async function apiPatch(url, changedData) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(changedData)
+    });
+}
+
+async function apiPatchForFiles(url, changedData) {
+    "use strict";
+    let response = fetch(url, {
+        method: "PATCH",
+        body: changedData
     });
 }

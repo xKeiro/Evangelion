@@ -24,8 +24,6 @@ app = Flask(__name__)
 app.secret_key = ("b'o\xa7\xd9\xddj\xb0n\x92qt\xcc\x13\x113\x1ci'")
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
-
 # ------------------------------JUST FOR DEVELOPMENT--------------------------------------------
 
 with open("data/db_schema.sql", encoding="UTF-8") as file:
@@ -244,6 +242,7 @@ def api_patch_english_motivation_option(option_id):
     english_test_handler.patch_option_by_id(option_id, option)
     return {"status": "success"}
 
+
 @app.route("/api/english-language/essay_topic/<int:essay_topic_id>", methods=["PATCH"])
 @util.admin_required
 @util.json_response
@@ -252,7 +251,8 @@ def api_patch_english_language_essay_topic(essay_topic_id):
     english_test_handler.patch_essay_topic_by_id(essay_topic_id, topic)
     return {"status": "success"}
 
-@app.route("/api/social-situation/media/<media_id>/title", methods=["PATCH"])
+
+@app.route("/api/social-situation/media/<int:media_id>/title", methods=["PATCH"])
 @util.admin_required
 @util.json_response
 def api_patch_social_situation_media_title(media_id):
@@ -260,12 +260,36 @@ def api_patch_social_situation_media_title(media_id):
     social_situation_handler.patch_media_title_by_id(media_id, topic)
     return {"status": "success"}
 
-@app.route("/api/social-situation/question/<question_id>", methods=["PATCH"])
+
+@app.route("/api/social-situation/question/<int:question_id>", methods=["PATCH"])
 @util.admin_required
 @util.json_response
 def api_patch_social_situation_question(question_id):
     question = request.json["question"]
     social_situation_handler.patch_question_by_id(question_id, question)
     return {"status": "success"}
+
+
+@app.route("/api/social-situation/media/video/<int:media_id>", methods=["PATCH"])
+@util.admin_required
+@util.json_response
+def api_patch_social_situation_media_video(media_id):
+    media = request.json
+    social_situation_handler.patch_media_by_id(media_id, media)
+    return {"status": "success"}
+
+
+@app.route("/api/social-situation/media/image/<int:media_id>", methods=["PATCH"])
+@util.admin_required
+@util.json_response
+def api_patch_social_situation_media_image(media_id):
+    # image = request.files.get("image")
+    util.save_image(app)
+    filename = request.form.get("fileName")
+    url = f"../static/img/{filename}"
+    media = {"url": url, "type": "image"}
+    social_situation_handler.patch_media_by_id(media_id, media)
+    return {"status": "success"}
+
 # endregion
 # endregion

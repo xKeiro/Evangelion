@@ -13,7 +13,7 @@ async function initActions() {
     "use strict";
     initEditMediaTitle();
     initEditQuestion();
-    initEditOption();
+    initEditMedia();
 }
 
 
@@ -90,57 +90,125 @@ async function handleQuestionChange(event) {
 // endregion
 
 
-async function initEditOption() {
+async function initEditMedia() {
     "use strict";
-    const optionElements = document.querySelectorAll(".option");
-    for (const optionElement of optionElements) {
-        optionElement.addEventListener("click", handleClickOnOption);
+    const mediaElements = document.querySelectorAll(".media-edit");
+    for (const mediaElement of mediaElements) {
+        mediaElement.addEventListener("click", handleClickOnMedia);
     }
 }
 
-async function handleClickOnOption(event) {
+async function handleClickOnMedia(event) {
     "use strict";
     const parentNode = event.currentTarget.parentNode;
+    const mediaId = event.currentTarget.dataset.mediaId;
+    const mediaType = event.currentTarget.dataset.mediaType;
+    const mediaValue = mediaType === "video" ? event.currentTarget.innerText : event.currentTarget.src;
     event.currentTarget.classList.add("d-none");
     const inputFieldContainer = document.createElement("div");
     inputFieldContainer.classList.add("d-flex", "align-items-center");
-    inputFieldContainer.innerHTML = `
+    inputFieldContainer.innerHTML = await constructMediaInputHtmlByType(mediaId, mediaType, mediaValue) ;
+    parentNode.insertBefore(inputFieldContainer, event.currentTarget);
+    inputFieldContainer.querySelector('select').addEventListener('change', handleMediaTypeChange);
+    inputFieldContainer.querySelector('button').addEventListener("click", handleMediaChange);
+
+}
+
+async function constructMediaInputHtmlByType( mediaId, mediaType, mediaValue){
+    "use strict";
+    let media_html;
+    switch (mediaType){
+        case "image":
+            media_html = `
+    <div class="col-8">
+        <input type="file" class="form-control" data-media-id="${mediaId}" value="${mediaValue}">
+    </div>
+    <div class="col-2">
+        <select class="form-select form-control" data-media-id="${mediaId}">
+            <option value="image" selected>Image</option>
+            <option value="video">Video</option>
+        </select>
+    </div>
+    <div class="col-2">
+        <button class="btn button-custom form-control" type="submit" data-media-id="${mediaId}">Elküldés</button>
+    </div>`;
+            break;
+        case "video":
+            media_html = `
 <div class="col-8">
-    <input class="form-control" value="${event.currentTarget.innerText}">
+    <input class="form-control" data-media-id="${mediaId}" value="${mediaValue}">
 </div>
 <div class="col-2">
-  <select class="form-select form-control">
-      <option value="true">Correct</option>
-      <option value="false">Incorrect</option>
+  <select class="form-select form-control" data-media-id="${mediaId}">
+      <option value="image">Image</option>
+      <option value="video" selected>Video</option>
   </select>
 </div>
 <div class="col-2">
-    <button class="btn button-custom form-control" type="submit" data-option-id="${event.currentTarget.dataset.optionId}">Elküldés</button>
+    <button class="btn button-custom form-control" type="submit" data-media-id="${mediaId}">Elküldés</button>
 </div>`;
-    const options = inputFieldContainer.querySelectorAll("option");
-    for (const option of options) {
-        if (option.value === event.currentTarget.dataset.correct) {
-            option.setAttribute('selected', true);
-        }
+            break;
     }
-    parentNode.insertBefore(inputFieldContainer, event.currentTarget);
-    inputFieldContainer.querySelector("button").addEventListener("click", handleOptionChange);
-
+    return media_html;
 }
 
-async function handleOptionChange(event) {
+async function handleMediaTypeChange(event){
+    "use strict";
+    const mediaId = event.currentTarget.dataset.mediaId;
+    const mediaType = event.currentTarget.value;
+    const mediaInputContainer = event.currentTarget.parentNode.parentNode;
+    const currentInputElement = mediaInputContainer.querySelector("input");
+    switch (mediaType){
+        case 'image':
+            currentInputElement.type="file";
+            break;
+        case 'video':
+            currentInputElement.type="text";
+            break;
+    }
+}
+
+async function handleMediaChange(event) {
     "use strict";
     const inputFieldContainer = event.currentTarget.parentNode.parentNode;
-    const option = {
-        "option": inputFieldContainer.querySelector("input").value,
-        "correct": inputFieldContainer.querySelector("select").value
-    };
-    const optionId = event.currentTarget.dataset.optionId;
-    const inputFieldContainerParent = inputFieldContainer.parentNode;
-    const optionElement = inputFieldContainerParent.querySelector(`.option[data-option-id="${optionId}"]`);
-    dataHandler.patchEnglishLanguageOption(optionId, option);
-    optionElement.innerHTML = option.option;
-    optionElement.dataset.correct = option.correct;
-    inputFieldContainer.remove();
-    optionElement.classList.remove("d-none");
+    // const option = {
+    //     "option": inputFieldContainer.querySelector("input").value,
+    //     "correct": inputFieldContainer.querySelector("select").value
+    // };
+    const mediaType = inputFieldContainer.querySelector("select").value;
+        switch (mediaType) {
+            case 'image':
+                handleImageChange( inputFieldContainer);
+                break;
+            case 'video':
+                handleVideoChange( inputFieldContainer);
+                break;
+        }
 }
+
+
+async function handleVideoChange(inputFieldContainer){
+    "use strict";
+    const url = inputFieldContainer.querySelector('input').value;
+    const mediaId = inputFieldContainer.querySelector('input').dataset.mediaId;
+    if (url.includes("https://www.youtube.com/watch?v=")){
+        await dataHandler.patchSocialSituationMediaToVideo(mediaId, {"url": url, "type": "video"});
+        location.reload();
+    }else{
+        alert("Az videó linkeknek tartalmaznia kell hogy: https://www.youtube.com/watch?v=");
+    }
+
+}
+
+async function handleImageChange(inputFieldContainer){
+    "use strict";
+    const files = inputFieldContainer.querySelector('input').files;
+    const fileName = files[0].name;
+    const mediaId = inputFieldContainer.querySelector('input').dataset.mediaId;
+    const media = new FormData();
+    media.append('image', files[0]);
+    media.append('fileName', fileName);
+    console.log(media);
+    await dataHandler.patchSocialSituationMediaToImage(mediaId, media);
+    location.reload();
+    }
