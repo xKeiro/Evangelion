@@ -8,35 +8,14 @@ from data_manager import english_test_handler
 
 
 def get_applicants_results_into_pdf():
-    applicants = [
-        {
-            "name": "Flash Elek",
-            "chair_lamp": "98%",
-            "toulouse": "100%",
-            "bourdon": "94%",
-            "english": "82%",
-            "social": "69%",
-            "work_motivation": "10000"
-        },
-        {
-            "name": "Sprint Elek",
-            "chair_lamp": "10%",
-            "toulouse": "77%",
-            "bourdon": "81%",
-            "english": "35%",
-            "social": "12%",
-            "work_motivation": "1009"
-        }
-    ]
-    result_headers = [
-        "Name",
-        "Chair-Lamp",
-        "Toulouse-Piéron Cancelation",
-        "Bourdon",
-        "English Language",
-        "Social Situations",
-        "Work Motivation"
-    ]
+    # "Name",
+    # "Chair-Lamp",
+    # "Toulouse-Piéron Cancelation",
+    # "Bourdon",
+    # "English Language",
+    # "Social Situations",
+    # "Work Motivation"
+
     pdf_col_width_values = [35, 20, 40, 15, 28, 27, 25]  # SUM = 190
     current_date = str(date.today()).replace("-", "_")
 
