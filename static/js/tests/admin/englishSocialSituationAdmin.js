@@ -208,7 +208,6 @@ async function handleImageChange(inputFieldContainer){
     const media = new FormData();
     media.append('image', files[0]);
     media.append('fileName', fileName);
-    console.log(media);
     await dataHandler.patchSocialSituationMediaToImage(mediaId, media);
     location.reload();
     }

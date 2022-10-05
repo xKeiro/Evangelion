@@ -13,7 +13,6 @@ initEvents();
 
 async function initEvents() {
     "use strict";
-    console.log(sessionStorage)
     if (sessionStorage.getItem(document.location.pathname)) {
         const stored_data = JSON.parse(sessionStorage.getItem(document.location.pathname));
         if ("test_results" in stored_data) {
@@ -21,7 +20,6 @@ async function initEvents() {
             sendTest(stored_data.test_results);
         } else if ("answers" in stored_data) {
             answers = stored_data.answers;
-            console.log(answers);
             hideQuestionsAndShowEssay();
             initSendEnglishLanguageTest();
         }

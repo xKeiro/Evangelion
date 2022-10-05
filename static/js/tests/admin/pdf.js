@@ -41,7 +41,7 @@ async function createUserTable() {
     const userTableContainer = document.getElementById('user-table-container');
     const table = document.createElement('table');
 
-    table.classList.add('table', 'table-striped');
+    table.classList.add('table', 'table-striped', 'mt-5');
     table.innerHTML = `
 <thead class="thead-users">
 <tr>

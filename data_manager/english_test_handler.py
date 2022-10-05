@@ -184,7 +184,6 @@ def patch_option_by_id(cursor: 'Cursor', option_id: int, option: dict) -> None:
     WHERE id = %s
     """
     var = (option["option"], option["correct"], option_id)
-    print(type(cursor))
     cursor.execute(query, var)
 
 
