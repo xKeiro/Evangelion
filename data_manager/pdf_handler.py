@@ -53,7 +53,10 @@ def get_applicant_tests_results_into_pdf(username="", full_name="", email="", ap
         pdf.image("static/resources/salva_vita_logo.jpg", x=10, y=5, h=20, w=20)
 
         pdf.set_font("Calibrib", size=16)
-        pdf.cell(w=0, h=title_height, txt=f"{full_name} - Eredmények", ln=1, align="C")
+        if len(applicants) == 0:
+            pdf.cell(w=0, h=title_height, txt=f"Eredmények", ln=1, align="C")
+        else:
+            pdf.cell(w=0, h=title_height, txt=f"{full_name} - Eredmények", ln=1, align="C")
 
         pdf.set_font("Calibriz", size=9)
         pdf.cell(w=0, h=data_row_height - 3, txt=f"{email}", ln=1, align="C")
