@@ -57,13 +57,11 @@
     margin-left: 60px;
 }
 .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-around-text > .card-text{
-    margin-right: 60px;
     text-align: right;
     max-width: 400px;
 }
 
 .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-around-text > h2{
-    margin-right: 60px;
     text-align: right;
     max-width: 400px;
 }
