@@ -57,13 +57,11 @@
     color: white;
 }
 .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-around-text > .card-text{
-    margin-right: 60px;
     text-align: right;
     max-width: 400px;
 }
 
 .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-around-text > h2{
-    margin-right: 60px;
     text-align: right;
     max-width: 400px;
 }
@@ -95,6 +93,11 @@
     .card-text-container{
         padding: 0;
         margin: 20px 0 20px 0;
+    }
+
+    .card-around-text{
+        padding-left: 0!important;
+        padding-right: 0!important;
     }
 
     .homepage-card:nth-of-type(odd) > .row > .card-border-div > .card-image-container, .homepage-card:nth-of-type(even) > .row > .card-border-div > .card-image-container {
