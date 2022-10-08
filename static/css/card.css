@@ -12,6 +12,13 @@
 
 .card-around-text {
     border-style: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-border-div{
+    display: flex;
+    align-items: center;
 }
 
 .homepage-card:nth-of-type(even) > .card-content {
@@ -63,7 +70,6 @@
 
 .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-around-text > h2{
     text-align: right;
-    max-width: 400px;
 }
 
 
@@ -79,9 +85,13 @@
     justify-content: center;
 }
 
-.homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-around-text > .card-text, .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-around-text > h2 {
+.homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-around-text > .card-text {
     text-align: left;
     max-width: 400px;
+}
+
+.homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-around-text > h2{
+    text-align: left;
 }
 
 @media all and (max-width: 991px) {
