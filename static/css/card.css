@@ -9,6 +9,11 @@
     background-color: #0096f2;
 }
 
+.card-around-text {
+    border-style: hidden;
+    text-align: justify;
+}
+
 .homepage-card:nth-of-type(even) > .card-content {
     flex-direction: row-reverse;
 }
@@ -69,7 +74,7 @@
 
 .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-text, h2 {
     text-align: left;
-    margin-left: 60px;
+    /*margin-left: 60px;*/
     max-width: 400px;
 }
 

@@ -1,4 +1,4 @@
-import mimetypes
+# import mimetypes
 
 import flask
 from flask import Flask  # type: ignore
@@ -21,8 +21,8 @@ from data_manager import work_motivation_test_handler
 from data_manager import pdf_handler
 from data_manager import common_queries
 
-mimetypes.add_type('application/javascript', '.js')
-mimetypes.add_type('text/css', '.css')
+# mimetypes.add_type('application/javascript', '.js')
+# mimetypes.add_type('text/css', '.css')
 UPLOAD_FOLDER = "./static/img"
 
 app = Flask(__name__)
