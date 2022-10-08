@@ -9,6 +9,7 @@
     background-color: #0096f2;
 }
 
+
 .card-around-text {
     border-style: hidden;
 }
@@ -94,6 +95,10 @@
     .card-text-container{
         padding: 0;
         margin: 20px 0 20px 0;
+    }
+
+    .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-around-text{
+        margin-left: 0;
     }
 
     .homepage-card:nth-of-type(odd) > .row > .card-border-div > .card-image-container, .homepage-card:nth-of-type(even) > .row > .card-border-div > .card-image-container {
