@@ -52,9 +52,8 @@
 
 /*text*/
 .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-around-text{
-    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);*/
-    background-color: #0096f2;
-    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-left: 60px;
 }
 .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-around-text > .card-text{
     margin-right: 60px;
