@@ -11,7 +11,6 @@
 
 .card-around-text {
     border-style: hidden;
-    text-align: justify;
 }
 
 .homepage-card:nth-of-type(even) > .card-content {
@@ -52,7 +51,18 @@
 }
 
 /*text*/
-.homepage-card:nth-of-type(even) > .row > .card-text-container > .card-text, h2 {
+.homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-around-text{
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);*/
+    background-color: #0096f2;
+    color: white;
+}
+.homepage-card:nth-of-type(even) > .row > .card-text-container > .card-around-text > .card-text{
+    margin-right: 60px;
+    text-align: right;
+    max-width: 400px;
+}
+
+.homepage-card:nth-of-type(even) > .row > .card-text-container > .card-around-text > h2{
     margin-right: 60px;
     text-align: right;
     max-width: 400px;
@@ -67,14 +77,12 @@
 }
 
 .homepage-card:nth-of-type(odd) > .row > .card-text-container {
-    /*border: #ffc107 solid 1px;*/
     align-items: flex-start;
     justify-content: center;
 }
 
-.homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-text, h2 {
+.homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-around-text > .card-text, .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-around-text > h2 {
     text-align: left;
-    /*margin-left: 60px;*/
     max-width: 400px;
 }
 
@@ -84,18 +92,23 @@
         align-items: center;
         margin: 0;
     }
+    .card-text-container{
+        padding: 0;
+        margin: 20px 0 20px 0;
+    }
 
     .homepage-card:nth-of-type(odd) > .row > .card-border-div > .card-image-container, .homepage-card:nth-of-type(even) > .row > .card-border-div > .card-image-container {
         margin: 20px auto 0 auto;
 
     }
 
-    .homepage-card:nth-of-type(odd) > .row > .card-text-container, .homepage-card:nth-of-type(even) > .row > .card-text-container {
+    .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-around-text, .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-around-text {
         justify-content: flex-start;
         align-items: center;
+        width: 100%;
     }
 
-    .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-text, .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-text, h2 {
+    .homepage-card:nth-of-type(odd) > .row > .card-text-container > .card-around-text > .card-text, .homepage-card:nth-of-type(even) > .row > .card-text-container > .card-around-text > .card-text, h2 {
         text-align: left;
         max-width: 600px;
         margin: 0 0 20px 0;
